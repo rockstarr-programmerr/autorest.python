@@ -5,19 +5,20 @@
 // is fully consistent (and also supports AUTOREST_PYTHON_EXE).
 //
 // Invoke it like so: "node run-python3.js script.py"
+// @ts-check
 
 const cp = require("child_process");
-const extension = require("@azure-tools/extension");
+const { updatePythonPath } = require("./find-python");
 
 async function runPython3(scriptName, debug = "") {
   const command = ["python", scriptName, debug];
-  await extension.updatePythonPath(command);
+  await updatePythonPath(command);
   cp.execSync(command.join(" "), {
-    stdio: [0, 1, 2]
+    stdio: [0, 1, 2],
   });
 }
 
-runPython3(...process.argv.slice(2)).catch(err => {
+runPython3(...process.argv.slice(2)).catch((err) => {
   const error = err.toString();
 
   // Python script errors are already written out via stderr so don't
