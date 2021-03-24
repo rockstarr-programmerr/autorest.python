@@ -128,6 +128,10 @@ class ParameterList(MutableSequence):
     def is_flattened(self) -> bool:
         return cast(bool, self.get_from_predicate(lambda parameter: parameter.flattened))
 
+    @property
+    def has_partial_body(self) -> bool:
+        return cast(bool, self.get_from_predicate(lambda parameter: parameter.is_partial_body))
+
     def build_flattened_object(self) -> str:
         if not self.is_flattened:
             raise ValueError("This method can't be called if the operation doesn't need parameter flattening")

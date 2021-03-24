@@ -62,6 +62,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         grouped_by: Optional["Parameter"] = None,
         original_parameter: Optional["Parameter"] = None,
         client_default_value: Optional[Any] = None,
+        is_partial_body: bool = False
     ) -> None:
         super().__init__(yaml_data)
         self.schema = schema
@@ -84,6 +85,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.has_multiple_media_types: bool = False
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
+        self.is_partial_body = is_partial_body
 
     def build_serialize_data_call(self, function_name: str) -> str:
 
@@ -268,6 +270,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             original_parameter=yaml_data.get("originalParameter", None),
             flattened=yaml_data.get("flattened", False),
             client_default_value=yaml_data.get("clientDefaultValue"),
+            is_partial_body=yaml_data.get("isPartialBody", False)
         )
 
     def imports(self) -> FileImport:
