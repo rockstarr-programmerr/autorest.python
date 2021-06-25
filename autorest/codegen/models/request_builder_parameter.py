@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
-from .parameter import ParameterOnlyPathsPositional, ParameterLocation, ParameterStyle
+from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle
 from .constant_schema import ConstantSchema
 
 def _make_public(name):
@@ -12,7 +12,7 @@ def _make_public(name):
         return name[1:]
     return name
 
-class RequestBuilderParameter(ParameterOnlyPathsPositional):
+class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
 
     @staticmethod
     def serialize_line(function_name: str, parameters_line: str):
@@ -57,6 +57,13 @@ class RequestBuilderParameter(ParameterOnlyPathsPositional):
         return super(RequestBuilderParameter, self).in_method_code
 
     @property
+    def is_keyword_only(self) -> bool:
+        return not (
+            self.location == ParameterLocation.Path or
+            self.is_kwarg
+        )
+
+    @property
     def default_value(self) -> Optional[Any]:
         if self.location == ParameterLocation.Body:
             return None
@@ -71,10 +78,6 @@ class RequestBuilderParameter(ParameterOnlyPathsPositional):
             # So, we just return None in default_value_declaration for now
             return "None"
         return super().default_value_declaration
-
-    @property
-    def is_keyword_only(self) -> bool:
-        return not self.location == ParameterLocation.Path and not self.is_kwarg
 
     @property
     def full_serialized_name(self) -> str:

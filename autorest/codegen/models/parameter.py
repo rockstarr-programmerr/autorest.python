@@ -339,8 +339,12 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
-class ParameterOnlyPathsPositional(Parameter):
+class ParameterOnlyPathAndBodyPositional(Parameter):
 
     @property
     def is_keyword_only(self) -> bool:
-        return not (self.location == ParameterLocation.Path or self.location == ParameterLocation.Body)
+        return not (
+            self.location == ParameterLocation.Path or
+            self.location == ParameterLocation.Body or
+            self.is_kwarg
+        )

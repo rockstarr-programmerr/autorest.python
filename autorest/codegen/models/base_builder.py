@@ -91,8 +91,3 @@ class BaseBuilder(BaseModel):
         """The list of all successfull status code.
         """
         return [code for response in self.responses for code in response.status_codes if code != "default"]
-
-    @staticmethod
-    @abstractmethod
-    def get_parameter_converter() -> Callable:
-        ...

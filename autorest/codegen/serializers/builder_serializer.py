@@ -6,7 +6,6 @@
 from functools import partial
 from autorest.codegen.models.schema_request import SchemaRequest
 from itertools import groupby
-from autorest.codegen.models.operation import NoModelOperation
 from autorest.codegen.models.parameter import Parameter
 import json
 from collections import defaultdict
@@ -520,8 +519,6 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         body_param = builder.parameters.body[0]
         body_is_xml = ", is_xml=True" if send_xml else ""
         pass_ser_ctxt = f", {ser_ctxt_name}={ser_ctxt_name}" if ser_ctxt else ""
-        if isinstance(builder, NoModelOperation):
-            return f"{builder.serialized_body_kwarg} = self._serialize.body({builder.parameters.body[0].serialized_name}, 'object')"
         return f"{builder.serialized_body_kwarg} = self._serialize.body({body_param.serialized_name}, '{ body_param.serialization_type }'{body_is_xml}{ pass_ser_ctxt })"
 
     def _serialize_body(self, builder: Operation) -> List[str]:
@@ -623,7 +620,7 @@ class OperationBaseSerializer(BuilderBaseSerializer):
             request_builder.name
         )
         retval.append("")
-        retval.append(f"rest_request = {request_path_name}(")
+        retval.append(f"request = {request_path_name}(")
         for parameter in request_builder.parameters.method:
             if parameter.is_body:
                 continue
@@ -634,7 +631,6 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         retval.append(f"    template_url={self._template_url_to_pass_to_request_builder(builder)},")
         retval.append("    **kwargs")
         retval.append(")")
-        retval.append("request = PipelineTransportHttpRequest._from_rest_request(rest_request)")
         if builder.parameters.path:
             retval.extend(self._serialize_path_format_parameters(builder))
         retval.append("request.url = self._client.format_url(request.url{})".format(

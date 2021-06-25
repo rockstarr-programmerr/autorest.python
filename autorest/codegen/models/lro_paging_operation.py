@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from .imports import FileImport
 from .lro_operation import LROOperation
-from .paging_operation import PagingOperation, NoModelPagingOperation
+from .paging_operation import PagingOperation
 
 class LROPagingOperation(PagingOperation, LROOperation):
 
@@ -21,6 +21,3 @@ class LROPagingOperation(PagingOperation, LROOperation):
     def paging_success_status_code(self):
         # hardcode paging's success status code in lro + paging to be 200
         return [200]
-
-class NoModelLROPagingOperation(LROPagingOperation, NoModelPagingOperation):
-    pass

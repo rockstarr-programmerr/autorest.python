@@ -7,14 +7,30 @@ import logging
 from typing import Dict, List, Any, Set
 
 from .base_model import BaseModel
-from .operation import NoModelOperation, Operation
-from .lro_operation import LROOperation, NoModelLROOperation
-from .paging_operation import NoModelPagingOperation, PagingOperation
-from .lro_paging_operation import LROPagingOperation, NoModelLROPagingOperation
+from .operation import Operation
+from .lro_operation import LROOperation
+from .paging_operation import PagingOperation
+from .lro_paging_operation import LROPagingOperation
 from .imports import FileImport, ImportType
+from .parameter import Parameter, ParameterOnlyPathAndBodyPositional
 
 
 _LOGGER = logging.getLogger(__name__)
+
+def _get_operation(code_model, yaml_data: Dict[str, Any]) -> Operation:
+    lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
+    paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
+    parameter_type = ParameterOnlyPathAndBodyPositional if code_model.only_path_and_body_params_positional else Parameter
+    if lro_operation and paging_operation:
+        operation_schema = LROPagingOperation
+    elif lro_operation:
+        operation_schema = LROOperation
+    elif paging_operation:
+        operation_schema = PagingOperation
+    else:
+        operation_schema = Operation
+    operation = operation_schema.from_yaml(yaml_data, parameter_creator=parameter_type.from_yaml)
+    return operation
 
 
 class OperationGroup(BaseModel):
@@ -84,20 +100,7 @@ class OperationGroup(BaseModel):
         operations = []
         api_versions: Set[str] = set()
         for operation_yaml in yaml_data["operations"]:
-            lro_operation = operation_yaml.get("extensions", {}).get("x-ms-long-running-operation")
-            paging_operation = operation_yaml.get("extensions", {}).get("x-ms-pageable")
-            if lro_operation and paging_operation:
-                operation_schema = NoModelLROPagingOperation if code_model.no_models else LROPagingOperation
-                operation = operation_schema.from_yaml(operation_yaml)
-            elif lro_operation:
-                operation_schema = NoModelLROOperation if code_model.no_models else LROOperation
-                operation = operation_schema.from_yaml(operation_yaml)
-            elif paging_operation:
-                operation_schema = NoModelPagingOperation if code_model.no_models else PagingOperation
-                operation = operation_schema.from_yaml(operation_yaml)
-            else:
-                operation_schema = NoModelOperation if code_model.no_models else Operation
-                operation = operation_schema.from_yaml(operation_yaml)
+            operation = _get_operation(code_model, operation_yaml)
             operations.append(operation)
             api_versions.update(operation.api_versions)
 

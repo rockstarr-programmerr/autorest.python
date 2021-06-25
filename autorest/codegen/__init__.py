@@ -82,14 +82,20 @@ class CodeGenerator(Plugin):
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
         low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
+        version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
         no_models = self._autorestapi.get_boolean_value("no-models", False)
         rest_layer = self._autorestapi.get_boolean_value("rest-layer", False)
         no_operations = self._autorestapi.get_boolean_value("no-operations", False)
-        only_path_and_body_params_positional = self._autorestapi.get_boolean_value("only-path-params-positional", False)
+        only_path_and_body_params_positional = self._autorestapi.get_boolean_value("only-path-and-body-params-positional", False)
         if low_level_client:
             no_models = True
             rest_layer = True
             no_operations = True
+            only_path_and_body_params_positional = True
+        elif version_tolerant:
+            no_models = False
+            rest_layer = True
+            no_operations = False
             only_path_and_body_params_positional = True
         code_model = CodeModel(
             rest_layer=rest_layer,
