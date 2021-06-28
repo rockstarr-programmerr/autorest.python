@@ -134,14 +134,23 @@ def _build_flags(
         generation_section = "azure"
     namespace = _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower())
     low_level_client = kwargs.pop("low_level_client", False)
+    version_tolerant = kwargs.pop("version_tolerant", False)
     if low_level_client:
         package_name += "LowLevel"
         generation_section += "/low-level"
         override_flags = override_flags or {}
         override_flags["low-level-client"] = True
         namespace += "lowlevel"
+    elif version_tolerant:
+        package_name += "VersionTolerant"
+        generation_section += "/version-tolerant"
+        override_flags = override_flags or {}
+        override_flags["version-tolerant"] = True
+        namespace += "versiontolerant"
     else:
         generation_section += "/legacy"
+        override_flags = override_flags or {}
+        override_flags["payload-flattening-threshold"] = 1
 
     flags = {
         "use": autorest_dir,
@@ -157,7 +166,6 @@ def _build_flags(
         "add-credential": False,
         "vanilla": swagger_group == _SwaggerGroup.VANILLA,
         "azure-arm": swagger_group == _SwaggerGroup.AZURE_ARM,
-        "payload-flattening-threshold": 1,
         "keep-version-file": True,
         "namespace": namespace,
         "client-side-validation": package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION,
@@ -235,6 +243,10 @@ def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
+def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, swagger_name, debug, version_tolerant=True, **kwargs)
+
+@task
 def regenerate_azure(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, swagger_name, debug, **kwargs)
 
@@ -243,12 +255,20 @@ def regenerate_azure_llc(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
+def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, swagger_name, debug, version_tolerant=True, **kwargs)
+
+@task
 def regenerate_azure_arm(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, swagger_name, debug, **kwargs)
 
 @task
 def regenerate_azure_arm_llc(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, swagger_name, debug, low_level_client=True, **kwargs)
+
+@task
+def regenerate_azure_arm_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, swagger_name, debug, version_tolerant=True, **kwargs)
 
 @task
 def regenerate_namespace_folders_test(c, debug=False):
@@ -301,6 +321,12 @@ def regenerate_llc(c, swagger_name=None, debug=False):
     regenerate_vanilla_llc(c, swagger_name, debug)
     regenerate_azure_llc(c, swagger_name, debug)
     regenerate_azure_arm_llc(c, swagger_name, debug)
+
+@task
+def regenerate_version_tolerant(c, swagger_name=None, debug=False):
+    regenerate_vanilla_version_tolerant(c, swagger_name, debug)
+    regenerate_azure_version_tolerant(c, swagger_name, debug)
+    regenerate_azure_arm_version_tolerant(c, swagger_name, debug)
 
 @task
 def test(c, env=None):
