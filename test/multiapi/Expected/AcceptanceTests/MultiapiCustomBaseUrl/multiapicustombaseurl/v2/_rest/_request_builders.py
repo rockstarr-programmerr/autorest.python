@@ -24,15 +24,19 @@ def build_test_request(
     """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
     version of 2.0.0 to pass.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword id: An int parameter. Put in 2 to pass.
     :paramtype id: int
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     id = kwargs.pop('id')  # type: int
+
     api_version = "2.0.0"
     accept = "application/json"
 

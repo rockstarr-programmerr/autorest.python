@@ -16,19 +16,26 @@ _SERIALIZER = Serializer()
 def build_test_four_request(
     *,
     json: Any = None,
-    content: Optional[IO] = None,
+    content: Any = None,
     **kwargs: Any
 ) -> HttpRequest:
     """TestFour should be in OperationGroupTwoOperations.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :keyword json: Input parameter.
-    :paramtype json: Any
-    :keyword content: Input parameter.
-    :paramtype content: IO
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Input parameter.
+    :paramtype json: any
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Input parameter.
+    :paramtype content: any
+    :keyword str content_type: Media type of the body sent to the API. Default value is
+     "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
+     "image/tiff", "application/json."
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
@@ -39,9 +46,10 @@ def build_test_four_request(
                 "source": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop('content_type', None)  # type: Optional[Union[str, "_models.ContentType"]]
+
     api_version = "3.0.0"
-    accept = "application/json"
     accept = "application/json"
 
     # Construct URL
@@ -73,12 +81,16 @@ def build_test_five_request(
 ) -> HttpRequest:
     """TestFive should be in OperationGroupTwoOperations.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+
     api_version = "3.0.0"
     accept = "application/json"
 

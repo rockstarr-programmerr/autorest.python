@@ -17,11 +17,11 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest as PipelineTransportHttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import rest
+from .. import _rest as rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -36,21 +36,22 @@ class ObjectTypeClientOperationsMixin(object):
     def get(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Any
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
-        :rtype: str
+        :return: any, or the result of cls(response)
+        :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest.build_get_request(template_url=self.get.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_get_request(
+            template_url=self.get.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -61,7 +62,7 @@ class ObjectTypeClientOperationsMixin(object):
             error = self._deserialize.failsafe_deserialize("object", response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -73,7 +74,7 @@ class ObjectTypeClientOperationsMixin(object):
     @distributed_trace
     def put(
         self,
-        put_object,  # type: str
+        put_object,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -81,7 +82,7 @@ class ObjectTypeClientOperationsMixin(object):
         object error.
 
         :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
-        :type put_object: str
+        :type put_object: any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -93,12 +94,13 @@ class ObjectTypeClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(put_object, "str")
+        json = self._serialize.body(put_object, "object")
 
-        rest_request = rest.build_put_request(
-            content_type=content_type, json=json, template_url=self.put.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_put_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

@@ -355,15 +355,12 @@ class RequestBuilderBaseSerializer(BuilderBaseSerializer):
         return "HttpRequest"
 
     def response_docstring(self, builder: RequestBuilder) -> List[str]:
-        core_import = "{}.core.rest".format(
-            self.code_model.namespace if self.code_model.options["vendor"] else "azure"
-        )
         response_str = (
-            f":return: Returns an :class:`~{ core_import }.HttpRequest` that you will pass to the client's " +
+            f":return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's " +
             "`send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to " +
             "incorporate this response into your code flow."
         )
-        rtype_str = f":rtype: ~{ core_import }.HttpRequest"
+        rtype_str = f":rtype: ~azure.core.rest.HttpRequest"
         return [response_str, rtype_str]
 
     def _json_example_param_name(self, builder: RequestBuilder) -> str:
@@ -485,9 +482,8 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         return [response_str, rtype_str, ":raises: ~azure.core.exceptions.HttpResponseError"]
 
     def want_example_template(self, builder: BaseBuilder) -> bool:
-        # if not self.code_model.no_models:
-        #     return False
-        return False
+        if self.code_model.show_models:
+            return False
         if builder.parameters.has_body:
             body_params = builder.parameters.body
             return any([
@@ -584,9 +580,6 @@ class OperationBaseSerializer(BuilderBaseSerializer):
 
         return retval
 
-    def _template_url_to_pass_to_request_builder(self, builder: Operation) -> str:
-        return f"self.{builder.name}.metadata['url']"
-
     def _serialize_files_parameter(self, builder: Operation) -> List[str]:
         retval = ["files = {"]
         for parameter in builder.parameters.body:
@@ -594,7 +587,12 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         retval.append("}")
         return retval
 
-    def _call_request_builder_helper(self, builder: Operation, request_builder: RequestBuilder) -> List[str]:
+    def _call_request_builder_helper(
+        self,
+        builder: Operation,
+        request_builder: RequestBuilder,
+        template_url: Optional[str] = None,
+    ) -> List[str]:
         retval = []
         if len(builder.body_kwargs_to_pass_to_request_builder) > 1:
             for k in builder.body_kwargs_to_pass_to_request_builder:
@@ -628,9 +626,9 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         if request_builder.parameters.has_body:
             for kwarg in builder.body_kwargs_to_pass_to_request_builder:
                 retval.append(f"    {kwarg}={kwarg},")
-        retval.append(f"    template_url={self._template_url_to_pass_to_request_builder(builder)},")
-        retval.append("    **kwargs")
-        retval.append(")")
+        template_url = template_url or f"self.{builder.name}.metadata['url']"
+        retval.append(f"    template_url={template_url},")
+        retval.append(")._to_pipeline_transport_request()")
         if builder.parameters.path:
             retval.extend(self._serialize_path_format_parameters(builder))
         retval.append("request.url = self._client.format_url(request.url{})".format(
@@ -697,8 +695,19 @@ class PagingOperationBaseSerializer(OperationBaseSerializer):
         interior = super()._response_type_annotation(builder, modify_if_head_as_boolean=False)
         return f"# type: ClsType[{interior}]"
 
-    def call_next_link_request_builder(self, builder: PagingOperation):
-        return self._call_request_builder_helper(builder, builder.next_request_builder or builder.request_builder)
+    def call_next_link_request_builder(self, builder: PagingOperation) -> List[str]:
+        if builder.next_operation:
+            request_builder = builder.next_request_builder
+            template_url = f"'{request_builder.url}'"
+        else:
+            request_builder = builder.request_builder
+            template_url = "next_link"
+        request_builder = builder.next_request_builder or builder.request_builder
+        return self._call_request_builder_helper(
+            builder,
+            request_builder,
+            template_url=template_url,
+        )
 
 
 class SyncPagingOperationSerializer(PagingOperationBaseSerializer, SyncOperationSerializer):
@@ -817,6 +826,10 @@ class SyncLROPagingOperationSerializer(SyncLROOperationSerializer, SyncPagingOpe
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
 class AsyncLROPagingOperationSerializer(AsyncLROOperationSerializer, AsyncPagingOperationSerializer):
+
+    @property
+    def _function_definition(self) -> str:
+        return "async def"
 
     def _response_docstring_type_wrapper(self, builder: LROPagingOperation) -> List[str]:
         return (

@@ -17,12 +17,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest as PipelineTransportHttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..rest import availability_sets as rest_availability_sets
+from .._rest import availability_sets as rest_availability_sets
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -85,15 +85,13 @@ class AvailabilitySetsOperations(object):
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         json = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
 
-        rest_request = rest_availability_sets.build_update_request(
+        request = rest_availability_sets.build_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,
             json=json,
             template_url=self.update.metadata["url"],
-            **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

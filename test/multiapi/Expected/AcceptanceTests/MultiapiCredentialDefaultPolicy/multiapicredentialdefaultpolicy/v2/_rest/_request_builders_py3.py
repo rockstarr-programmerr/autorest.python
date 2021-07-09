@@ -21,16 +21,29 @@ def build_test_one_request(
 ) -> HttpRequest:
     """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword id: An int parameter.
     :paramtype id: int
     :keyword message: An optional string parameter.
     :paramtype message: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "int",
+                "message": "str (optional)"
+            }
     """
+
+
     api_version = "2.0.0"
     accept = "application/json"
 
@@ -65,16 +78,20 @@ def build_test_different_calls_request(
 ) -> HttpRequest:
     """Has added parameters across the API versions.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword greeting_in_english: pass in 'hello' to pass test.
     :paramtype greeting_in_english: str
     :keyword greeting_in_chinese: pass in 'nihao' to pass test.
     :paramtype greeting_in_chinese: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+
     api_version = "2.0.0"
     accept = "application/json"
 

@@ -7,13 +7,13 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_basic_polling_initial
-    from ._preparers_py3 import prepare_basic_paging
+    from ._request_builders_py3 import build_basic_polling_request_initial
+    from ._request_builders_py3 import build_basic_paging_request
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_basic_polling_initial  # type: ignore
-    from ._preparers import prepare_basic_paging  # type: ignore
+    from ._request_builders import build_basic_polling_request_initial  # type: ignore
+    from ._request_builders import build_basic_paging_request  # type: ignore
 
 __all__ = [
-    'prepare_basic_polling_initial',
-    'prepare_basic_paging',
+    'build_basic_polling_request_initial',
+    'build_basic_paging_request',
 ]

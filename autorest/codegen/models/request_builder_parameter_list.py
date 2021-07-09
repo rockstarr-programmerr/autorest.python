@@ -94,7 +94,7 @@ class RequestBuilderParameterList(ParameterList):
             )
             body_kwargs_added.append(content_kwarg)
             if len(body_kwargs_added) == 1:
-                body_kwargs_added[0].required = True
+                body_kwargs_added[0].required = body_method_param.required
             else:
                 for kwarg in body_kwargs_added:
                     kwarg.required = False

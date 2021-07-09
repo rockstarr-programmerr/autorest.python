@@ -17,11 +17,11 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest as PipelineTransportHttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models, rest
+from ... import _rest as rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,10 +50,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         else:
             json = None
 
-        rest_request = rest.build_put_array_request(
-            content_type=content_type, json=json, template_url=self.put_array.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_put_array_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_array.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -84,8 +85,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest.build_get_array_request(template_url=self.get_array.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_get_array_request(
+            template_url=self.get_array.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -132,10 +134,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         else:
             json = None
 
-        rest_request = rest.build_put_wrapped_array_request(
-            content_type=content_type, json=json, template_url=self.put_wrapped_array.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_put_wrapped_array_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_wrapped_array.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -167,10 +170,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest.build_get_wrapped_array_request(
-            template_url=self.get_wrapped_array.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_get_wrapped_array_request(
+            template_url=self.get_wrapped_array.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -216,10 +218,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         else:
             json = None
 
-        rest_request = rest.build_put_dictionary_request(
-            content_type=content_type, json=json, template_url=self.put_dictionary.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_put_dictionary_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_dictionary.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -250,8 +253,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest.build_get_dictionary_request(template_url=self.get_dictionary.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_get_dictionary_request(
+            template_url=self.get_dictionary.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -297,10 +301,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         else:
             json = None
 
-        rest_request = rest.build_put_resource_collection_request(
-            content_type=content_type, json=json, template_url=self.put_resource_collection.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_put_resource_collection_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_resource_collection.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -331,10 +336,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest.build_get_resource_collection_request(
-            template_url=self.get_resource_collection.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_get_resource_collection_request(
+            template_url=self.get_resource_collection.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -380,10 +384,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         else:
             json = None
 
-        rest_request = rest.build_put_simple_product_request(
-            content_type=content_type, json=json, template_url=self.put_simple_product.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest.build_put_simple_product_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_simple_product.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -411,6 +416,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
+        capacity: Optional[str] = "Large",
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs: Any
@@ -425,6 +431,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :type description: str
         :param max_product_display_name: Display name of product.
         :type max_product_display_name: str
+        :param capacity: Capacity of product. For example, 4 people.
+        :type capacity: str
         :param generic_value: Generic URL value.
         :type generic_value: str
         :param odata_value: URL value.
@@ -444,6 +452,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             product_id=product_id,
             description=description,
             max_product_display_name=max_product_display_name,
+            capacity=capacity,
             generic_value=generic_value,
             odata_value=odata_value,
         )
@@ -452,13 +461,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         else:
             json = None
 
-        rest_request = rest.build_post_flattened_simple_product_request(
+        request = rest.build_post_flattened_simple_product_request(
             content_type=content_type,
             json=json,
             template_url=self.post_flattened_simple_product.metadata["url"],
-            **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -520,6 +527,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             product_id=_product_id,
             description=_description,
             max_product_display_name=_max_product_display_name,
+            capacity=capacity,
             generic_value=_generic_value,
             odata_value=_odata_value,
         )
@@ -528,14 +536,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         else:
             json = None
 
-        rest_request = rest.build_put_simple_product_with_grouping_request(
+        request = rest.build_put_simple_product_with_grouping_request(
             name=_name,
             content_type=content_type,
             json=json,
             template_url=self.put_simple_product_with_grouping.metadata["url"],
-            **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

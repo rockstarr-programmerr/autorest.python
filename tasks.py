@@ -32,6 +32,7 @@ _SERVICE_TO_README_PATH = {
 
 _VANILLA_SWAGGER_MAPPINGS = {
     'AdditionalProperties': 'additionalProperties.json',
+    'Anything': 'any-type.json',
     'ParameterFlattening': 'parameter-flattening.json',
     'BodyArray': 'body-array.json',
     'BodyBoolean': 'body-boolean.json',
@@ -227,44 +228,44 @@ def _regenerate(
         cmds.append(command_line)
     _run_autorest(cmds, debug=debug)
 
-def _prepare_mapping_and_regenerate(c, mapping, swagger_name=None, debug=False, **kwargs):
+def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None, debug=False, **kwargs):
     if swagger_name:
         prepared_mapping = {k: v for k, v in mapping.items() if swagger_name.lower() in k.lower()}
     else:
         prepared_mapping = mapping
-    _regenerate(prepared_mapping, debug, swagger_group=_SwaggerGroup.VANILLA, **kwargs)
+    _regenerate(prepared_mapping, debug, swagger_group=swagger_group, **kwargs)
 
 @task
-def regenerate_vanilla(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, swagger_name, debug, **kwargs)
+def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
 
 @task
 def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, swagger_name, debug, low_level_client=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS,  _SwaggerGroup.VANILLA, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
 def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, swagger_name, debug, version_tolerant=True, **kwargs)
 
 @task
-def regenerate_azure(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, swagger_name, debug, **kwargs)
+def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
 
 @task
 def regenerate_azure_llc(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, swagger_name, debug, low_level_client=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
 def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, swagger_name, debug, version_tolerant=True, **kwargs)
 
 @task
-def regenerate_azure_arm(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, swagger_name, debug, **kwargs)
+def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
 
 @task
 def regenerate_azure_arm_llc(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, swagger_name, debug, low_level_client=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
 def regenerate_azure_arm_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
@@ -299,9 +300,9 @@ def regenerate_package_name_setup_py(c, debug=False):
 @task
 def regenerate_legacy(c, swagger_name=None, debug=False):
     # regenerate expected code for tests
-    regenerate_vanilla(c, swagger_name, debug)
-    regenerate_azure(c, swagger_name, debug)
-    regenerate_azure_arm(c, swagger_name, debug)
+    regenerate_vanilla_legacy(c, swagger_name, debug)
+    regenerate_azure_legacy(c, swagger_name, debug)
+    regenerate_azure_arm_legacy(c, swagger_name, debug)
     if not swagger_name:
         regenerate_namespace_folders_test(c, debug)
         regenerate_multiapi(c, debug)
@@ -360,12 +361,15 @@ def regenerate_services(c, swagger_name=None, debug=False):
     _run_autorest(cmds[0], debug)
 
 
-def _multiapi_command_line(location):
+def _multiapi_command_line(location, debug):
     cwd = os.getcwd()
-    return (
+    cmd = (
         f'autorest {location} --use=. --multiapi --output-artifact=code-model-v4-no-tags ' +
         f'--python-sdks-folder={cwd}/test/'
     )
+    if debug:
+        cmd += " --python.debugger"
+    return cmd
 
 @task
 def regenerate_multiapi(c, debug=False, swagger_name="test"):
@@ -385,7 +389,7 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapicustombaseurl/README.md",
     ]
 
-    cmds = [_multiapi_command_line(spec) for spec in available_specifications if swagger_name.lower() in spec]
+    cmds = [_multiapi_command_line(spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
 
     _run_autorest(cmds, debug)
 
@@ -393,7 +397,7 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
 def regenerate_custom_poller_pager(c, debug=False):
     cwd = os.getcwd()
     cmd = (
-        f'autorest test/azure/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
+        f'autorest test/azure/legacy/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
 

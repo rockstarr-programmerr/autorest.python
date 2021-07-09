@@ -23,18 +23,22 @@ def build_test_one_request(
     # type: (...) -> HttpRequest
     """TestOne should be in an FirstVersionOperationsMixin.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword id: An int parameter.
     :paramtype id: int
     :keyword message: An optional string parameter.
     :paramtype message: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     id = kwargs.pop('id')  # type: int
     message = kwargs.pop('message', None)  # type: Optional[str]
+
     api_version = "1.0.0"
     accept = "application/json"
 
@@ -67,14 +71,18 @@ def build_test_lro_request_initial(
     # type: (...) -> HttpRequest
     """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :keyword json: Product to put.
-    :paramtype json: Any
-    :keyword content: Product to put.
-    :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Product to put.
+    :paramtype json: any
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Product to put.
+    :paramtype content: any
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
@@ -84,8 +92,15 @@ def build_test_lro_request_initial(
             json = {
                 "id": "int (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "int (optional)"
+            }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -93,9 +108,9 @@ def build_test_lro_request_initial(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
@@ -111,7 +126,8 @@ def build_test_lro_and_paging_request_initial(
     # type: (...) -> HttpRequest
     """A long-running paging operation that includes a nextLink that has 10 pages.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword client_request_id:
     :paramtype client_request_id: str
@@ -120,13 +136,29 @@ def build_test_lro_and_paging_request_initial(
     :keyword timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
     :paramtype timeout: int
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "id": "int (optional)"
+                    }
+                ]
+            }
     """
+
     client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
     maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
     timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
     accept = "application/json"
 
     # Construct URL
@@ -134,12 +166,12 @@ def build_test_lro_and_paging_request_initial(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if client_request_id is not None:
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     if maxresults is not None:
         header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
         header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
-    if client_request_id is not None:
-        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
@@ -156,15 +188,19 @@ def build_test_different_calls_request(
     # type: (...) -> HttpRequest
     """Has added parameters across the API versions.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword greeting_in_english: pass in 'hello' to pass test.
     :paramtype greeting_in_english: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
+
     api_version = "1.0.0"
     accept = "application/json"
 

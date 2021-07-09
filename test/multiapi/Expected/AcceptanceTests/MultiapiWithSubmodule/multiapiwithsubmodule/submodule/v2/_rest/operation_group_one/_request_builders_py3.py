@@ -21,14 +21,18 @@ def build_test_two_request(
 ) -> HttpRequest:
     """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :keyword json: A ModelTwo parameter.
-    :paramtype json: Any
-    :keyword content: A ModelTwo parameter.
-    :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. A ModelTwo parameter.
+    :paramtype json: any
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). A ModelTwo parameter.
+    :paramtype content: any
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
@@ -39,8 +43,16 @@ def build_test_two_request(
                 "id": "int",
                 "message": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "int",
+                "message": "str (optional)"
+            }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
     api_version = "2.0.0"
     accept = "application/json"
 
@@ -53,9 +65,9 @@ def build_test_two_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
@@ -73,12 +85,16 @@ def build_test_three_request(
 ) -> HttpRequest:
     """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+
     api_version = "2.0.0"
     accept = "application/json"
 

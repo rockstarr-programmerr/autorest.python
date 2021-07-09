@@ -18,12 +18,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest as PipelineTransportHttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...rest import primitive as rest_primitive
+from ..._rest import primitive as rest_primitive
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -64,8 +64,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_int_request(template_url=self.get_int.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_int_request(
+            template_url=self.get_int.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -106,10 +107,11 @@ class PrimitiveOperations:
 
         json = self._serialize.body(complex_body, "IntWrapper")
 
-        rest_request = rest_primitive.build_put_int_request(
-            content_type=content_type, json=json, template_url=self.put_int.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_int_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_int.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -140,8 +142,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_long_request(template_url=self.get_long.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_long_request(
+            template_url=self.get_long.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -182,10 +185,11 @@ class PrimitiveOperations:
 
         json = self._serialize.body(complex_body, "LongWrapper")
 
-        rest_request = rest_primitive.build_put_long_request(
-            content_type=content_type, json=json, template_url=self.put_long.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_long_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_long.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -216,8 +220,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_float_request(template_url=self.get_float.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_float_request(
+            template_url=self.get_float.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -258,10 +263,11 @@ class PrimitiveOperations:
 
         json = self._serialize.body(complex_body, "FloatWrapper")
 
-        rest_request = rest_primitive.build_put_float_request(
-            content_type=content_type, json=json, template_url=self.put_float.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_float_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_float.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -292,8 +298,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_double_request(template_url=self.get_double.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_double_request(
+            template_url=self.get_double.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -335,10 +342,11 @@ class PrimitiveOperations:
 
         json = self._serialize.body(complex_body, "DoubleWrapper")
 
-        rest_request = rest_primitive.build_put_double_request(
-            content_type=content_type, json=json, template_url=self.put_double.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_double_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_double.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -369,8 +377,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_bool_request(template_url=self.get_bool.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_bool_request(
+            template_url=self.get_bool.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -411,10 +420,11 @@ class PrimitiveOperations:
 
         json = self._serialize.body(complex_body, "BooleanWrapper")
 
-        rest_request = rest_primitive.build_put_bool_request(
-            content_type=content_type, json=json, template_url=self.put_bool.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_bool_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_bool.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -445,8 +455,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_string_request(template_url=self.get_string.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_string_request(
+            template_url=self.get_string.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -487,10 +498,11 @@ class PrimitiveOperations:
 
         json = self._serialize.body(complex_body, "StringWrapper")
 
-        rest_request = rest_primitive.build_put_string_request(
-            content_type=content_type, json=json, template_url=self.put_string.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_string_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_string.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -521,8 +533,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_date_request(template_url=self.get_date.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_date_request(
+            template_url=self.get_date.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -563,10 +576,11 @@ class PrimitiveOperations:
 
         json = self._serialize.body(complex_body, "DateWrapper")
 
-        rest_request = rest_primitive.build_put_date_request(
-            content_type=content_type, json=json, template_url=self.put_date.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_date_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_date.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -597,10 +611,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_date_time_request(
-            template_url=self.get_date_time.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_date_time_request(
+            template_url=self.get_date_time.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -641,10 +654,11 @@ class PrimitiveOperations:
 
         json = self._serialize.body(complex_body, "DatetimeWrapper")
 
-        rest_request = rest_primitive.build_put_date_time_request(
-            content_type=content_type, json=json, template_url=self.put_date_time.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_date_time_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_date_time.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -675,10 +689,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_date_time_rfc1123_request(
-            template_url=self.get_date_time_rfc1123.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_date_time_rfc1123_request(
+            template_url=self.get_date_time_rfc1123.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -720,10 +733,11 @@ class PrimitiveOperations:
 
         json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
 
-        rest_request = rest_primitive.build_put_date_time_rfc1123_request(
-            content_type=content_type, json=json, template_url=self.put_date_time_rfc1123.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_date_time_rfc1123_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_date_time_rfc1123.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -754,10 +768,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_duration_request(
-            template_url=self.get_duration.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_duration_request(
+            template_url=self.get_duration.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -799,10 +812,11 @@ class PrimitiveOperations:
         _complex_body = _models.DurationWrapper(field=field)
         json = self._serialize.body(_complex_body, "DurationWrapper")
 
-        rest_request = rest_primitive.build_put_duration_request(
-            content_type=content_type, json=json, template_url=self.put_duration.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_duration_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_duration.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -833,8 +847,9 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_primitive.build_get_byte_request(template_url=self.get_byte.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_get_byte_request(
+            template_url=self.get_byte.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -876,10 +891,11 @@ class PrimitiveOperations:
         _complex_body = _models.ByteWrapper(field=field)
         json = self._serialize.body(_complex_body, "ByteWrapper")
 
-        rest_request = rest_primitive.build_put_byte_request(
-            content_type=content_type, json=json, template_url=self.put_byte.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_primitive.build_put_byte_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_byte.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

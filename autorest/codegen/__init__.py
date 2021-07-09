@@ -27,11 +27,11 @@ def _get_credential_default_policy_type_has_async_version(credential_default_pol
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
-    if yaml_data.get("operationGroups"):
+    if code_model.show_operations and yaml_data.get("operationGroups"):
         code_model.operation_groups = [
             OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
         ]
-    if yaml_data.get("schemas"):
+    if code_model.show_models and yaml_data.get("schemas"):
         # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
 
         code_model.add_inheritance_to_models()
@@ -40,9 +40,10 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
         code_model.add_schema_link_to_operation()
         code_model.generate_single_parameter_from_multiple_media_types_operation()
 
-    # LRO operation
-    code_model.format_lro_operations()
-    code_model.remove_next_operation()
+    if code_model.show_operations:
+        # LRO operation
+        code_model.format_lro_operations()
+        code_model.remove_next_operation()
 
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
@@ -83,26 +84,29 @@ class CodeGenerator(Plugin):
         # Create a code model
         low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
         version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
-        no_models = self._autorestapi.get_boolean_value("no-models", False)
-        rest_layer = self._autorestapi.get_boolean_value("rest-layer", False)
-        no_operations = self._autorestapi.get_boolean_value("no-operations", False)
-        only_path_and_body_params_positional = self._autorestapi.get_boolean_value("only-path-and-body-params-positional", False)
+        show_models = self._autorestapi.get_boolean_value("show-models", True)
+        show_builders = self._autorestapi.get_boolean_value("show-builders", False)
+        show_operations = self._autorestapi.get_boolean_value("show-operations", True)
+        show_send_request = self._autorestapi.get_boolean_value("show-send-request", False)
+        only_path_and_body_params_positional = self._autorestapi.get_boolean_value("only-path-params-positional", False)
         if low_level_client:
-            no_models = True
-            rest_layer = True
-            no_operations = True
+            show_models = False
+            show_builders = True
+            show_operations = False
+            show_send_request = True
             only_path_and_body_params_positional = True
         elif version_tolerant:
-            no_models = False
-            rest_layer = True
-            no_operations = False
+            show_models = True
+            show_builders = True
+            show_operations = True
             only_path_and_body_params_positional = True
         code_model = CodeModel(
-            rest_layer=rest_layer,
-            no_models=no_models,
-            no_operations=no_operations,
+            show_builders=show_builders,
+            show_models=show_models,
+            show_operations=show_operations,
+            show_send_request=show_send_request,
             only_path_and_body_params_positional=only_path_and_body_params_positional,
-            options=options
+            options=options,
         )
         code_model.module_name = yaml_data["info"]["python_title"]
         code_model.class_name = yaml_data["info"]["pascal_case_title"]
@@ -148,8 +152,7 @@ class CodeGenerator(Plugin):
             code_model.add_schema_link_to_request_builder()
             code_model.add_schema_link_to_global_parameters()
 
-        if not code_model.no_operations:
-            _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
+        _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 
         if options["credential"]:
             code_model.add_credential_global_parameter()

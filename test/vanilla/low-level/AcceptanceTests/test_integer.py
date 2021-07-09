@@ -25,8 +25,8 @@
 # --------------------------------------------------------------------------
 
 from datetime import datetime
-from bodyinteger import AutoRestIntegerTestService
-from bodyinteger.rest import int
+from bodyintegerlowlevel import AutoRestIntegerTestService
+from bodyintegerlowlevel.rest import int as int_rest
 
 import pytest
 import calendar
@@ -42,59 +42,61 @@ def client():
         yield client
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    def _make_request(request):
-        return base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    def _send_request(request):
+        return base_send_request(client, request)
+    return _send_request
 
-def test_max_min_32_bit(make_request):
-    request = int.build_put_max32_request(json=2147483647) # sys.maxint
-    make_request(request)
+def test_max_min_32_bit(send_request):
+    request = int_rest.build_put_max32_request(json=2147483647) # sys.maxint
+    send_request(request)
 
-    request = int.build_put_min32_request(json=-2147483648)
-    make_request(request)
+    request = int_rest.build_put_min32_request(json=-2147483648)
+    send_request(request)
 
-def test_max_min_64_bit(make_request):
-    request = int.build_put_max64_request(json=9223372036854776000)  # sys.maxsize
-    make_request(request)
+def test_max_min_64_bit(send_request):
+    request = int_rest.build_put_max64_request(json=9223372036854776000)  # sys.maxsize
+    send_request(request)
 
-    request = int.build_put_min64_request(json=-9223372036854776000)
-    make_request(request)
+    request = int_rest.build_put_min64_request(json=-9223372036854776000)
+    send_request(request)
 
-def test_get_null_and_invalid(make_request):
-    request = int.build_get_null_request()
-    make_request(request)
+def test_get_null_and_invalid(send_request):
+    request = int_rest.build_get_null_request()
+    send_request(request)
 
-    request = int.build_get_invalid_request()
-    assert make_request(request).text == '123jkl'
+    request = int_rest.build_get_invalid_request()
+    assert send_request(request).text == '123jkl'
 
-def test_get_overflow(make_request):
+def test_get_overflow(send_request):
     # Testserver excepts these to fail, but they won't in Python and it's ok.
 
-    request = int.build_get_overflow_int32_request()
-    make_request(request)
+    request = int_rest.build_get_overflow_int32_request()
+    send_request(request)
 
-    request = int.build_get_overflow_int64_request()
-    make_request(request)
+    request = int_rest.build_get_overflow_int64_request()
+    send_request(request)
 
-def test_get_underflow(make_request):
-    request = int.build_get_underflow_int32_request()
-    make_request(request)
+def test_get_underflow(send_request):
+    request = int_rest.build_get_underflow_int32_request()
+    send_request(request)
 
-    request = int.build_get_underflow_int64_request()
-    make_request(request)
+    request = int_rest.build_get_underflow_int64_request()
+    send_request(request)
 
-def test_unix_time_date(make_request):
+def test_unix_time_date(send_request):
     unix_date = datetime(year=2016, month=4, day=13)
-    request = int.build_put_unix_time_date_request(json=int(calendar.timegm(unix_date.utctimetuple())))
-    make_request(request)
 
-    request = int.build_get_unix_time_request()
-    assert unix_date.utctimetuple() == datetime.fromtimestamp(make_request(request).json(), TZ_UTC).utctimetuple()
+    input = calendar.timegm(unix_date.utctimetuple())
+    request = int_rest.build_put_unix_time_date_request(json=int(input))
+    send_request(request)
 
-def test_get_null_and_invalid_unix_time(make_request):
-    request = int.build_get_null_unix_time_request()
-    assert make_request(request).text == ''
+    request = int_rest.build_get_unix_time_request()
+    assert unix_date.utctimetuple() == datetime.fromtimestamp(send_request(request).json(), TZ_UTC).utctimetuple()
 
-    request = int.build_get_invalid_unix_time_request()
-    assert make_request(request).text == '123jkl'
+def test_get_null_and_invalid_unix_time(send_request):
+    request = int_rest.build_get_null_unix_time_request()
+    assert send_request(request).text == ''
+
+    request = int_rest.build_get_invalid_unix_time_request()
+    assert send_request(request).text == '123jkl'

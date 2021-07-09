@@ -27,12 +27,8 @@ import sys
 
 from msrest.exceptions import ValidationError
 
-from validation import AutoRestValidationTest
-from validation.models import (
-    Product,
-    ConstantProduct,
-    ChildProduct)
-from validation.rest import *
+from validationlowlevel import AutoRestValidationTest
+from validationlowlevel.rest import *
 
 import pytest
 
@@ -43,16 +39,16 @@ def client():
         yield client
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    def _make_request(request):
-        return base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    def _send_request(request):
+        return base_send_request(client, request)
+    return _send_request
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    def _make_request(request):
-        return base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    def _send_request(request):
+        return base_send_request_json_response(client, request)
+    return _send_request
 
 @pytest.fixture
 def constant_body():
@@ -60,65 +56,72 @@ def constant_body():
     the commented line.
     See https://github.com/Azure/autorest.modelerfour/issues/83
     """
-    #return Product(child=ChildProduct())
-    return Product(
-        child=ChildProduct(),
-        const_child=ConstantProduct(),
-    )
+    return {
+        'child': {
+            'constProperty': 'constant'
+        },
+        'constChild': {
+            'constProperty': 'constant',
+            'constProperty2': 'constant2'
+        },
+        'constInt': 0,
+        'constString': 'constant',
+        'constStringAsEnum': 'constant_string_as_enum'
+    }
 
-def test_with_constant_in_path(make_request):
+def test_with_constant_in_path(send_request):
     request = build_get_with_constant_in_path_request()
-    make_request(request)
+    send_request(request)
 
-def test_post_with_constant_in_body(make_request_json_response, constant_body):
-    request = build_post_with_constant_in_body_request(json=constant_body.serialize())
-    product = Product.deserialize(make_request_json_response(request))
+def test_post_with_constant_in_body(send_request_json_response, constant_body):
+    request = build_post_with_constant_in_body_request(json=constant_body)
+    product = send_request_json_response(request)
     assert product is not None
 
-def test_min_length_validation(make_request):
+def test_min_length_validation(send_request):
     try:
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="1", id=100)
-        make_request(request)
+        send_request(request)
     except ValidationError as err:
         assert err.rule ==  "min_length"
         assert err.target ==  "resource_group_name"
 
-def test_max_length_validation(make_request):
+def test_max_length_validation(send_request):
     try:
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="1234567890A", id=100)
-        make_request(request)
+        send_request(request)
     except ValidationError as err:
         assert err.rule ==  "max_length"
         assert err.target ==  "resource_group_name"
 
-def test_pattern_validation(make_request):
+def test_pattern_validation(send_request):
     try:
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="!@#$", id=100)
-        make_request(request)
+        send_request(request)
     except ValidationError as err:
         assert err.rule ==  "pattern"
         assert err.target ==  "resource_group_name"
 
-def test_multiple_validation(make_request):
+def test_multiple_validation(send_request):
     try:
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="123", id=105)
-        make_request(request)
+        send_request(request)
     except ValidationError as err:
         assert err.rule ==  "multiple"
         assert err.target ==  "id"
 
-def test_minimum_validation(make_request):
+def test_minimum_validation(send_request):
     try:
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="123", id=0)
-        make_request(request)
+        send_request(request)
     except ValidationError as err:
         assert err.rule ==  "minimum"
         assert err.target ==  "id"
 
-def test_maximum_validation(make_request):
+def test_maximum_validation(send_request):
     try:
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="123", id=2000)
-        make_request(request)
+        send_request(request)
     except ValidationError as err:
         assert err.rule ==  "maximum"
         assert err.target ==  "id"
@@ -127,14 +130,14 @@ def test_maximum_validation(make_request):
 
 
 @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/90")
-def test_api_version_validation(make_request):
+def test_api_version_validation(send_request):
     client = AutoRestValidationTest(
         "abc123",
         base_url="http://localhost:3000")
     client.api_version = "abc"
     try:
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="123", id=150)
-        make_request(request)
+        send_request(request)
     except ValidationError as err:
         assert err.rule ==  "pattern"
         assert err.target ==  "self.api_version"

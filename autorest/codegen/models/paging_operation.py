@@ -30,6 +30,8 @@ class PagingOperation(Operation):
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
+        *,
+        override_success_response_to_200: bool = False
     ) -> None:
         super(PagingOperation, self).__init__(
             yaml_data,
@@ -48,6 +50,7 @@ class PagingOperation(Operation):
         self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
         self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
         self.next_operation: Optional[Operation] = None
+        self.override_success_response_to_200 = override_success_response_to_200
 
     def _get_response(self) -> SchemaResponse:
         response = self.responses[0]
@@ -112,6 +115,18 @@ class PagingOperation(Operation):
             return None
         next_request_builder = self.next_operation.request_builder
         return next_request_builder
+
+    def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:
+        file_import = super().imports_for_multiapi(code_model, async_mode)
+        pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
+        pager = self.get_pager(async_mode)
+
+        file_import.add_from_import(pager_import_path, pager, ImportType.AZURECORE, TypingSection.CONDITIONAL)
+        if async_mode:
+            file_import.add_from_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        else:
+            file_import.add_from_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        return file_import
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)

@@ -23,12 +23,29 @@ def build_test_paging_request(
     # type: (...) -> HttpRequest
     """Returns ModelThree with optionalProperty 'paged'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "optionalProperty": "str (optional)"
+                    }
+                ]
+            }
     """
+
+
     accept = "application/json"
 
     # Construct URL
@@ -52,7 +69,8 @@ def build_test_different_calls_request(
     # type: (...) -> HttpRequest
     """Has added parameters across the API versions.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword greeting_in_english: pass in 'hello' to pass test.
     :paramtype greeting_in_english: str
@@ -60,13 +78,16 @@ def build_test_different_calls_request(
     :paramtype greeting_in_chinese: str
     :keyword greeting_in_french: pass in 'bonjour' to pass test.
     :paramtype greeting_in_french: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
     greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
     greeting_in_french = kwargs.pop('greeting_in_french', None)  # type: Optional[str]
+
     api_version = "3.0.0"
     accept = "application/json"
 

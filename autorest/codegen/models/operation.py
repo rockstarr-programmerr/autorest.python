@@ -14,8 +14,6 @@ from .parameter import Parameter, ParameterOnlyPathAndBodyPositional
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
-from .list_schema import ListSchema
-from .dictionary_schema import DictionarySchema
 from .request_builder import RequestBuilder
 
 _LOGGER = logging.getLogger(__name__)
@@ -145,7 +143,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         excep_schema = default_excp[0].schema
         if isinstance(excep_schema, ObjectSchema):
             return f"_models.{excep_schema.name}"
-        # in this case, it's just an AnyObjectSchema
+        # in this case, it's just an AnySchema
         return "\'object\'"
 
     @property
@@ -159,15 +157,9 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             excp.status_codes for excp in self.status_code_exceptions
         ]))
 
-    def imports(self, code_model, async_mode: bool) -> FileImport:
+    def _imports_shared(self) -> FileImport:
         file_import = FileImport()
-
-        # Exceptions
-        file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
-        if code_model.options["azure_arm"]:
-            file_import.add_from_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
-        file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
-
+        file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         for param in self.parameters.method:
             file_import.merge(param.imports())
 
@@ -175,9 +167,6 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.merge(param.imports())
 
         for response in [r for r in self.responses if r.has_body]:
-            # if code_model.no_models:
-            #     file_import.add_from_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
-            # else:
             file_import.merge(cast(BaseSchema, response.schema).imports())
 
         if len([r for r in self.responses if r.has_body]) > 1:
@@ -185,23 +174,34 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
         if self.is_stream_response:
             file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        return file_import
+
+
+    def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:
+        return self._imports_shared()
+
+    def imports(self, code_model, async_mode: bool) -> FileImport:
+        file_import = self._imports_shared()
+
+        # Exceptions
+        file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
+        if code_model.options["azure_arm"]:
+            file_import.add_from_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
+        file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+
+
         file_import.add_import("functools", ImportType.STDLIB)
         file_import.add_from_import("typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Generic", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
-        core_import = (code_model.namespace if code_model.options["vendor"] else "azure") + ".core.rest"
-        file_import.add_from_import(core_import, "HttpRequest", ImportType.AZURECORE)
+        file_import.add_from_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE)
         if async_mode:
             file_import.add_from_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
         else:
             file_import.add_from_import("azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE)
-        file_import.add_from_import(
-            "azure.core.pipeline.transport", "HttpRequest", ImportType.AZURECORE, alias="PipelineTransportHttpRequest"
-        )
 
         # Deprecation
         # FIXME: Replace with "the YAML contains deprecated:true"
@@ -212,10 +212,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         rest_import_path = "..." if async_mode else ".."
         if operation_group_name:
             file_import.add_from_import(
-                f"{rest_import_path}rest", name_import=operation_group_name, import_type=ImportType.LOCAL, alias=f"rest_{operation_group_name}"
+                f"{rest_import_path}{code_model.rest_layer_name}", name_import=operation_group_name, import_type=ImportType.LOCAL, alias=f"rest_{operation_group_name}"
             )
         else:
-            file_import.add_from_import(rest_import_path, "rest", import_type=ImportType.LOCAL)
+            file_import.add_from_import(rest_import_path, code_model.rest_layer_name, import_type=ImportType.LOCAL, alias="rest")
         return file_import
 
     def convert_multiple_media_type_parameters(self) -> None:
