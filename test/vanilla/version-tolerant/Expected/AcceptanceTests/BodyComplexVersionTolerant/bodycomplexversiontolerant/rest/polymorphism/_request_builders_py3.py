@@ -39,7 +39,6 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/valid")
 
@@ -90,7 +89,7 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
                }
              ]
            };.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a salmon that looks like this:
      {
@@ -125,7 +124,7 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
                }
              ]
            };.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -150,7 +149,6 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/valid")
 
@@ -179,13 +177,12 @@ def build_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "fish.type": "fish_type",
+                "fish.type": "fish.type",
                 "species": "str (optional)"
             }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/dotsyntax")
 
@@ -216,7 +213,7 @@ def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
             response.json() == {
                 "fishes": [
                     {
-                        "fish.type": "fish_type",
+                        "fish.type": "fish.type",
                         "species": "str (optional)"
                     }
                 ],
@@ -228,7 +225,10 @@ def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
                         "species": "str (optional)"
                     }
                 ],
-                "sampleFish": "sample_fish",
+                "sampleFish": {
+                    "fish.type": "fish.type",
+                    "species": "str (optional)"
+                },
                 "sampleSalmon": {
                     "fish.type": "DotSalmon",
                     "iswild": "bool (optional)",
@@ -239,7 +239,6 @@ def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/composedWithDiscriminator")
 
@@ -270,7 +269,7 @@ def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpReque
             response.json() == {
                 "fishes": [
                     {
-                        "fish.type": "fish_type",
+                        "fish.type": "fish.type",
                         "species": "str (optional)"
                     }
                 ],
@@ -282,7 +281,10 @@ def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpReque
                         "species": "str (optional)"
                     }
                 ],
-                "sampleFish": "sample_fish",
+                "sampleFish": {
+                    "fish.type": "fish.type",
+                    "species": "str (optional)"
+                },
                 "sampleSalmon": {
                     "fish.type": "DotSalmon",
                     "iswild": "bool (optional)",
@@ -293,7 +295,6 @@ def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpReque
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/composedWithoutDiscriminator")
 
@@ -327,7 +328,7 @@ def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
@@ -340,7 +341,6 @@ def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
 
@@ -360,10 +360,10 @@ def build_put_complicated_request(*, json: Any = None, content: Any = None, **kw
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -382,7 +382,7 @@ def build_put_complicated_request(*, json: Any = None, content: Any = None, **kw
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
@@ -397,7 +397,6 @@ def build_put_complicated_request(*, json: Any = None, content: Any = None, **kw
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
 
@@ -418,10 +417,10 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -440,7 +439,7 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
@@ -459,7 +458,7 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
@@ -474,7 +473,6 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/missingdiscriminator")
 
@@ -522,7 +520,7 @@ def build_put_valid_missing_required_request(*, json: Any = None, content: Any =
              }
          ]
      }.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please attempt put a sawshark that looks like this, the
      client should not allow this data to be sent:
@@ -551,7 +549,7 @@ def build_put_valid_missing_required_request(*, json: Any = None, content: Any =
              }
          ]
      }.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -576,7 +574,6 @@ def build_put_valid_missing_required_request(*, json: Any = None, content: Any =
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/missingrequired/invalid")
 

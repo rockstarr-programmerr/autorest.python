@@ -17,7 +17,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest as PipelineTransportHttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
@@ -71,8 +71,8 @@ class PolymorphicrecursiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_polymorphicrecursive.build_get_valid_request(
-            template_url=self.get_valid.metadata["url"], **kwargs
-        )
+            template_url=self.get_valid.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -163,14 +163,13 @@ class PolymorphicrecursiveOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-
         json = self._serialize.body(complex_body, "Fish")
 
         request = rest_polymorphicrecursive.build_put_valid_request(
-            content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
-        )
+            content_type=content_type,
+            json=json,
+            template_url=self.put_valid.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

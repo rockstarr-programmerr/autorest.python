@@ -17,7 +17,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest as PipelineTransportHttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
@@ -64,14 +64,13 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPTrue"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-
         json = self._serialize.body(create_parameters, "PetAPTrue")
 
         request = rest_pets.build_create_ap_true_request(
-            content_type=content_type, json=json, template_url=self.create_ap_true.metadata["url"], **kwargs
-        )
+            content_type=content_type,
+            json=json,
+            template_url=self.create_ap_true.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -107,14 +106,13 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.CatAPTrue"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-
         json = self._serialize.body(create_parameters, "CatAPTrue")
 
         request = rest_pets.build_create_cat_ap_true_request(
-            content_type=content_type, json=json, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
-        )
+            content_type=content_type,
+            json=json,
+            template_url=self.create_cat_ap_true.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -150,14 +148,13 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPObject"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-
         json = self._serialize.body(create_parameters, "PetAPObject")
 
         request = rest_pets.build_create_ap_object_request(
-            content_type=content_type, json=json, template_url=self.create_ap_object.metadata["url"], **kwargs
-        )
+            content_type=content_type,
+            json=json,
+            template_url=self.create_ap_object.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -193,14 +190,13 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPString"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-
         json = self._serialize.body(create_parameters, "PetAPString")
 
         request = rest_pets.build_create_ap_string_request(
-            content_type=content_type, json=json, template_url=self.create_ap_string.metadata["url"], **kwargs
-        )
+            content_type=content_type,
+            json=json,
+            template_url=self.create_ap_string.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -238,14 +234,13 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInProperties"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-
         json = self._serialize.body(create_parameters, "PetAPInProperties")
 
         request = rest_pets.build_create_ap_in_properties_request(
-            content_type=content_type, json=json, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
-        )
+            content_type=content_type,
+            json=json,
+            template_url=self.create_ap_in_properties.metadata["url"],
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -284,17 +279,13 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInPropertiesWithAPString"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-
         json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
         request = rest_pets.build_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
-            **kwargs
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

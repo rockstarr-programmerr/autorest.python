@@ -35,7 +35,6 @@ def build_get_int_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/integer")
 
@@ -54,10 +53,10 @@ def build_put_int_request(*, json: Any = None, content: Any = None, **kwargs: An
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put -1 and 2.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put -1 and 2.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -76,7 +75,6 @@ def build_put_int_request(*, json: Any = None, content: Any = None, **kwargs: An
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/integer")
 
@@ -111,7 +109,6 @@ def build_get_long_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/long")
 
@@ -130,10 +127,10 @@ def build_put_long_request(*, json: Any = None, content: Any = None, **kwargs: A
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 1099511627775 and -999511627788.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 1099511627775 and -999511627788.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -152,7 +149,6 @@ def build_put_long_request(*, json: Any = None, content: Any = None, **kwargs: A
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/long")
 
@@ -187,7 +183,6 @@ def build_get_float_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/float")
 
@@ -206,10 +201,10 @@ def build_put_float_request(*, json: Any = None, content: Any = None, **kwargs: 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 1.05 and -0.003.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 1.05 and -0.003.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -228,7 +223,6 @@ def build_put_float_request(*, json: Any = None, content: Any = None, **kwargs: 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/float")
 
@@ -263,7 +257,6 @@ def build_get_double_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/double")
 
@@ -283,11 +276,11 @@ def build_put_double_request(*, json: Any = None, content: Any = None, **kwargs:
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 3e-100 and
      -0.000000000000000000000000000000000000000000000000000000005.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 3e-100 and
      -0.000000000000000000000000000000000000000000000000000000005.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -306,7 +299,6 @@ def build_put_double_request(*, json: Any = None, content: Any = None, **kwargs:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/double")
 
@@ -341,7 +333,6 @@ def build_get_bool_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/bool")
 
@@ -360,10 +351,10 @@ def build_put_bool_request(*, json: Any = None, content: Any = None, **kwargs: A
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put true and false.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put true and false.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -382,7 +373,6 @@ def build_put_bool_request(*, json: Any = None, content: Any = None, **kwargs: A
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/bool")
 
@@ -418,7 +408,6 @@ def build_get_string_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/string")
 
@@ -437,10 +426,10 @@ def build_put_string_request(*, json: Any = None, content: Any = None, **kwargs:
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 'goodrequest', '', and null.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 'goodrequest', '', and null.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -460,7 +449,6 @@ def build_put_string_request(*, json: Any = None, content: Any = None, **kwargs:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/string")
 
@@ -495,7 +483,6 @@ def build_get_date_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/date")
 
@@ -514,10 +501,10 @@ def build_put_date_request(*, json: Any = None, content: Any = None, **kwargs: A
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put '0001-01-01' and '2016-02-29'.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put '0001-01-01' and '2016-02-29'.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -536,7 +523,6 @@ def build_put_date_request(*, json: Any = None, content: Any = None, **kwargs: A
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/date")
 
@@ -571,7 +557,6 @@ def build_get_date_time_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/datetime")
 
@@ -591,11 +576,11 @@ def build_put_date_time_request(*, json: Any = None, content: Any = None, **kwar
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put '0001-01-01T12:00:00-04:00' and
      '2015-05-18T11:38:00-08:00'.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put '0001-01-01T12:00:00-04:00' and
      '2015-05-18T11:38:00-08:00'.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -614,7 +599,6 @@ def build_put_date_time_request(*, json: Any = None, content: Any = None, **kwar
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/datetime")
 
@@ -649,7 +633,6 @@ def build_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
 
@@ -669,11 +652,11 @@ def build_put_date_time_rfc1123_request(*, json: Any = None, content: Any = None
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18
      May 2015 11:38:00 GMT'.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May
      2015 11:38:00 GMT'.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -692,7 +675,6 @@ def build_put_date_time_rfc1123_request(*, json: Any = None, content: Any = None
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
 
@@ -726,7 +708,6 @@ def build_get_duration_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/duration")
 
@@ -745,10 +726,10 @@ def build_put_duration_request(*, json: Any = None, content: Any = None, **kwarg
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 'P123DT22H14M12.011S'.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 'P123DT22H14M12.011S'.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -766,7 +747,6 @@ def build_put_duration_request(*, json: Any = None, content: Any = None, **kwarg
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/duration")
 
@@ -800,7 +780,6 @@ def build_get_byte_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/byte")
 
@@ -820,11 +799,11 @@ def build_put_byte_request(*, json: Any = None, content: Any = None, **kwargs: A
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put non-ascii byte string hex(FF FE FD FC 00 FA F9
      F8 F7 F6).
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8
      F7 F6).
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -842,7 +821,6 @@ def build_put_byte_request(*, json: Any = None, content: Any = None, **kwargs: A
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/byte")
 

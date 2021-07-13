@@ -36,7 +36,6 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/dictionary/typed/valid")
 
@@ -56,11 +55,11 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put a dictionary with 5 key-value pairs:
      "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a dictionary with 5 key-value pairs:
      "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -80,7 +79,6 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/dictionary/typed/valid")
 
@@ -116,7 +114,6 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/dictionary/typed/empty")
 
@@ -135,10 +132,10 @@ def build_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put an empty dictionary.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put an empty dictionary.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -158,7 +155,6 @@ def build_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/dictionary/typed/empty")
 
@@ -194,7 +190,6 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/dictionary/typed/null")
 
@@ -228,7 +223,6 @@ def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/dictionary/typed/notprovided")
 

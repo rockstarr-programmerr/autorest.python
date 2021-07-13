@@ -262,7 +262,7 @@ def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
 
 @task
 def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, swagger_name, debug, version_tolerant=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, version_tolerant=True, **kwargs)
 
 @task
 def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
@@ -274,7 +274,7 @@ def regenerate_azure_llc(c, swagger_name=None, debug=False, **kwargs):
 
 @task
 def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, swagger_name, debug, version_tolerant=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, version_tolerant=True, **kwargs)
 
 @task
 def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
@@ -286,7 +286,7 @@ def regenerate_azure_arm_llc(c, swagger_name=None, debug=False, **kwargs):
 
 @task
 def regenerate_azure_arm_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, swagger_name, debug, version_tolerant=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, version_tolerant=True, **kwargs)
 
 @task
 def regenerate_namespace_folders_test(c, debug=False):
@@ -333,6 +333,7 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
 def regenerate(c, swagger_name=None, debug=False):
     regenerate_legacy(c, swagger_name, debug)
     regenerate_llc(c, swagger_name, debug)
+    regenerate_version_tolerant(c, swagger_name, debug)
 
 @task
 def regenerate_llc(c, swagger_name=None, debug=False):
