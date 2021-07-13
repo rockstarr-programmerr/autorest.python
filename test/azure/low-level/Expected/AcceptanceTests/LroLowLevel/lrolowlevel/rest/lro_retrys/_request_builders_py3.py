@@ -23,10 +23,10 @@ def build_put201_creating_succeeded200_request(*, json: Any = None, content: Any
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -37,21 +37,24 @@ def build_put201_creating_succeeded200_request(*, json: Any = None, content: Any
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200, 201
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/retryerror/put/201/creating/succeeded/200")
 
@@ -76,10 +79,10 @@ def build_put_async_relative_retry_succeeded_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -90,21 +93,24 @@ def build_put_async_relative_retry_succeeded_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/retryerror/putasync/retry/succeeded")
 
@@ -135,13 +141,14 @@ def build_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) ->
 
             # response body for status code(s): 200, 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded")
 
@@ -166,7 +173,6 @@ def build_delete202_retry200_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/retryerror/delete/202/retry/200")
 
@@ -191,7 +197,6 @@ def build_delete_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRe
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/retryerror/deleteasync/retry/succeeded")
 
@@ -211,10 +216,10 @@ def build_post202_retry200_request(*, json: Any = None, content: Any = None, **k
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -225,15 +230,16 @@ def build_post202_retry200_request(*, json: Any = None, content: Any = None, **k
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/retryerror/post/202/retry/200")
 
@@ -258,10 +264,10 @@ def build_post_async_relative_retry_succeeded_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -272,15 +278,16 @@ def build_post_async_relative_retry_succeeded_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/retryerror/postasync/retry/succeeded")
 

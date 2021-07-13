@@ -32,20 +32,11 @@ def build_analyze_body_request(*, json: Any = None, content: Any = None, **kwarg
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "source": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[Union[str, "_models.ContentType"]]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/mediatypes/analyze")
 
@@ -76,7 +67,6 @@ def build_content_type_with_encoding_request(*, content: Any = None, **kwargs: A
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/mediatypes/contentTypeWithEncoding")
 

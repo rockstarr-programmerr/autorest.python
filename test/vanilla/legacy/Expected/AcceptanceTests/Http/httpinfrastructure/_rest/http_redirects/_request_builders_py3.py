@@ -26,7 +26,6 @@ def build_head300_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/300")
 
@@ -47,18 +46,9 @@ def build_get300_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 300
-            response.json() == [
-                "str (optional)"
-            ]
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/300")
 
@@ -82,7 +72,6 @@ def build_head301_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/301")
 
@@ -106,7 +95,6 @@ def build_get301_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/301")
 
@@ -134,18 +122,11 @@ def build_put301_request(*, json: Any = None, content: Any = None, **kwargs: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/301")
 
@@ -171,7 +152,6 @@ def build_head302_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/302")
 
@@ -195,7 +175,6 @@ def build_get302_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/302")
 
@@ -223,18 +202,11 @@ def build_patch302_request(*, json: Any = None, content: Any = None, **kwargs: A
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/302")
 
@@ -264,18 +236,11 @@ def build_post303_request(*, json: Any = None, content: Any = None, **kwargs: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/303")
 
@@ -301,7 +266,6 @@ def build_head307_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -325,7 +289,6 @@ def build_get307_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -349,7 +312,6 @@ def build_options307_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -376,18 +338,11 @@ def build_put307_request(*, json: Any = None, content: Any = None, **kwargs: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -416,18 +371,11 @@ def build_patch307_request(*, json: Any = None, content: Any = None, **kwargs: A
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -456,18 +404,11 @@ def build_post307_request(*, json: Any = None, content: Any = None, **kwargs: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -496,18 +437,11 @@ def build_delete307_request(*, json: Any = None, content: Any = None, **kwargs: 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 

@@ -39,14 +39,13 @@ class AutoRestIntegerTestService:
         self._serialize.client_side_validation = False
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodyintegerlowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyintegerlowlevel.rest import build_get_null_request
-        >>> request = build_get_null_request(**kwargs)
+        >>> from bodyintegerlowlevel.rest import int
+        >>> request = int.build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/int/null'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

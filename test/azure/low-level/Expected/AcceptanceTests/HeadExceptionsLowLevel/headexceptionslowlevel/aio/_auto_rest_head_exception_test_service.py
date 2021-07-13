@@ -43,14 +43,13 @@ class AutoRestHeadExceptionTestService:
         self._serialize.client_side_validation = False
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `headexceptionslowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from headexceptionslowlevel.rest import build_head200_request
-        >>> request = build_head200_request(**kwargs)
+        >>> from headexceptionslowlevel.rest import head_exception
+        >>> request = head_exception.build_head200_request(**kwargs)
         <HttpRequest [HEAD], url: '/http/success/200'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

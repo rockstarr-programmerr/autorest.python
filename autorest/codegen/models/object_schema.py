@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Union
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType
 
 
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
@@ -33,6 +33,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.subtype_map: Optional[Dict[str, str]] = kwargs.pop("subtype_map", None)
         self.discriminator_name: Optional[str] = kwargs.pop("discriminator_name", None)
         self.discriminator_value: Optional[str] = kwargs.pop("discriminator_value", None)
+        self._created_json_template_representation = False
 
     @property
     def serialization_type(self) -> str:
@@ -76,17 +77,28 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return super().xml_serialization_ctxt()
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
-        object_schema_names = kwargs.get("object_schema_names", [])
-        object_schema_names.append(self.name)  # do tis to avoid circular
-        kwargs["object_schema_names"] = object_schema_names
-        if self.discriminator_value:
-            kwargs["discriminator_value"] = self.discriminator_value
-        return {
+        if self._created_json_template_representation:
+            return "..."  # do this to avoid loop
+        self._created_json_template_representation = True
+        representation = {
             "{}".format(
                 prop.original_swagger_name
             ): prop.get_json_template_representation(**kwargs)
-            for prop in self.properties
+            for prop in [p for p in self.properties if not p.is_discriminator]
         }
+        try:
+            # add discriminator prop if there is one
+            discriminator = next(p for p in self.properties if p.is_discriminator)
+            representation[
+                discriminator.original_swagger_name
+            ] = self.discriminator_value or discriminator.original_swagger_name
+        except StopIteration:
+            pass
+
+        # once we've finished, we want to reset created_json_template_representation to false
+        # so we can call it again
+        self._created_json_template_representation = False
+        return representation
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:
         object_schema_names = kwargs.get("object_schema_names", [])

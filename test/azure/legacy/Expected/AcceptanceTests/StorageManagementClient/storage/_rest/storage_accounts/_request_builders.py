@@ -17,6 +17,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_check_name_availability_request(
     subscription_id,  # type: str
@@ -45,49 +46,36 @@ def build_check_name_availability_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "name": "str",
-                "type": "str (optional). Default value is \"Microsoft.Storage/storageAccounts\""
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "message": "str (optional)",
-                "nameAvailable": "bool (optional)",
-                "reason": "str (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
-    url = kwargs.pop(
-        "template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"
-    )
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability')
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_create_request_initial(
@@ -124,86 +112,38 @@ def build_create_request_initial(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "accountType": "str (optional)",
-                "id": "str (optional)",
-                "location": "str",
-                "name": "str (optional)",
-                "tags": {
-                    "str": "str (optional)"
-                },
-                "type": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "id": "str (optional)",
-                "lastGeoFailoverTime": "datetime (optional)",
-                "location": "str",
-                "name": "str (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
-                    },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": "...",
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)",
-                "tags": {
-                    "str": "str (optional)"
-                },
-                "type": "str (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
-    )
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
     path_format_arguments = {
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_delete_request(
@@ -234,24 +174,25 @@ def build_delete_request(
     """
 
     api_version = "2015-05-01-preview"
-
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
-    )
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
     path_format_arguments = {
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
-    return HttpRequest(method="DELETE", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_get_properties_request(
@@ -281,70 +222,34 @@ def build_get_properties_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "id": "str (optional)",
-                "lastGeoFailoverTime": "datetime (optional)",
-                "location": "str",
-                "name": "str (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
-                    },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": "...",
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)",
-                "tags": {
-                    "str": "str (optional)"
-                },
-                "type": "str (optional)"
-            }
     """
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
-    )
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
     path_format_arguments = {
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_update_request(
@@ -386,90 +291,38 @@ def build_update_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "accountType": "str (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "id": "str (optional)",
-                "location": "str",
-                "name": "str (optional)",
-                "tags": {
-                    "str": "str (optional)"
-                },
-                "type": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "id": "str (optional)",
-                "lastGeoFailoverTime": "datetime (optional)",
-                "location": "str",
-                "name": "str (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
-                    },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": "...",
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)",
-                "tags": {
-                    "str": "str (optional)"
-                },
-                "type": "str (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
-    )
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
     path_format_arguments = {
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PATCH", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PATCH",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_list_keys_request(
@@ -495,41 +348,34 @@ def build_list_keys_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "key1": "str (optional)",
-                "key2": "str (optional)"
-            }
     """
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
-    )
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys')
     path_format_arguments = {
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_list_request(
@@ -550,70 +396,32 @@ def build_list_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "value": [
-                    {
-                        "accountType": "str (optional)",
-                        "creationTime": "datetime (optional)",
-                        "customDomain": {
-                            "name": "str (optional)",
-                            "useSubDomain": "bool (optional)"
-                        },
-                        "id": "str (optional)",
-                        "lastGeoFailoverTime": "datetime (optional)",
-                        "location": "str",
-                        "name": "str (optional)",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": "..."
-                                }
-                            },
-                            "blob": "str (optional)",
-                            "dummyEndPoint": "...",
-                            "queue": "str (optional)",
-                            "table": "str (optional)"
-                        },
-                        "primaryLocation": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "secondaryEndpoints": "...",
-                        "secondaryLocation": "str (optional)",
-                        "statusOfPrimary": "str (optional)",
-                        "statusOfSecondary": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
-                ]
-            }
     """
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts")
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts')
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_list_by_resource_group_request(
@@ -637,74 +445,33 @@ def build_list_by_resource_group_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "value": [
-                    {
-                        "accountType": "str (optional)",
-                        "creationTime": "datetime (optional)",
-                        "customDomain": {
-                            "name": "str (optional)",
-                            "useSubDomain": "bool (optional)"
-                        },
-                        "id": "str (optional)",
-                        "lastGeoFailoverTime": "datetime (optional)",
-                        "location": "str",
-                        "name": "str (optional)",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": "..."
-                                }
-                            },
-                            "blob": "str (optional)",
-                            "dummyEndPoint": "...",
-                            "queue": "str (optional)",
-                            "table": "str (optional)"
-                        },
-                        "primaryLocation": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "secondaryEndpoints": "...",
-                        "secondaryLocation": "str (optional)",
-                        "statusOfPrimary": "str (optional)",
-                        "statusOfSecondary": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
-                ]
-            }
     """
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
-    )
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts')
     path_format_arguments = {
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_regenerate_key_request(
@@ -738,47 +505,35 @@ def build_regenerate_key_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "keyName": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "key1": "str (optional)",
-                "key2": "str (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
-    )
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey')
     path_format_arguments = {
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )

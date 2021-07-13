@@ -49,22 +49,21 @@ class AutoRestSwaggerBATHeaderService(object):
         self._serialize.client_side_validation = False
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `header.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from header.rest import build_param_existing_key_request
-        >>> request = build_param_existing_key_request(user_agent_parameter=user_agent_parameter, **kwargs)
+        >>> from header._rest import header
+        >>> request = header.build_param_existing_key_request(user_agent_parameter=user_agent_parameter, **kwargs)
         <HttpRequest [POST], url: '/header/param/existingkey'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

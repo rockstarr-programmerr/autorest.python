@@ -37,7 +37,6 @@ def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
 
@@ -100,7 +99,6 @@ def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
 
@@ -171,7 +169,6 @@ def build_get_simple_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/simple")
 
@@ -200,7 +197,6 @@ def build_put_simple_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/simple")
 
@@ -239,7 +235,6 @@ def build_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/wrapped-lists")
 
@@ -268,7 +263,6 @@ def build_put_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpReque
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/wrapped-lists")
 
@@ -331,7 +325,6 @@ def build_get_empty_list_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/empty-list")
 
@@ -396,7 +389,6 @@ def build_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
 
@@ -460,7 +452,6 @@ def build_get_root_list_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/root-list")
 
@@ -524,7 +515,6 @@ def build_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/root-list-single-item")
 
@@ -588,7 +578,6 @@ def build_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/empty-root-list")
 
@@ -650,7 +639,6 @@ def build_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/empty-child-element")
 
@@ -731,7 +719,6 @@ def build_list_containers_request(**kwargs: Any) -> HttpRequest:
 
     comp = "list"
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/")
 
@@ -772,11 +759,17 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
                     }
                 ],
                 "DefaultServiceVersion": "str (optional)",
-                "DeleteRetentionPolicy": "...",
+                "DeleteRetentionPolicy": {
+                    "Days": "int (optional)",
+                    "Enabled": "bool"
+                },
                 "HourMetrics": {
                     "Enabled": "bool",
                     "IncludeAPIs": "bool (optional)",
-                    "RetentionPolicy": "...",
+                    "RetentionPolicy": {
+                        "Days": "int (optional)",
+                        "Enabled": "bool"
+                    },
                     "Version": "str (optional)"
                 },
                 "Logging": {
@@ -789,14 +782,21 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
                     "Version": "str",
                     "Write": "bool"
                 },
-                "MinuteMetrics": "..."
+                "MinuteMetrics": {
+                    "Enabled": "bool",
+                    "IncludeAPIs": "bool (optional)",
+                    "RetentionPolicy": {
+                        "Days": "int (optional)",
+                        "Enabled": "bool"
+                    },
+                    "Version": "str (optional)"
+                }
             }
     """
 
     comp = "properties"
     restype = "service"
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/")
 
@@ -831,7 +831,6 @@ def build_put_service_properties_request(*, content: Any, **kwargs: Any) -> Http
 
     comp = "properties"
     restype = "service"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/")
 
@@ -880,7 +879,6 @@ def build_get_acls_request(**kwargs: Any) -> HttpRequest:
     comp = "acl"
     restype = "container"
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/mycontainer")
 
@@ -915,7 +913,6 @@ def build_put_acls_request(*, content: Any, **kwargs: Any) -> HttpRequest:
 
     comp = "acl"
     restype = "container"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/mycontainer")
 
@@ -1010,7 +1007,6 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
     comp = "list"
     restype = "container"
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/mycontainer")
 
@@ -1087,7 +1083,6 @@ def build_json_output_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/jsonoutput")
 
@@ -1121,7 +1116,6 @@ def build_get_xms_text_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/x-ms-text")
 
@@ -1153,7 +1147,6 @@ def build_get_bytes_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/bytes")
 
@@ -1182,7 +1175,6 @@ def build_put_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/bytes")
 
@@ -1216,7 +1208,6 @@ def build_get_uri_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/url")
 
@@ -1245,7 +1236,6 @@ def build_put_uri_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/xml"
-
     # Construct URL
     url = kwargs.pop("template_url", "/xml/url")
 

@@ -17,9 +17,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_valid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types that have readonly properties.
@@ -31,31 +32,26 @@ def build_get_valid_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "id": "str (optional)",
-                "size": "int (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/readonlyproperty/valid")
+    url = kwargs.pop("template_url", '/complex/readonlyproperty/valid')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_valid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types that have readonly properties.
@@ -73,28 +69,23 @@ def build_put_valid_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "id": "str (optional)",
-                "size": "int (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/readonlyproperty/valid")
+    url = kwargs.pop("template_url", '/complex/readonlyproperty/valid')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )

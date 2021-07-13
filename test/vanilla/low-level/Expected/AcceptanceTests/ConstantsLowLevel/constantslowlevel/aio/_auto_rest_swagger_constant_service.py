@@ -39,14 +39,13 @@ class AutoRestSwaggerConstantService:
         self._serialize.client_side_validation = False
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `constantslowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from constantslowlevel.rest import build_put_no_model_as_string_no_required_two_value_no_default_request
-        >>> request = build_put_no_model_as_string_no_required_two_value_no_default_request(input=input, **kwargs)
+        >>> from constantslowlevel.rest import contants
+        >>> request = contants.build_put_no_model_as_string_no_required_two_value_no_default_request(input=input, **kwargs)
         <HttpRequest [PUT], url: '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

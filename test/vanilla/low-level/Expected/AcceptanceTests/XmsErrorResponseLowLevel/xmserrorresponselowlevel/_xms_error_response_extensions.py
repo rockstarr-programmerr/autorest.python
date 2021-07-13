@@ -50,14 +50,13 @@ class XMSErrorResponseExtensions(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `xmserrorresponselowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from xmserrorresponselowlevel.rest import build_get_pet_by_id_request
-        >>> request = build_get_pet_by_id_request(pet_id, **kwargs)
+        >>> from xmserrorresponselowlevel.rest import pet
+        >>> request = pet.build_get_pet_by_id_request(pet_id, **kwargs)
         <HttpRequest [GET], url: '/errorStatusCodes/Pets/{petId}/GetPet'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

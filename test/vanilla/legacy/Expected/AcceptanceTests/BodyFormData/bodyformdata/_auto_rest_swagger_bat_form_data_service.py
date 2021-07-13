@@ -49,22 +49,21 @@ class AutoRestSwaggerBATFormDataService(object):
         self._serialize.client_side_validation = False
         self.formdata = FormdataOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodyformdata.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyformdata.rest import build_upload_file_request
-        >>> request = build_upload_file_request(files=files, data=data, content=content, **kwargs)
+        >>> from bodyformdata._rest import formdata
+        >>> request = formdata.build_upload_file_request(files=files, data=data, content=content, **kwargs)
         <HttpRequest [POST], url: '/formdata/stream/uploadfile'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

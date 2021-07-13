@@ -39,14 +39,13 @@ class PetStoreInc:
         self._serialize.client_side_validation = False
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `extensibleenumsswaggerlowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from extensibleenumsswaggerlowlevel.rest import build_get_by_pet_id_request
-        >>> request = build_get_by_pet_id_request(pet_id, **kwargs)
+        >>> from extensibleenumsswaggerlowlevel.rest import pet
+        >>> request = pet.build_get_by_pet_id_request(pet_id, **kwargs)
         <HttpRequest [GET], url: '/extensibleenums/pet/{petId}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

@@ -26,7 +26,6 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/null")
 
@@ -53,18 +52,11 @@ def build_put_null_request(*, json: Any = None, content: Any = None, **kwargs: A
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "str (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/null")
 
@@ -90,7 +82,6 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/empty")
 
@@ -117,18 +108,11 @@ def build_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "str (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/empty")
 
@@ -154,7 +138,6 @@ def build_get_mbcs_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/mbcs")
 
@@ -181,18 +164,11 @@ def build_put_mbcs_request(*, json: Any = None, content: Any = None, **kwargs: A
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "str (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/mbcs")
 
@@ -220,7 +196,6 @@ def build_get_whitespace_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/whitespace")
 
@@ -249,18 +224,11 @@ def build_put_whitespace_request(*, json: Any = None, content: Any = None, **kwa
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "str (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/whitespace")
 
@@ -286,7 +254,6 @@ def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/notProvided")
 
@@ -310,7 +277,6 @@ def build_get_base64_encoded_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/base64Encoding")
 
@@ -334,7 +300,6 @@ def build_get_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/base64UrlEncoding")
 
@@ -361,18 +326,11 @@ def build_put_base64_url_encoded_request(*, json: Any = None, content: Any = Non
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bytes (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/base64UrlEncoding")
 
@@ -398,7 +356,6 @@ def build_get_null_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/nullBase64UrlEncoding")
 

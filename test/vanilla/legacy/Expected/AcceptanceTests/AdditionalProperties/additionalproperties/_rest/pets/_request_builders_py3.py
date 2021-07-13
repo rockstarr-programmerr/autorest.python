@@ -29,35 +29,11 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "": {
-                    "str": "any (optional)"
-                },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "": {
-                    "str": "any (optional)"
-                },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/true")
 
@@ -86,37 +62,11 @@ def build_create_cat_ap_true_request(*, json: Any = None, content: Any = None, *
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "": {
-                    "str": "any (optional)"
-                },
-                "friendly": "bool (optional)",
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "": {
-                    "str": "any (optional)"
-                },
-                "friendly": "bool (optional)",
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/true-subclass")
 
@@ -145,35 +95,11 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "": {
-                    "str": "any (optional)"
-                },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "": {
-                    "str": "any (optional)"
-                },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/type/object")
 
@@ -202,35 +128,11 @@ def build_create_ap_string_request(*, json: Any = None, content: Any = None, **k
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "": {
-                    "str": "str (optional)"
-                },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "": {
-                    "str": "str (optional)"
-                },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/type/string")
 
@@ -259,35 +161,11 @@ def build_create_ap_in_properties_request(*, json: Any = None, content: Any = No
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "additionalProperties": {
-                    "str": "float (optional)"
-                },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "additionalProperties": {
-                    "str": "float (optional)"
-                },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/in/properties")
 
@@ -318,43 +196,11 @@ def build_create_ap_in_properties_with_ap_string_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "": {
-                    "str": "str (optional)"
-                },
-                "@odata.location": "str",
-                "additionalProperties": {
-                    "str": "float (optional)"
-                },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "": {
-                    "str": "str (optional)"
-                },
-                "@odata.location": "str",
-                "additionalProperties": {
-                    "str": "float (optional)"
-                },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/in/properties/with/additionalProperties/string")
 

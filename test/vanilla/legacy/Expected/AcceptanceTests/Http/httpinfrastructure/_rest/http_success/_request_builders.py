@@ -16,9 +16,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_head200_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 200 status code if successful.
@@ -33,19 +34,23 @@ def build_head200_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/200")
+    url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get200_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get 200 success.
@@ -60,19 +65,23 @@ def build_get200_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/200")
+    url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_options200_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Options 200 success.
@@ -87,19 +96,23 @@ def build_options200_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/200")
+    url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="OPTIONS", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="OPTIONS",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put200_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put boolean value true returning 200 success.
@@ -117,32 +130,30 @@ def build_put200_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/200")
+    url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_patch200_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Patch true Boolean value in request returning 200.
@@ -160,32 +171,30 @@ def build_patch200_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/200")
+    url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PATCH",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_post200_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Post bollean value true in request that returns a 200.
@@ -203,32 +212,30 @@ def build_post200_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/200")
+    url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_delete200_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Delete simple boolean value true returns 200.
@@ -246,32 +253,30 @@ def build_delete200_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/200")
+    url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put201_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put true Boolean value in request returns 201.
@@ -289,32 +294,30 @@ def build_put201_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/201")
+    url = kwargs.pop("template_url", '/http/success/201')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_post201_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Post true Boolean value in request returns 201 (Created).
@@ -332,32 +335,30 @@ def build_post201_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/201")
+    url = kwargs.pop("template_url", '/http/success/201')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put202_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put true Boolean value in request returns 202 (Accepted).
@@ -375,32 +376,30 @@ def build_put202_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/202")
+    url = kwargs.pop("template_url", '/http/success/202')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_patch202_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Patch true Boolean value in request returns 202.
@@ -418,32 +417,30 @@ def build_patch202_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/202")
+    url = kwargs.pop("template_url", '/http/success/202')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PATCH",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_post202_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Post true Boolean value in request returns 202 (Accepted).
@@ -461,32 +458,30 @@ def build_post202_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/202")
+    url = kwargs.pop("template_url", '/http/success/202')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_delete202_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Delete true Boolean value in request returns 202 (accepted).
@@ -504,32 +499,30 @@ def build_delete202_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/202")
+    url = kwargs.pop("template_url", '/http/success/202')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_head204_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 204 status code if successful.
@@ -544,19 +537,23 @@ def build_head204_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/204")
+    url = kwargs.pop("template_url", '/http/success/204')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put204_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put true Boolean value in request returns 204 (no content).
@@ -574,32 +571,30 @@ def build_put204_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/204")
+    url = kwargs.pop("template_url", '/http/success/204')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_patch204_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Patch true Boolean value in request returns 204 (no content).
@@ -617,32 +612,30 @@ def build_patch204_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/204")
+    url = kwargs.pop("template_url", '/http/success/204')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PATCH",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_post204_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Post true Boolean value in request returns 204 (no content).
@@ -660,32 +653,30 @@ def build_post204_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/204")
+    url = kwargs.pop("template_url", '/http/success/204')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_delete204_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Delete true Boolean value in request returns 204 (no content).
@@ -703,32 +694,30 @@ def build_delete204_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/204")
+    url = kwargs.pop("template_url", '/http/success/204')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_head404_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 404 status code.
@@ -743,12 +732,16 @@ def build_head404_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/404")
+    url = kwargs.pop("template_url", '/http/success/404')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )

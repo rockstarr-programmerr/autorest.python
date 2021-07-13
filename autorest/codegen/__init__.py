@@ -88,7 +88,9 @@ class CodeGenerator(Plugin):
         show_builders = self._autorestapi.get_boolean_value("show-builders", False)
         show_operations = self._autorestapi.get_boolean_value("show-operations", True)
         show_send_request = self._autorestapi.get_boolean_value("show-send-request", False)
-        only_path_and_body_params_positional = self._autorestapi.get_boolean_value("only-path-params-positional", False)
+        only_path_and_body_params_positional = self._autorestapi.get_boolean_value(
+            "only-path-and-body-params-positional", False
+        )
         if low_level_client:
             show_models = False
             show_builders = True
@@ -283,7 +285,6 @@ class CodeGenerator(Plugin):
             "credential_default_policy_type_has_async_version": (
                 _get_credential_default_policy_type_has_async_version(credential_default_policy_type)
             ),
-            "vendor": self._autorestapi.get_boolean_value("vendor", False),
             "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples") or 5,
         }
 

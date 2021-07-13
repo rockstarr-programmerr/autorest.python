@@ -16,6 +16,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_basic_polling_request_initial(
     **kwargs  # type: Any
@@ -36,31 +37,11 @@ def build_basic_polling_request_initial(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "properties": {
-                    "id": "int (optional)",
-                    "name": "str (optional)"
-                }
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "properties": {
-                    "id": "int (optional)",
-                    "name": "str (optional)"
-                }
-            }
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/basic/polling')
 
@@ -91,27 +72,9 @@ def build_basic_paging_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "value": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
-
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/basic/paging')
 

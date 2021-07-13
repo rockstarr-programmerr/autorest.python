@@ -16,6 +16,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_test_one_request(
     **kwargs  # type: Any
@@ -34,15 +35,6 @@ def build_test_one_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "id": "int",
-                "message": "str (optional)"
-            }
     """
 
     id = kwargs.pop('id')  # type: int
@@ -50,7 +42,6 @@ def build_test_one_request(
 
     api_version = "2.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
 
@@ -98,7 +89,6 @@ def build_test_different_calls_request(
 
     api_version = "2.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
 

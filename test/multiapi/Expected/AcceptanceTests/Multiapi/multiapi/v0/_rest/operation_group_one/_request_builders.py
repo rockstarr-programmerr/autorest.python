@@ -16,6 +16,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_test_two_request(
     **kwargs  # type: Any
@@ -32,10 +33,8 @@ def build_test_two_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-
     api_version = "0.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
 

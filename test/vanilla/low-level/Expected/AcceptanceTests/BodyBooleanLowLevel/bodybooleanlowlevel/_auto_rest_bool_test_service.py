@@ -50,14 +50,13 @@ class AutoRestBoolTestService(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodybooleanlowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodybooleanlowlevel.rest import build_get_true_request
-        >>> request = build_get_true_request(**kwargs)
+        >>> from bodybooleanlowlevel.rest import bool
+        >>> request = bool.build_get_true_request(**kwargs)
         <HttpRequest [GET], url: '/bool/true'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

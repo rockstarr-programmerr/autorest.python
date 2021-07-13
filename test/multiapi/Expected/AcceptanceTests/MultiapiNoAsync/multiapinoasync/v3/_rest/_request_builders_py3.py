@@ -25,24 +25,9 @@ def build_test_paging_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "optionalProperty": "str (optional)"
-                    }
-                ]
-            }
     """
 
-
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/paging')
 
@@ -82,10 +67,8 @@ def build_test_different_calls_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-
     api_version = "3.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
 

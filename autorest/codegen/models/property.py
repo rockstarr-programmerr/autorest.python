@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Callable, cast, Any, Dict, Union, List, Optional
+from typing import cast, Any, Dict, Union, List, Optional
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
@@ -125,38 +125,14 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             return self.schema.type_annotation
         return f"Optional[{self.schema.type_annotation}]"
 
-    def _get_template_representation(
-        self,
-        callable: Callable,
-        **kwargs: Any
-    ) -> Any:
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
         kwargs["optional"] = not self.required
         kwargs["default_value_declaration"] = self.default_value_declaration
-        try:
-            if self.schema.name in kwargs.get("object_schema_names", []):
-                return f"..."
-        except AttributeError:
-            pass
-        return callable(**kwargs)
-
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
-        if self.is_discriminator:
-            return kwargs.pop("discriminator_value", None) or self.name
-        try:
-            if self.schema.discriminator_name:
-                return self.name
-        except AttributeError:
-            pass
-        return self._get_template_representation(
-            callable=self.schema.get_json_template_representation,
-            **kwargs
-        )
+        return self.schema.get_json_template_representation(**kwargs)
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:
-        return self._get_template_representation(
-            callable=self.schema.get_files_template_representation,
-            **kwargs
-        )
+        kwargs["optional"] = not self.required
+        return self.schema.get_files_template_representation(**kwargs)
 
     def model_file_imports(self) -> FileImport:
         file_import = self.schema.model_file_imports()

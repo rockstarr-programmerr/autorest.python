@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 
 class MultiapiServiceClient(object):
     """Service client for multiapi client testing.
-    
+
     :ivar operation_group_one: OperationGroupOneOperations operations
     :vartype operation_group_one: multiapi.v0.operations.OperationGroupOneOperations
     :param credential: Credential needed for the client to connect to Azure.
@@ -46,7 +46,6 @@ class MultiapiServiceClient(object):
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
@@ -54,22 +53,21 @@ class MultiapiServiceClient(object):
         self.operation_group_one = OperationGroupOneOperations(self._client, self._config, self._serialize, self._deserialize)
 
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-        
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `multiapi.v0.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from multiapi.v0.rest import build_test_two_request
-        >>> request = build_test_two_request(**kwargs)
+        >>> from multiapi.v0._rest import operation_group_one
+        >>> request = operation_group_one.build_test_two_request(**kwargs)
         <HttpRequest [GET], url: '/multiapi/one/testTwoEndpoint'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

@@ -16,9 +16,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_head300_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 300 status code and redirect to /http/success/200.
@@ -33,19 +34,23 @@ def build_head300_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/300")
+    url = kwargs.pop("template_url", '/http/redirect/300')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get300_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 300 status code and redirect to /http/success/200.
@@ -57,30 +62,26 @@ def build_get300_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 300
-            response.json() == [
-                "str (optional)"
-            ]
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/300")
+    url = kwargs.pop("template_url", '/http/redirect/300')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_head301_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 301 status code and redirect to /http/success/200.
@@ -95,19 +96,23 @@ def build_head301_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/301")
+    url = kwargs.pop("template_url", '/http/redirect/301')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get301_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 301 status code and redirect to /http/success/200.
@@ -122,19 +127,23 @@ def build_get301_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/301")
+    url = kwargs.pop("template_url", '/http/redirect/301')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put301_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put true Boolean value in request returns 301.  This request should not be automatically
@@ -153,32 +162,30 @@ def build_put301_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/301")
+    url = kwargs.pop("template_url", '/http/redirect/301')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_head302_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 302 status code and redirect to /http/success/200.
@@ -193,19 +200,23 @@ def build_head302_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/302")
+    url = kwargs.pop("template_url", '/http/redirect/302')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get302_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 302 status code and redirect to /http/success/200.
@@ -220,19 +231,23 @@ def build_get302_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/302")
+    url = kwargs.pop("template_url", '/http/redirect/302')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_patch302_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Patch true Boolean value in request returns 302.  This request should not be automatically
@@ -251,32 +266,30 @@ def build_patch302_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/302")
+    url = kwargs.pop("template_url", '/http/redirect/302')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PATCH",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_post303_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Post true Boolean value in request returns 303.  This request should be automatically
@@ -295,32 +308,30 @@ def build_post303_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/303")
+    url = kwargs.pop("template_url", '/http/redirect/303')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_head307_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Redirect with 307, resulting in a 200 success.
@@ -335,19 +346,23 @@ def build_head307_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/307")
+    url = kwargs.pop("template_url", '/http/redirect/307')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get307_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Redirect get with 307, resulting in a 200 success.
@@ -362,19 +377,23 @@ def build_get307_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/307")
+    url = kwargs.pop("template_url", '/http/redirect/307')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_options307_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """options redirected with 307, resulting in a 200 after redirect.
@@ -389,19 +408,23 @@ def build_options307_request(
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/307")
+    url = kwargs.pop("template_url", '/http/redirect/307')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="OPTIONS", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="OPTIONS",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put307_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put redirected with 307, resulting in a 200 after redirect.
@@ -419,32 +442,30 @@ def build_put307_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/307")
+    url = kwargs.pop("template_url", '/http/redirect/307')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_patch307_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Patch redirected with 307, resulting in a 200 after redirect.
@@ -462,32 +483,30 @@ def build_patch307_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/307")
+    url = kwargs.pop("template_url", '/http/redirect/307')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PATCH",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_post307_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Post redirected with 307, resulting in a 200 after redirect.
@@ -505,32 +524,30 @@ def build_post307_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/307")
+    url = kwargs.pop("template_url", '/http/redirect/307')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_delete307_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Delete redirected with 307, resulting in a 200 after redirect.
@@ -548,25 +565,23 @@ def build_delete307_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/http/redirect/307")
+    url = kwargs.pop("template_url", '/http/redirect/307')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )

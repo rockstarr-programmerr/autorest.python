@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict, Optional, Union, cast
+from typing import Any, Dict, Optional, Union
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
 
@@ -61,29 +61,11 @@ class ListSchema(BaseSchema):
     def has_xml_serialization_ctxt(self) -> bool:
         return super().has_xml_serialization_ctxt or self.element_type.has_xml_serialization_ctxt
 
-    def _get_template_representation(
-        self,
-        callable: Callable,
-        **kwargs: Any
-    ) -> Any:
-        try:
-            if self.element_type.name in kwargs.get("object_schema_names", []):
-                return ["..."]
-        except AttributeError:
-            pass
-        return [callable(**kwargs)]
-
     def get_json_template_representation(self, **kwargs: Any) -> Any:
-        return self._get_template_representation(
-            callable=self.element_type.get_json_template_representation,
-            **kwargs
-        )
+        return [self.element_type.get_json_template_representation(**kwargs)]
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:
-        return self._get_template_representation(
-            callable=self.element_type.get_files_template_representation,
-            **kwargs
-        )
+        return [self.element_type.get_files_template_representation(**kwargs)]
 
     def xml_serialization_ctxt(self) -> Optional[str]:
         attrs_list = []

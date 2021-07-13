@@ -27,7 +27,6 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/duration/null")
 
@@ -54,18 +53,11 @@ def build_put_positive_duration_request(*, json: Any = None, content: Any = None
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "timedelta (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/duration/positiveduration")
 
@@ -91,7 +83,6 @@ def build_get_positive_duration_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/duration/positiveduration")
 
@@ -115,7 +106,6 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/duration/invalid")
 

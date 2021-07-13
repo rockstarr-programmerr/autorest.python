@@ -17,9 +17,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_int_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with integer properties.
@@ -31,31 +32,26 @@ def build_get_int_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "field1": "int (optional)",
-                "field2": "int (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/integer")
+    url = kwargs.pop("template_url", '/complex/primitive/integer')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_int_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with integer properties.
@@ -73,35 +69,30 @@ def build_put_int_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "field1": "int (optional)",
-                "field2": "int (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/integer")
+    url = kwargs.pop("template_url", '/complex/primitive/integer')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_long_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with long properties.
@@ -113,31 +104,26 @@ def build_get_long_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "field1": "long (optional)",
-                "field2": "long (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/long")
+    url = kwargs.pop("template_url", '/complex/primitive/long')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_long_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with long properties.
@@ -155,35 +141,30 @@ def build_put_long_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "field1": "long (optional)",
-                "field2": "long (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/long")
+    url = kwargs.pop("template_url", '/complex/primitive/long')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_float_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with float properties.
@@ -195,31 +176,26 @@ def build_get_float_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "field1": "float (optional)",
-                "field2": "float (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/float")
+    url = kwargs.pop("template_url", '/complex/primitive/float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_float_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with float properties.
@@ -237,35 +213,30 @@ def build_put_float_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "field1": "float (optional)",
-                "field2": "float (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/float")
+    url = kwargs.pop("template_url", '/complex/primitive/float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_double_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with double properties.
@@ -277,31 +248,26 @@ def build_get_double_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "field1": "float (optional)",
-                "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/double")
+    url = kwargs.pop("template_url", '/complex/primitive/double')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_double_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with double properties.
@@ -321,35 +287,30 @@ def build_put_double_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "field1": "float (optional)",
-                "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/double")
+    url = kwargs.pop("template_url", '/complex/primitive/double')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_bool_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with bool properties.
@@ -361,31 +322,26 @@ def build_get_bool_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "field_false": "bool (optional)",
-                "field_true": "bool (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/bool")
+    url = kwargs.pop("template_url", '/complex/primitive/bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_bool_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with bool properties.
@@ -403,35 +359,30 @@ def build_put_bool_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "field_false": "bool (optional)",
-                "field_true": "bool (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/bool")
+    url = kwargs.pop("template_url", '/complex/primitive/bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_string_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with string properties.
@@ -443,32 +394,26 @@ def build_get_string_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "empty": "str (optional)",
-                "field": "str (optional)",
-                "null": "str (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/string")
+    url = kwargs.pop("template_url", '/complex/primitive/string')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_string_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with string properties.
@@ -486,36 +431,30 @@ def build_put_string_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "empty": "str (optional)",
-                "field": "str (optional)",
-                "null": "str (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/string")
+    url = kwargs.pop("template_url", '/complex/primitive/string')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_date_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with date properties.
@@ -527,31 +466,26 @@ def build_get_date_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "field": "date (optional)",
-                "leap": "date (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/date")
+    url = kwargs.pop("template_url", '/complex/primitive/date')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_date_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with date properties.
@@ -569,35 +503,30 @@ def build_put_date_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "field": "date (optional)",
-                "leap": "date (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/date")
+    url = kwargs.pop("template_url", '/complex/primitive/date')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_date_time_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with datetime properties.
@@ -609,31 +538,26 @@ def build_get_date_time_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "field": "datetime (optional)",
-                "now": "datetime (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetime")
+    url = kwargs.pop("template_url", '/complex/primitive/datetime')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_date_time_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with datetime properties.
@@ -653,35 +577,30 @@ def build_put_date_time_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "field": "datetime (optional)",
-                "now": "datetime (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetime")
+    url = kwargs.pop("template_url", '/complex/primitive/datetime')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_date_time_rfc1123_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with datetimeRfc1123 properties.
@@ -693,31 +612,26 @@ def build_get_date_time_rfc1123_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "field": "datetime (optional)",
-                "now": "datetime (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
+    url = kwargs.pop("template_url", '/complex/primitive/datetimerfc1123')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_date_time_rfc1123_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with datetimeRfc1123 properties.
@@ -737,35 +651,30 @@ def build_put_date_time_rfc1123_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "field": "datetime (optional)",
-                "now": "datetime (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
+    url = kwargs.pop("template_url", '/complex/primitive/datetimerfc1123')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_duration_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with duration properties.
@@ -777,30 +686,26 @@ def build_get_duration_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "field": "timedelta (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/duration")
+    url = kwargs.pop("template_url", '/complex/primitive/duration')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_duration_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with duration properties.
@@ -818,34 +723,30 @@ def build_put_duration_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "field": "timedelta (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/duration")
+    url = kwargs.pop("template_url", '/complex/primitive/duration')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_byte_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get complex types with byte properties.
@@ -857,30 +758,26 @@ def build_get_byte_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "field": "bytearray (optional)"
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/byte")
+    url = kwargs.pop("template_url", '/complex/primitive/byte')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_byte_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with byte properties.
@@ -900,27 +797,23 @@ def build_put_byte_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "field": "bytearray (optional)"
-            }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/byte")
+    url = kwargs.pop("template_url", '/complex/primitive/byte')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )

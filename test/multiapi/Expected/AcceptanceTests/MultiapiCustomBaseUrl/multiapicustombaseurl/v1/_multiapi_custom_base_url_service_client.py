@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 
 class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
     """Service client for multiapi custom base url testing.
-    
+
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
     :param endpoint: Pass in https://localhost:3000.
@@ -43,29 +43,27 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential, endpoint, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-        
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `multiapicustombaseurl.v1.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from multiapicustombaseurl.v1.rest import build_test_request
+        >>> from multiapicustombaseurl.v1._rest import build_test_request
         >>> request = build_test_request(id=id, **kwargs)
         <HttpRequest [PUT], url: '/test'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

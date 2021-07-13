@@ -32,7 +32,6 @@ def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/explicit/optional/binary-body")
 
@@ -63,7 +62,6 @@ def build_put_required_binary_body_request(*, content: Any, **kwargs: Any) -> Ht
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/explicit/required/binary-body")
 
@@ -95,18 +93,11 @@ def build_post_required_integer_parameter_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "int (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/integer/parameter")
 
@@ -137,18 +128,11 @@ def build_post_optional_integer_parameter_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "int (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/integer/parameter")
 
@@ -180,20 +164,11 @@ def build_post_required_integer_property_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "value": "int"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/integer/property")
 
@@ -224,20 +199,11 @@ def build_post_optional_integer_property_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "value": "int (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/integer/property")
 
@@ -266,7 +232,6 @@ def build_post_required_integer_header_request(*, header_parameter: int, **kwarg
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/integer/header")
 
@@ -293,7 +258,6 @@ def build_post_optional_integer_header_request(*, header_parameter: Optional[int
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/integer/header")
 
@@ -325,18 +289,11 @@ def build_post_required_string_parameter_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "str (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/string/parameter")
 
@@ -367,18 +324,11 @@ def build_post_optional_string_parameter_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "str (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/string/parameter")
 
@@ -408,20 +358,11 @@ def build_post_required_string_property_request(*, json: Any = None, content: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "value": "str"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/string/property")
 
@@ -450,20 +391,11 @@ def build_post_optional_string_property_request(*, json: Any = None, content: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "value": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/string/property")
 
@@ -492,7 +424,6 @@ def build_post_required_string_header_request(*, header_parameter: str, **kwargs
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/string/header")
 
@@ -519,7 +450,6 @@ def build_post_optional_string_header_request(*, body_parameter: Optional[str] =
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/string/header")
 
@@ -549,21 +479,11 @@ def build_post_required_class_parameter_request(*, json: Any = None, content: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "id": "int",
-                "name": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/class/parameter")
 
@@ -592,21 +512,11 @@ def build_post_optional_class_parameter_request(*, json: Any = None, content: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "id": "int",
-                "name": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/class/parameter")
 
@@ -636,23 +546,11 @@ def build_post_required_class_property_request(*, json: Any = None, content: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "value": {
-                    "id": "int",
-                    "name": "str (optional)"
-                }
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/class/property")
 
@@ -681,23 +579,11 @@ def build_post_optional_class_property_request(*, json: Any = None, content: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "value": {
-                    "id": "int",
-                    "name": "str (optional)"
-                }
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/class/property")
 
@@ -727,20 +613,11 @@ def build_post_required_array_parameter_request(*, json: Any = None, content: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = [
-                "str (optional)"
-            ]
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/array/parameter")
 
@@ -769,20 +646,11 @@ def build_post_optional_array_parameter_request(*, json: Any = None, content: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = [
-                "str (optional)"
-            ]
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/array/parameter")
 
@@ -812,22 +680,11 @@ def build_post_required_array_property_request(*, json: Any = None, content: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "value": [
-                    "str"
-                ]
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/array/property")
 
@@ -856,22 +713,11 @@ def build_post_optional_array_property_request(*, json: Any = None, content: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "value": [
-                    "str (optional)"
-                ]
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/array/property")
 
@@ -900,7 +746,6 @@ def build_post_required_array_header_request(*, header_parameter: List[str], **k
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/requied/array/header")
 
@@ -929,7 +774,6 @@ def build_post_optional_array_header_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/optional/array/header")
 

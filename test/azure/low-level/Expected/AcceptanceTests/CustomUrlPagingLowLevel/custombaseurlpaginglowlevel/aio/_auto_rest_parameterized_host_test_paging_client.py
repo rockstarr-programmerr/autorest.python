@@ -38,14 +38,13 @@ class AutoRestParameterizedHostTestPagingClient:
         self._serialize.client_side_validation = False
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `custombaseurlpaginglowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from custombaseurlpaginglowlevel.rest import build_get_pages_partial_url_request
-        >>> request = build_get_pages_partial_url_request(**kwargs)
+        >>> from custombaseurlpaginglowlevel.rest import paging
+        >>> request = paging.build_get_pages_partial_url_request(**kwargs)
         <HttpRequest [GET], url: '/paging/customurl/partialnextlink'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

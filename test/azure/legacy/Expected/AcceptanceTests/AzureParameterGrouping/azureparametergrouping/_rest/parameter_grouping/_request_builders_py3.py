@@ -44,18 +44,11 @@ def build_post_required_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "int (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/postRequired/{path}")
     path_format_arguments = {
@@ -100,7 +93,6 @@ def build_post_optional_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/postOptional")
 
@@ -146,7 +138,6 @@ def build_post_multi_param_groups_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/postMultipleParameterGroups")
 
@@ -187,7 +178,6 @@ def build_post_shared_parameter_group_object_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/sharedParameterGroupObject")
 

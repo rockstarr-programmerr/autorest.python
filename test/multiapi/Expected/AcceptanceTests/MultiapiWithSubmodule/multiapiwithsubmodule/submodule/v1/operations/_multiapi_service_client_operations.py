@@ -53,10 +53,6 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest.build_test_one_request(
             id=id,
             message=message,
@@ -89,11 +85,8 @@ class MultiapiServiceClientOperationsMixin(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-
-        
         if product is not None:
             json = self._serialize.body(product, 'Product')
         else:
@@ -163,9 +156,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
-        
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
@@ -202,10 +193,6 @@ class MultiapiServiceClientOperationsMixin(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
-
-
-        
         _maxresults = None
         _timeout = None
         if test_lro_and_paging_options is not None:
@@ -270,10 +257,8 @@ class MultiapiServiceClientOperationsMixin(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
-                
                 _maxresults = None
                 _timeout = None
                 if test_lro_and_paging_options is not None:
@@ -289,7 +274,6 @@ class MultiapiServiceClientOperationsMixin(object):
                 request.url = self._client.format_url(request.url)
 
             else:
-                
                 _maxresults = None
                 _timeout = None
                 if test_lro_and_paging_options is not None:
@@ -344,7 +328,6 @@ class MultiapiServiceClientOperationsMixin(object):
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             def internal_get_next(next_link=None):
                 if next_link is None:
                     return pipeline_response
@@ -390,10 +373,6 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest.build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],

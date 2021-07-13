@@ -29,7 +29,6 @@ def build_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpR
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/required/path/{pathParameter}")
     path_format_arguments = {
@@ -59,7 +58,6 @@ def build_put_optional_query_request(*, query_parameter: Optional[str] = None, *
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/query")
 
@@ -90,7 +88,6 @@ def build_put_optional_header_request(*, query_parameter: Optional[str] = None, 
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/header")
 
@@ -119,18 +116,11 @@ def build_put_optional_body_request(*, json: Any = None, content: Any = None, **
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "str (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/body")
 
@@ -161,7 +151,6 @@ def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/binary-body")
 
@@ -189,7 +178,6 @@ def build_get_required_global_path_request(required_global_path: str, **kwargs: 
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/required/path/{required-global-path}")
     path_format_arguments = {
@@ -219,7 +207,6 @@ def build_get_required_global_query_request(*, required_global_query: str, **kwa
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/required/query")
 
@@ -251,7 +238,6 @@ def build_get_optional_global_query_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/optional/query")
 

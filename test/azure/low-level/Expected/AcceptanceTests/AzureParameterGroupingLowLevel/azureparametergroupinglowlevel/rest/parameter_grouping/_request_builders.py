@@ -32,10 +32,10 @@ def build_post_required_request(
     :type path: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
-    :paramtype content: Any
+    :paramtype content: any
     :keyword custom_header:
     :paramtype custom_header: str
     :keyword query: Query parameter with default.
@@ -57,7 +57,6 @@ def build_post_required_request(
     query = kwargs.pop("query", 30)  # type: Optional[int]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/postRequired/{path}")
     path_format_arguments = {
@@ -104,7 +103,6 @@ def build_post_optional_request(
     query = kwargs.pop("query", 30)  # type: Optional[int]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/postOptional")
 
@@ -151,7 +149,6 @@ def build_post_multi_param_groups_request(
     query_two = kwargs.pop("query_two", 30)  # type: Optional[int]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/postMultipleParameterGroups")
 
@@ -196,7 +193,6 @@ def build_post_shared_parameter_group_object_request(
     query_one = kwargs.pop("query_one", 30)  # type: Optional[int]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/sharedParameterGroupObject")
 

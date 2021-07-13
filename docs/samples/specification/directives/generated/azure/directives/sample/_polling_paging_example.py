@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 
 class PollingPagingExample(PollingPagingExampleOperationsMixin):
     """Show polling and paging generation.
-    
+
     :param base_url: Service URL
     :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
@@ -42,29 +42,27 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):
         self._config = PollingPagingExampleConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-        
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `azure.directives.sample.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from azure.directives.sample.rest import build_basic_polling_request_initial
+        >>> from azure.directives.sample._rest import build_basic_polling_request_initial
         >>> request = build_basic_polling_request_initial(json=json, content=content, **kwargs)
         <HttpRequest [PUT], url: '/basic/polling'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

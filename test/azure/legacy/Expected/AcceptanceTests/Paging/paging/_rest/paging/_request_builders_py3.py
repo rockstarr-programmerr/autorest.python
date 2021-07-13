@@ -24,26 +24,9 @@ def build_get_no_item_name_pages_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "value": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/noitemname")
 
@@ -64,26 +47,9 @@ def build_get_null_next_link_name_pages_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/nullnextlink")
 
@@ -104,26 +70,9 @@ def build_get_single_pages_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/single")
 
@@ -145,26 +94,9 @@ def build_first_response_empty_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "value": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/firstResponseEmpty/1")
 
@@ -198,26 +130,9 @@ def build_get_multiple_pages_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple")
 
@@ -248,27 +163,10 @@ def build_get_with_query_params_request(*, required_query_parameter: int, **kwar
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     query_constant = True
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/getWithQueryParams")
 
@@ -296,27 +194,10 @@ def build_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     query_constant = True
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/nextOperationWithQueryParams")
 
@@ -354,26 +235,9 @@ def build_get_odata_multiple_pages_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "odata.nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/odata")
 
@@ -416,26 +280,9 @@ def build_get_multiple_pages_with_offset_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/withpath/{offset}")
     path_format_arguments = {
@@ -467,26 +314,9 @@ def build_get_multiple_pages_retry_first_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/retryfirst")
 
@@ -508,26 +338,9 @@ def build_get_multiple_pages_retry_second_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/retrysecond")
 
@@ -548,26 +361,9 @@ def build_get_single_pages_failure_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/single/failure")
 
@@ -588,26 +384,9 @@ def build_get_multiple_pages_failure_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/failure")
 
@@ -628,26 +407,9 @@ def build_get_multiple_pages_failure_uri_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/failureuri")
 
@@ -672,26 +434,9 @@ def build_get_multiple_pages_fragment_next_link_request(tenant: str, *, api_vers
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "odata.nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/fragment/{tenant}")
     path_format_arguments = {
@@ -726,26 +471,9 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "odata.nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/fragmentwithgrouping/{tenant}")
     path_format_arguments = {
@@ -787,26 +515,9 @@ def build_get_multiple_pages_lro_request_initial(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 202
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/lro")
 
@@ -839,26 +550,9 @@ def build_next_fragment_request(tenant: str, next_link: str, *, api_version: str
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "odata.nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/fragment/{tenant}/{nextLink}")
     path_format_arguments = {
@@ -896,26 +590,9 @@ def build_next_fragment_with_grouping_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "odata.nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}")
     path_format_arguments = {
@@ -946,26 +623,9 @@ def build_get_paging_model_with_item_name_with_xms_client_name_request(**kwargs:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "values": [
-                    {
-                        "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
-                        }
-                    }
-                ]
-            }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/itemNameWithXMSClientName")
 

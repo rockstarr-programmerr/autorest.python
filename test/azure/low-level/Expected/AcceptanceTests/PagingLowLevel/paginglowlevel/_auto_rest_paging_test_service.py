@@ -50,14 +50,13 @@ class AutoRestPagingTestService(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `paginglowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from paginglowlevel.rest import build_get_no_item_name_pages_request
-        >>> request = build_get_no_item_name_pages_request(**kwargs)
+        >>> from paginglowlevel.rest import paging
+        >>> request = paging.build_get_no_item_name_pages_request(**kwargs)
         <HttpRequest [GET], url: '/paging/noitemname'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

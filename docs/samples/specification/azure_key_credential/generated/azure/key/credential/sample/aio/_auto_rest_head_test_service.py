@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 
 class AutoRestHeadTestService:
     """Test Infrastructure for AutoRest.
-    
+
     :ivar http_success: HttpSuccessOperations operations
     :vartype http_success: azure.key.credential.sample.aio.operations.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure.
@@ -43,7 +43,6 @@ class AutoRestHeadTestService:
         self._config = AutoRestHeadTestServiceConfiguration(credential, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        
         client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
@@ -51,21 +50,20 @@ class AutoRestHeadTestService:
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
 
-    def send_request(
+    def _send_request(
         self,
         request: HttpRequest,
         **kwargs: Any
     ) -> Awaitable[AsyncHttpResponse]:
-        
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `azure.key.credential.sample.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from azure.key.credential.sample.rest import build_head200_request
-        >>> request = build_head200_request(**kwargs)
+        >>> from azure.key.credential.sample._rest import http_success
+        >>> request = http_success.build_head200_request(**kwargs)
         <HttpRequest [HEAD], url: '/http/success/200'>
-        >>> response = await client.send_request(request)
+        >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

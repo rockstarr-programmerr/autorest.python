@@ -39,14 +39,13 @@ class AutoRestSwaggerBATFileService:
         self._serialize.client_side_validation = False
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodyfilelowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyfilelowlevel.rest import build_get_file_request
-        >>> request = build_get_file_request(**kwargs)
+        >>> from bodyfilelowlevel.rest import files
+        >>> request = files.build_get_file_request(**kwargs)
         <HttpRequest [GET], url: '/files/stream/nonempty'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
-    
+
     :ivar operation_group_one: OperationGroupOneOperations operations
     :vartype operation_group_one: multiapidataplane.v3.operations.OperationGroupOneOperations
     :ivar operation_group_two: OperationGroupTwoOperations operations
@@ -48,7 +48,6 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
@@ -57,22 +56,21 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         self.operation_group_two = OperationGroupTwoOperations(self._client, self._config, self._serialize, self._deserialize)
 
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-        
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `multiapidataplane.v3.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from multiapidataplane.v3.rest import build_test_paging_request
+        >>> from multiapidataplane.v3._rest import build_test_paging_request
         >>> request = build_test_paging_request(**kwargs)
         <HttpRequest [GET], url: '/multiapi/paging'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

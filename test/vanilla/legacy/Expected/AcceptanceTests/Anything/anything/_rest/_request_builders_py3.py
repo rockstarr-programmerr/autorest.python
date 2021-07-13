@@ -27,7 +27,6 @@ def build_get_object_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/anything/object")
 
@@ -57,12 +56,6 @@ def build_put_object_request(*, json: Any = None, content: Any = None, **kwargs:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "any (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -91,7 +84,6 @@ def build_get_string_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/anything/string")
 
@@ -121,12 +113,6 @@ def build_put_string_request(*, json: Any = None, content: Any = None, **kwargs:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "any (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -155,7 +141,6 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/anything/array")
 
@@ -185,12 +170,6 @@ def build_put_array_request(*, json: Any = None, content: Any = None, **kwargs: 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "any (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

@@ -58,7 +58,6 @@ def build_put_array_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/array")
 
@@ -91,16 +90,17 @@ def build_get_array_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "p.name": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)",
-                    "type": "str (optional)"
+                    "properties": {
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "type": "str (optional)"
+                    }
                 }
             ]
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/array")
 
@@ -146,7 +146,6 @@ def build_put_wrapped_array_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/wrappedarray")
 
@@ -180,13 +179,14 @@ def build_get_wrapped_array_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "value": "str (optional)"
+                    "property": {
+                        "value": "str (optional)"
+                    }
                 }
             ]
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/wrappedarray")
 
@@ -223,10 +223,12 @@ def build_put_dictionary_request(
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "str": {
-                    "p.name": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)",
-                    "type": "str (optional)"
+                    "properties": {
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "type": "str (optional)"
+                    }
                 }
             }
     """
@@ -234,7 +236,6 @@ def build_put_dictionary_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/dictionary")
 
@@ -267,16 +268,17 @@ def build_get_dictionary_request(
             # response body for status code(s): 200
             response.json() == {
                 "str": {
-                    "p.name": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)",
-                    "type": "str (optional)"
+                    "properties": {
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "type": "str (optional)"
+                    }
                 }
             }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/dictionary")
 
@@ -313,16 +315,32 @@ def build_put_resource_collection_request(
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "arrayofresources": [
-                    "..."
+                    {
+                        "properties": {
+                            "p.name": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "provisioningStateValues": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    }
                 ],
                 "dictionaryofresources": {
-                    "str": "..."
+                    "str": {
+                        "properties": {
+                            "p.name": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "provisioningStateValues": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    }
                 },
                 "productresource": {
-                    "p.name": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)",
-                    "type": "str (optional)"
+                    "properties": {
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "type": "str (optional)"
+                    }
                 }
             }
     """
@@ -330,7 +348,6 @@ def build_put_resource_collection_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/resourcecollection")
 
@@ -363,22 +380,37 @@ def build_get_resource_collection_request(
             # response body for status code(s): 200
             response.json() == {
                 "arrayofresources": [
-                    "..."
+                    {
+                        "properties": {
+                            "p.name": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "provisioningStateValues": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    }
                 ],
                 "dictionaryofresources": {
-                    "str": "..."
+                    "str": {
+                        "properties": {
+                            "p.name": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "provisioningStateValues": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    }
                 },
                 "productresource": {
-                    "p.name": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)",
-                    "type": "str (optional)"
+                    "properties": {
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "type": "str (optional)"
+                    }
                 }
             }
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/resourcecollection")
 
@@ -414,25 +446,30 @@ def build_put_simple_product_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "@odata.value": "str (optional)",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
+                "details": {
+                    "max_product_capacity": "str",
+                    "max_product_display_name": "str",
+                    "max_product_image": {
+                        "@odata.value": "str (optional)"
+                    }
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "@odata.value": "str (optional)",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
+                "details": {
+                    "max_product_capacity": "str",
+                    "max_product_display_name": "str",
+                    "max_product_image": {
+                        "@odata.value": "str (optional)"
+                    }
+                }
             }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/customFlattening")
 
@@ -470,25 +507,30 @@ def build_post_flattened_simple_product_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "@odata.value": "str (optional)",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
+                "details": {
+                    "max_product_capacity": "str",
+                    "max_product_display_name": "str",
+                    "max_product_image": {
+                        "@odata.value": "str (optional)"
+                    }
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "@odata.value": "str (optional)",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
+                "details": {
+                    "max_product_capacity": "str",
+                    "max_product_display_name": "str",
+                    "max_product_image": {
+                        "@odata.value": "str (optional)"
+                    }
+                }
             }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/customFlattening")
 
@@ -529,25 +571,30 @@ def build_put_simple_product_with_grouping_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "@odata.value": "str (optional)",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
+                "details": {
+                    "max_product_capacity": "str",
+                    "max_product_display_name": "str",
+                    "max_product_image": {
+                        "@odata.value": "str (optional)"
+                    }
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "@odata.value": "str (optional)",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
+                "details": {
+                    "max_product_capacity": "str",
+                    "max_product_display_name": "str",
+                    "max_product_image": {
+                        "@odata.value": "str (optional)"
+                    }
+                }
             }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/customFlattening/parametergrouping/{name}/")
     path_format_arguments = {

@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, Union
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -35,12 +35,12 @@ def build_check_name_availability_request(
      our example to find the input shape. The name of the storage account within the specified
      resource group. Storage account names must be between 3 and 24 characters in length and use
      numbers and lower-case letters only.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The name of the storage account within the specified
      resource group. Storage account names must be between 3 and 24 characters in length and use
      numbers and lower-case letters only.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -67,7 +67,6 @@ def build_check_name_availability_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"
@@ -116,10 +115,10 @@ def build_create_request(
     :type subscription_id: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The parameters to provide for the created account.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The parameters to provide for the created account.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -130,35 +129,49 @@ def build_create_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "accountType": "str (optional)"
+                "properties": {
+                    "accountType": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "lastGeoFailoverTime": "datetime (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
+                "properties": {
+                    "accountType": "str (optional)",
+                    "creationTime": "datetime (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
                     },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": "...",
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)"
+                    "lastGeoFailoverTime": "datetime (optional)",
+                    "primaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "primaryLocation": "str (optional)",
+                    "provisioningState": "str (optional)",
+                    "secondaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "secondaryLocation": "str (optional)",
+                    "statusOfPrimary": "str (optional)",
+                    "statusOfSecondary": "str (optional)"
+                }
             }
     """
 
@@ -166,7 +179,6 @@ def build_create_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -220,7 +232,6 @@ def build_delete_request(
     """
 
     api_version = "2015-05-01-preview"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -273,36 +284,47 @@ def build_get_properties_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "lastGeoFailoverTime": "datetime (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
+                "properties": {
+                    "accountType": "str (optional)",
+                    "creationTime": "datetime (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
                     },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": "...",
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)"
+                    "lastGeoFailoverTime": "datetime (optional)",
+                    "primaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "primaryLocation": "str (optional)",
+                    "provisioningState": "str (optional)",
+                    "secondaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "secondaryLocation": "str (optional)",
+                    "statusOfPrimary": "str (optional)",
+                    "statusOfSecondary": "str (optional)"
+                }
             }
     """
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -356,11 +378,11 @@ def build_update_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The parameters to update on the account. Note that only
      one property can be changed at a time using this API.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The parameters to update on the account. Note that only one
      property can be changed at a time using this API.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -371,39 +393,53 @@ def build_update_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "accountType": "str (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
+                "properties": {
+                    "accountType": "str (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
+                    }
                 }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "lastGeoFailoverTime": "datetime (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
+                "properties": {
+                    "accountType": "str (optional)",
+                    "creationTime": "datetime (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
                     },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": "...",
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)"
+                    "lastGeoFailoverTime": "datetime (optional)",
+                    "primaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "primaryLocation": "str (optional)",
+                    "provisioningState": "str (optional)",
+                    "secondaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "secondaryLocation": "str (optional)",
+                    "statusOfPrimary": "str (optional)",
+                    "statusOfSecondary": "str (optional)"
+                }
             }
     """
 
@@ -411,7 +447,6 @@ def build_update_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -473,7 +508,6 @@ def build_list_keys_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -524,30 +558,42 @@ def build_list_request(
                 "nextLink": "str (optional)",
                 "value": [
                     {
-                        "accountType": "str (optional)",
-                        "creationTime": "datetime (optional)",
-                        "customDomain": {
-                            "name": "str (optional)",
-                            "useSubDomain": "bool (optional)"
-                        },
-                        "lastGeoFailoverTime": "datetime (optional)",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": "..."
-                                }
+                        "properties": {
+                            "accountType": "str (optional)",
+                            "creationTime": "datetime (optional)",
+                            "customDomain": {
+                                "name": "str (optional)",
+                                "useSubDomain": "bool (optional)"
                             },
-                            "blob": "str (optional)",
-                            "dummyEndPoint": "...",
-                            "queue": "str (optional)",
-                            "table": "str (optional)"
-                        },
-                        "primaryLocation": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "secondaryEndpoints": "...",
-                        "secondaryLocation": "str (optional)",
-                        "statusOfPrimary": "str (optional)",
-                        "statusOfSecondary": "str (optional)"
+                            "lastGeoFailoverTime": "datetime (optional)",
+                            "primaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
+                            "primaryLocation": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "secondaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
+                            "secondaryLocation": "str (optional)",
+                            "statusOfPrimary": "str (optional)",
+                            "statusOfSecondary": "str (optional)"
+                        }
                     }
                 ]
             }
@@ -555,7 +601,6 @@ def build_list_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts")
     path_format_arguments = {
@@ -604,30 +649,42 @@ def build_list_by_resource_group_request(
                 "nextLink": "str (optional)",
                 "value": [
                     {
-                        "accountType": "str (optional)",
-                        "creationTime": "datetime (optional)",
-                        "customDomain": {
-                            "name": "str (optional)",
-                            "useSubDomain": "bool (optional)"
-                        },
-                        "lastGeoFailoverTime": "datetime (optional)",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": "..."
-                                }
+                        "properties": {
+                            "accountType": "str (optional)",
+                            "creationTime": "datetime (optional)",
+                            "customDomain": {
+                                "name": "str (optional)",
+                                "useSubDomain": "bool (optional)"
                             },
-                            "blob": "str (optional)",
-                            "dummyEndPoint": "...",
-                            "queue": "str (optional)",
-                            "table": "str (optional)"
-                        },
-                        "primaryLocation": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "secondaryEndpoints": "...",
-                        "secondaryLocation": "str (optional)",
-                        "statusOfPrimary": "str (optional)",
-                        "statusOfSecondary": "str (optional)"
+                            "lastGeoFailoverTime": "datetime (optional)",
+                            "primaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
+                            "primaryLocation": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "secondaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
+                            "secondaryLocation": "str (optional)",
+                            "statusOfPrimary": "str (optional)",
+                            "statusOfSecondary": "str (optional)"
+                        }
                     }
                 ]
             }
@@ -635,7 +692,6 @@ def build_list_by_resource_group_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -681,10 +737,10 @@ def build_regenerate_key_request(
     :type subscription_id: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Specifies name of the key which should be regenerated.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Specifies name of the key which should be regenerated.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -709,7 +765,6 @@ def build_regenerate_key_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",

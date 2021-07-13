@@ -42,15 +42,11 @@ def build_upload_file_request(
 
     Example:
         .. code-block:: python
-
-            # multipart input template you can fill out and use as your `files` input.
-            files = {}
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/octet-stream, application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
 
@@ -84,7 +80,6 @@ def build_upload_file_via_body_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/octet-stream, application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
 
@@ -122,15 +117,11 @@ def build_upload_files_request(
 
     Example:
         .. code-block:: python
-
-            # multipart input template you can fill out and use as your `files` input.
-            files = {}
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/octet-stream, application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/formdata/stream/uploadfiles")
 

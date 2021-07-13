@@ -16,9 +16,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_report_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get test coverage report.
@@ -34,37 +35,34 @@ def build_get_report_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "str": "int (optional)"
-            }
     """
 
-    qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
+    qualifier = kwargs.pop('qualifier', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/report")
+    url = kwargs.pop("template_url", '/report')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+        query_parameters['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_optional_report_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get optional test coverage report.
@@ -80,30 +78,27 @@ def build_get_optional_report_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "str": "int (optional)"
-            }
     """
 
-    qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
+    qualifier = kwargs.pop('qualifier', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
-    url = kwargs.pop("template_url", "/report/optional")
+    url = kwargs.pop("template_url", '/report/optional')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+        query_parameters['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )

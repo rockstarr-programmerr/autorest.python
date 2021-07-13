@@ -32,34 +32,10 @@ def build_validation_of_method_parameters_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "capacity": "int (optional)",
-                "child": {
-                    "constProperty": "str",
-                    "count": "int (optional)"
-                },
-                "constChild": {
-                    "constProperty": "str",
-                    "constProperty2": "str"
-                },
-                "constInt": "int",
-                "constString": "str",
-                "constStringAsEnum": "str (optional)",
-                "display_names": [
-                    "str (optional)"
-                ],
-                "image": "str (optional)"
-            }
     """
 
     api_version = "1.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
     path_format_arguments = {
@@ -106,56 +82,12 @@ def build_validation_of_body_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "capacity": "int (optional)",
-                "child": {
-                    "constProperty": "str",
-                    "count": "int (optional)"
-                },
-                "constChild": {
-                    "constProperty": "str",
-                    "constProperty2": "str"
-                },
-                "constInt": "int",
-                "constString": "str",
-                "constStringAsEnum": "str (optional)",
-                "display_names": [
-                    "str (optional)"
-                ],
-                "image": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "capacity": "int (optional)",
-                "child": {
-                    "constProperty": "str",
-                    "count": "int (optional)"
-                },
-                "constChild": {
-                    "constProperty": "str",
-                    "constProperty2": "str"
-                },
-                "constInt": "int",
-                "constString": "str",
-                "constStringAsEnum": "str (optional)",
-                "display_names": [
-                    "str (optional)"
-                ],
-                "image": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     api_version = "1.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
     path_format_arguments = {
@@ -195,7 +127,6 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     """
 
     constant_param = "constant"
-
     # Construct URL
     url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
     path_format_arguments = {
@@ -222,56 +153,12 @@ def build_post_with_constant_in_body_request(*, json: Any = None, content: Any =
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "capacity": "int (optional)",
-                "child": {
-                    "constProperty": "str",
-                    "count": "int (optional)"
-                },
-                "constChild": {
-                    "constProperty": "str",
-                    "constProperty2": "str"
-                },
-                "constInt": "int",
-                "constString": "str",
-                "constStringAsEnum": "str (optional)",
-                "display_names": [
-                    "str (optional)"
-                ],
-                "image": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "capacity": "int (optional)",
-                "child": {
-                    "constProperty": "str",
-                    "count": "int (optional)"
-                },
-                "constChild": {
-                    "constProperty": "str",
-                    "constProperty2": "str"
-                },
-                "constInt": "int",
-                "constString": "str",
-                "constStringAsEnum": "str (optional)",
-                "display_names": [
-                    "str (optional)"
-                ],
-                "image": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     constant_param = "constant"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
     path_format_arguments = {

@@ -54,14 +54,13 @@ class AutoRestLongRunningOperationTestService(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `lrolowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from lrolowlevel.rest import build_put200_succeeded_request
-        >>> request = build_put200_succeeded_request(json=json, content=content, **kwargs)
+        >>> from lrolowlevel.rest import lros
+        >>> request = lros.build_put200_succeeded_request(json=json, content=content, **kwargs)
         <HttpRequest [PUT], url: '/lro/put/200/succeeded'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
