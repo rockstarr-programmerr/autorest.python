@@ -19,7 +19,7 @@ from .property import Property
 
 _LOGGER = logging.getLogger(__name__)
 
-_HIDDEN_KWARGS = ["content_type"]
+_HIDDEN_KWARGS = ["content_type", "accept"]
 
 
 class ParameterLocation(Enum):
@@ -304,8 +304,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return False
 
     @property
-    def is_documented(self) -> bool:
-        return self.serialized_name not in _HIDDEN_KWARGS
+    def is_hidden(self) -> bool:
+        return self.serialized_name in _HIDDEN_KWARGS
 
     @property
     def is_positional(self) -> bool:
@@ -349,7 +349,8 @@ class ParameterOnlyPathAndBodyPositional(Parameter):
 
     @property
     def is_keyword_only(self) -> bool:
-        return not (
+        return self.in_method_signature and not (
+            self.is_hidden or
             self.location == ParameterLocation.Path or
             self.location == ParameterLocation.Body or
             self.is_kwarg
