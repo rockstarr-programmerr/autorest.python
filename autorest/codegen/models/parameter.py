@@ -355,3 +355,8 @@ class ParameterOnlyPathAndBodyPositional(Parameter):
             self.location == ParameterLocation.Body or
             self.is_kwarg
         )
+
+def get_parameter(code_model):
+    if code_model.only_path_and_body_params_positional:
+        return ParameterOnlyPathAndBodyPositional
+    return Parameter

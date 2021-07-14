@@ -12,7 +12,7 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .lro_paging_operation import LROPagingOperation
 from .imports import FileImport, ImportType
-from .parameter import Parameter, ParameterOnlyPathAndBodyPositional
+from .parameter import get_parameter
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -20,7 +20,7 @@ _LOGGER = logging.getLogger(__name__)
 def _get_operation(code_model, yaml_data: Dict[str, Any]) -> Operation:
     lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
     paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
-    parameter_type = ParameterOnlyPathAndBodyPositional if code_model.only_path_and_body_params_positional else Parameter
+    parameter_type = get_parameter(code_model)
     if lro_operation and paging_operation:
         operation_schema = LROPagingOperation
     elif lro_operation:
