@@ -24,8 +24,8 @@ def build_create_ap_true_request(
     # type: (...) -> HttpRequest
     """Create a Pet which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -88,8 +88,8 @@ def build_create_cat_ap_true_request(
     # type: (...) -> HttpRequest
     """Create a CatAPTrue which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -107,24 +107,12 @@ def build_create_cat_ap_true_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "": {
-                    "str": "any (optional)"
-                },
-                "friendly": "bool (optional)",
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "friendly": "bool (optional)"
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "": {
-                    "str": "any (optional)"
-                },
-                "friendly": "bool (optional)",
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "friendly": "bool (optional)"
             }
     """
 
@@ -154,8 +142,8 @@ def build_create_ap_object_request(
     # type: (...) -> HttpRequest
     """Create a Pet which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -218,8 +206,8 @@ def build_create_ap_string_request(
     # type: (...) -> HttpRequest
     """Create a Pet which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -282,8 +270,8 @@ def build_create_ap_in_properties_request(
     # type: (...) -> HttpRequest
     """Create a Pet which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -346,8 +334,8 @@ def build_create_ap_in_properties_with_ap_string_request(
     # type: (...) -> HttpRequest
     """Create a Pet which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.

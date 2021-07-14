@@ -29,15 +29,31 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
-    async def put_array(self, resource_array: Optional[List["_models.Resource"]] = None, **kwargs: Any) -> None:
+    async def put_array(self, resource_array: Optional[List[Any]] = None, **kwargs: Any) -> None:
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put.
-        :type resource_array: list[~modelflatteningversiontolerant.models.Resource]
+        :type resource_array: list[Any]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                resource_array = [
+                    {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -45,7 +61,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_array is not None:
-            json = self._serialize.body(resource_array, "[Resource]")
+            json = self._serialize.body(resource_array, "[object]")
         else:
             json = None
 
@@ -72,15 +88,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
     @distributed_trace_async
-    async def get_array(self, **kwargs: Any) -> List["_models.FlattenedProduct"]:
+    async def get_array(self, **kwargs: Any) -> List[Any]:
         """Get External Resource as an Array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of FlattenedProduct, or the result of cls(response)
-        :rtype: list[~modelflatteningversiontolerant.models.FlattenedProduct]
+        :return: list of JSON object, or the result of cls(response)
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "type": "str (optional)"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.FlattenedProduct"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -99,7 +128,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[FlattenedProduct]", pipeline_response)
+        deserialized = self._deserialize("[object]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -109,18 +138,26 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     get_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
     @distributed_trace_async
-    async def put_wrapped_array(
-        self, resource_array: Optional[List["_models.WrappedProduct"]] = None, **kwargs: Any
-    ) -> None:
+    async def put_wrapped_array(self, resource_array: Optional[List[Any]] = None, **kwargs: Any) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
         :param resource_array: External Resource as an Array to put.
-        :type resource_array: list[~modelflatteningversiontolerant.models.WrappedProduct]
+        :type resource_array: list[Any]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                resource_array = [
+                    {
+                        "value": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -128,7 +165,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_array is not None:
-            json = self._serialize.body(resource_array, "[WrappedProduct]")
+            json = self._serialize.body(resource_array, "[object]")
         else:
             json = None
 
@@ -155,16 +192,26 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
     @distributed_trace_async
-    async def get_wrapped_array(self, **kwargs: Any) -> List["_models.ProductWrapper"]:
+    async def get_wrapped_array(self, **kwargs: Any) -> List[Any]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of ProductWrapper, or the result of cls(response)
-        :rtype: list[~modelflatteningversiontolerant.models.ProductWrapper]
+        :return: list of JSON object, or the result of cls(response)
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "value": "str (optional)"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.ProductWrapper"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -183,7 +230,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[ProductWrapper]", pipeline_response)
+        deserialized = self._deserialize("[object]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -193,17 +240,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
     @distributed_trace_async
-    async def put_dictionary(
-        self, resource_dictionary: Optional[Dict[str, "_models.FlattenedProduct"]] = None, **kwargs: Any
-    ) -> None:
+    async def put_dictionary(self, resource_dictionary: Optional[Dict[str, Any]] = None, **kwargs: Any) -> None:
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put.
-        :type resource_dictionary: dict[str, ~modelflatteningversiontolerant.models.FlattenedProduct]
+        :type resource_dictionary: dict[str, Any]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                resource_dictionary = {
+                    "str": {
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "type": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -211,7 +269,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_dictionary is not None:
-            json = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
+            json = self._serialize.body(resource_dictionary, "{object}")
         else:
             json = None
 
@@ -238,15 +296,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
     @distributed_trace_async
-    async def get_dictionary(self, **kwargs: Any) -> Dict[str, "_models.FlattenedProduct"]:
+    async def get_dictionary(self, **kwargs: Any) -> Dict[str, Any]:
         """Get External Resource as a Dictionary.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to FlattenedProduct, or the result of cls(response)
-        :rtype: dict[str, ~modelflatteningversiontolerant.models.FlattenedProduct]
+        :return: dict mapping str to JSON object, or the result of cls(response)
+        :rtype: dict[str, Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "type": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.FlattenedProduct"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -265,7 +336,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{FlattenedProduct}", pipeline_response)
+        deserialized = self._deserialize("{object}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -275,17 +346,44 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     get_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
     @distributed_trace_async
-    async def put_resource_collection(
-        self, resource_complex_object: Optional["_models.ResourceCollection"] = None, **kwargs: Any
-    ) -> None:
+    async def put_resource_collection(self, resource_complex_object: Any = None, **kwargs: Any) -> None:
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a ResourceCollection to put.
-        :type resource_complex_object: ~modelflatteningversiontolerant.models.ResourceCollection
+        :type resource_complex_object: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                resource_complex_object = {
+                    "arrayofresources": [
+                        {
+                            "p.name": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "provisioningStateValues": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    ],
+                    "dictionaryofresources": {
+                        "str": {
+                            "p.name": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "provisioningStateValues": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    },
+                    "productresource": {
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "type": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -293,7 +391,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_complex_object is not None:
-            json = self._serialize.body(resource_complex_object, "ResourceCollection")
+            json = self._serialize.body(resource_complex_object, "object")
         else:
             json = None
 
@@ -320,15 +418,44 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
 
     @distributed_trace_async
-    async def get_resource_collection(self, **kwargs: Any) -> "_models.ResourceCollection":
+    async def get_resource_collection(self, **kwargs: Any) -> Any:
         """Get External Resource as a ResourceCollection.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ResourceCollection, or the result of cls(response)
-        :rtype: ~modelflatteningversiontolerant.models.ResourceCollection
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "arrayofresources": [
+                        {
+                            "p.name": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "provisioningStateValues": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    ],
+                    "dictionaryofresources": {
+                        "str": {
+                            "p.name": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "provisioningStateValues": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    },
+                    "productresource": {
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "type": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ResourceCollection"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -347,7 +474,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("ResourceCollection", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -357,25 +484,42 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     get_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
 
     @distributed_trace_async
-    async def put_simple_product(
-        self, simple_body_product: Optional["_models.SimpleProduct"] = None, **kwargs: Any
-    ) -> "_models.SimpleProduct":
+    async def put_simple_product(self, simple_body_product: Any = None, **kwargs: Any) -> Any:
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put.
-        :type simple_body_product: ~modelflatteningversiontolerant.models.SimpleProduct
+        :type simple_body_product: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: SimpleProduct, or the result of cls(response)
-        :rtype: ~modelflatteningversiontolerant.models.SimpleProduct
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                simple_body_product = {
+                    "@odata.value": "str (optional)",
+                    "generic_value": "str (optional)",
+                    "max_product_capacity": "str (optional)",
+                    "max_product_display_name": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "@odata.value": "str (optional)",
+                    "generic_value": "str (optional)",
+                    "max_product_capacity": "str (optional)",
+                    "max_product_display_name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if simple_body_product is not None:
-            json = self._serialize.body(simple_body_product, "SimpleProduct")
+            json = self._serialize.body(simple_body_product, "object")
         else:
             json = None
 
@@ -396,7 +540,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("SimpleProduct", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -416,7 +560,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs: Any
-    ) -> "_models.SimpleProduct":
+    ) -> Any:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         :keyword product_id: Unique identifier representing a specific product for a given latitude &
@@ -434,11 +578,30 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword odata_value: URL value.
         :paramtype odata_value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: SimpleProduct, or the result of cls(response)
-        :rtype: ~modelflatteningversiontolerant.models.SimpleProduct
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                _simple_body_product = {
+                    "@odata.value": "str (optional)",
+                    "generic_value": "str (optional)",
+                    "max_product_capacity": "str (optional)",
+                    "max_product_display_name": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "@odata.value": "str (optional)",
+                    "generic_value": "str (optional)",
+                    "max_product_capacity": "str (optional)",
+                    "max_product_display_name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -452,7 +615,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             odata_value=odata_value,
         )
         if _simple_body_product is not None:
-            json = self._serialize.body(_simple_body_product, "SimpleProduct")
+            json = self._serialize.body(_simple_body_product, "object")
         else:
             json = None
 
@@ -473,7 +636,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("SimpleProduct", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -483,20 +646,36 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     post_flattened_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
 
     @distributed_trace_async
-    async def put_simple_product_with_grouping(
-        self, *, flatten_parameter_group: "_models.FlattenParameterGroup", **kwargs: Any
-    ) -> "_models.SimpleProduct":
+    async def put_simple_product_with_grouping(self, *, flatten_parameter_group: Any, **kwargs: Any) -> Any:
         """Put Simple Product with client flattening true on the model.
 
         :keyword flatten_parameter_group: Parameter group.
-        :paramtype flatten_parameter_group:
-         ~modelflatteningversiontolerant.models.FlattenParameterGroup
+        :paramtype flatten_parameter_group: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: SimpleProduct, or the result of cls(response)
-        :rtype: ~modelflatteningversiontolerant.models.SimpleProduct
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                _simple_body_product = {
+                    "@odata.value": "str (optional)",
+                    "generic_value": "str (optional)",
+                    "max_product_capacity": "str (optional)",
+                    "max_product_display_name": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "@odata.value": "str (optional)",
+                    "generic_value": "str (optional)",
+                    "max_product_capacity": "str (optional)",
+                    "max_product_display_name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -527,7 +706,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             odata_value=_odata_value,
         )
         if _simple_body_product is not None:
-            json = self._serialize.body(_simple_body_product, "SimpleProduct")
+            json = self._serialize.body(_simple_body_product, "object")
         else:
             json = None
 
@@ -549,7 +728,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("SimpleProduct", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})

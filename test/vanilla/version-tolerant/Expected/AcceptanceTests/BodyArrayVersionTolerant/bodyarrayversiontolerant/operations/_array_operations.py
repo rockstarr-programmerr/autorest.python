@@ -66,6 +66,14 @@ class ArrayOperations(object):
         :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "int (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -104,6 +112,14 @@ class ArrayOperations(object):
         :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "int (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -142,6 +158,14 @@ class ArrayOperations(object):
         :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "int (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -184,6 +208,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -223,6 +255,14 @@ class ArrayOperations(object):
         :return: list of bool, or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "bool (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -265,6 +305,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "bool (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -304,6 +352,14 @@ class ArrayOperations(object):
         :return: list of bool, or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "bool (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -342,6 +398,14 @@ class ArrayOperations(object):
         :return: list of bool, or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "bool (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -380,6 +444,14 @@ class ArrayOperations(object):
         :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "int (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -422,6 +494,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "int (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -461,6 +541,14 @@ class ArrayOperations(object):
         :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "int (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -499,6 +587,14 @@ class ArrayOperations(object):
         :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "int (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -537,6 +633,14 @@ class ArrayOperations(object):
         :return: list of long, or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "long (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -579,6 +683,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "long (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -618,6 +730,14 @@ class ArrayOperations(object):
         :return: list of long, or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "long (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -656,6 +776,14 @@ class ArrayOperations(object):
         :return: list of long, or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "long (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -694,6 +822,14 @@ class ArrayOperations(object):
         :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "float (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -736,6 +872,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "float (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -775,6 +919,14 @@ class ArrayOperations(object):
         :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "float (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -813,6 +965,14 @@ class ArrayOperations(object):
         :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "float (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -851,6 +1011,14 @@ class ArrayOperations(object):
         :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "float (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -893,6 +1061,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "float (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -932,6 +1108,14 @@ class ArrayOperations(object):
         :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "float (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -970,6 +1154,14 @@ class ArrayOperations(object):
         :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "float (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1008,6 +1200,14 @@ class ArrayOperations(object):
         :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1050,6 +1250,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1089,6 +1297,14 @@ class ArrayOperations(object):
         :return: list of FooEnum, or the result of cls(response)
         :rtype: list[str or ~bodyarrayversiontolerant.models.FooEnum]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Union[str, "_models.FooEnum"]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1131,6 +1347,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1170,6 +1394,14 @@ class ArrayOperations(object):
         :return: list of Enum0, or the result of cls(response)
         :rtype: list[str or ~bodyarrayversiontolerant.models.Enum0]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Union[str, "_models.Enum0"]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1212,6 +1444,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1251,6 +1491,14 @@ class ArrayOperations(object):
         :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1289,6 +1537,14 @@ class ArrayOperations(object):
         :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1328,6 +1584,14 @@ class ArrayOperations(object):
         :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1371,6 +1635,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1410,6 +1682,14 @@ class ArrayOperations(object):
         :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1448,6 +1728,14 @@ class ArrayOperations(object):
         :return: list of date, or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "date (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1490,6 +1778,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "date (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1529,6 +1825,14 @@ class ArrayOperations(object):
         :return: list of date, or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "date (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1567,6 +1871,14 @@ class ArrayOperations(object):
         :return: list of date, or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "date (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1606,6 +1918,14 @@ class ArrayOperations(object):
         :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "datetime (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1649,6 +1969,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "datetime (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1688,6 +2016,14 @@ class ArrayOperations(object):
         :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "datetime (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1726,6 +2062,14 @@ class ArrayOperations(object):
         :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "datetime (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1765,6 +2109,14 @@ class ArrayOperations(object):
         :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "datetime (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1808,6 +2160,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "datetime (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1847,6 +2207,14 @@ class ArrayOperations(object):
         :return: list of timedelta, or the result of cls(response)
         :rtype: list[~datetime.timedelta]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "timedelta (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.timedelta]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1889,6 +2257,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "timedelta (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1929,6 +2305,14 @@ class ArrayOperations(object):
         :return: list of bytearray, or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "bytearray (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bytearray]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1972,6 +2356,14 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    "bytearray (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2011,6 +2403,14 @@ class ArrayOperations(object):
         :return: list of bytearray, or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "bytearray (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bytearray]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2050,6 +2450,14 @@ class ArrayOperations(object):
         :return: list of bytes, or the result of cls(response)
         :rtype: list[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    "bytes (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bytes]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2081,15 +2489,26 @@ class ArrayOperations(object):
     def get_complex_null(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.Product"]
+        # type: (...) -> List[Any]
         """Get array of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
-        :rtype: list[~bodyarrayversiontolerant.models.Product]
+        :return: list of JSON object, or the result of cls(response)
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2106,7 +2525,7 @@ class ArrayOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[Product]", pipeline_response)
+        deserialized = self._deserialize("[object]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2119,15 +2538,26 @@ class ArrayOperations(object):
     def get_complex_empty(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.Product"]
+        # type: (...) -> List[Any]
         """Get empty array of complex type [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
-        :rtype: list[~bodyarrayversiontolerant.models.Product]
+        :return: list of JSON object, or the result of cls(response)
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2144,7 +2574,7 @@ class ArrayOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[Product]", pipeline_response)
+        deserialized = self._deserialize("[object]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2157,16 +2587,27 @@ class ArrayOperations(object):
     def get_complex_item_null(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.Product"]
+        # type: (...) -> List[Any]
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
-        :rtype: list[~bodyarrayversiontolerant.models.Product]
+        :return: list of JSON object, or the result of cls(response)
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2183,7 +2624,7 @@ class ArrayOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[Product]", pipeline_response)
+        deserialized = self._deserialize("[object]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2196,16 +2637,27 @@ class ArrayOperations(object):
     def get_complex_item_empty(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.Product"]
+        # type: (...) -> List[Any]
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
         'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
-        :rtype: list[~bodyarrayversiontolerant.models.Product]
+        :return: list of JSON object, or the result of cls(response)
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2222,7 +2674,7 @@ class ArrayOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[Product]", pipeline_response)
+        deserialized = self._deserialize("[object]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2235,16 +2687,27 @@ class ArrayOperations(object):
     def get_complex_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.Product"]
+        # type: (...) -> List[Any]
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
         {'integer': 5, 'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
-        :rtype: list[~bodyarrayversiontolerant.models.Product]
+        :return: list of JSON object, or the result of cls(response)
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2261,7 +2724,7 @@ class ArrayOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[Product]", pipeline_response)
+        deserialized = self._deserialize("[object]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2273,7 +2736,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_complex_valid(
         self,
-        array_body,  # type: List["_models.Product"]
+        array_body,  # type: List[Any]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2281,18 +2744,29 @@ class ArrayOperations(object):
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body:
-        :type array_body: list[~bodyarrayversiontolerant.models.Product]
+        :type array_body: list[Any]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[Product]")
+        json = self._serialize.body(array_body, "[object]")
 
         request = rest_array.build_put_complex_valid_request(
             content_type=content_type,
@@ -2325,6 +2799,16 @@ class ArrayOperations(object):
         :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    [
+                        "str (optional)"
+                    ]
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2363,6 +2847,16 @@ class ArrayOperations(object):
         :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    [
+                        "str (optional)"
+                    ]
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2401,6 +2895,16 @@ class ArrayOperations(object):
         :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    [
+                        "str (optional)"
+                    ]
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2439,6 +2943,16 @@ class ArrayOperations(object):
         :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    [
+                        "str (optional)"
+                    ]
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2477,6 +2991,16 @@ class ArrayOperations(object):
         :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    [
+                        "str (optional)"
+                    ]
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2519,6 +3043,16 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    [
+                        "str (optional)"
+                    ]
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2558,6 +3092,16 @@ class ArrayOperations(object):
         :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "str": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2596,6 +3140,16 @@ class ArrayOperations(object):
         :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "str": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2635,6 +3189,16 @@ class ArrayOperations(object):
         :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "str": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2674,6 +3238,16 @@ class ArrayOperations(object):
         :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "str": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2713,6 +3287,16 @@ class ArrayOperations(object):
         :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "str": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2756,6 +3340,16 @@ class ArrayOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                array_body = [
+                    {
+                        "str": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

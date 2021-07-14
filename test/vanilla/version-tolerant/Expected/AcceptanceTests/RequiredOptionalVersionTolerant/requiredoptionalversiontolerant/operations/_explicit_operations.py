@@ -233,7 +233,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_integer_property(
         self,
-        body_parameter,  # type: "_models.IntWrapper"
+        body_parameter,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -241,18 +241,26 @@ class ExplicitOperations(object):
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.IntWrapper
+        :type body_parameter: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = {
+                    "value": "int"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "IntWrapper")
+        json = self._serialize.body(body_parameter, "object")
 
         request = rest_explicit.build_post_required_integer_property_request(
             content_type=content_type,
@@ -277,18 +285,26 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_integer_property(
         self,
-        body_parameter=None,  # type: Optional["_models.IntOptionalWrapper"]
+        body_parameter=None,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.IntOptionalWrapper
+        :type body_parameter: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = {
+                    "value": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -296,7 +312,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "IntOptionalWrapper")
+            json = self._serialize.body(body_parameter, "object")
         else:
             json = None
 
@@ -490,7 +506,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_string_property(
         self,
-        body_parameter,  # type: "_models.StringWrapper"
+        body_parameter,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -498,18 +514,26 @@ class ExplicitOperations(object):
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.StringWrapper
+        :type body_parameter: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = {
+                    "value": "str"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "StringWrapper")
+        json = self._serialize.body(body_parameter, "object")
 
         request = rest_explicit.build_post_required_string_property_request(
             content_type=content_type,
@@ -534,18 +558,26 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_string_property(
         self,
-        body_parameter=None,  # type: Optional["_models.StringOptionalWrapper"]
+        body_parameter=None,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.StringOptionalWrapper
+        :type body_parameter: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = {
+                    "value": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -553,7 +585,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "StringOptionalWrapper")
+            json = self._serialize.body(body_parameter, "object")
         else:
             json = None
 
@@ -657,7 +689,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_parameter(
         self,
-        body_parameter,  # type: "_models.Product"
+        body_parameter,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -665,18 +697,27 @@ class ExplicitOperations(object):
         before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.Product
+        :type body_parameter: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = {
+                    "id": "int",
+                    "name": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "Product")
+        json = self._serialize.body(body_parameter, "object")
 
         request = rest_explicit.build_post_required_class_parameter_request(
             content_type=content_type,
@@ -701,18 +742,27 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_parameter(
         self,
-        body_parameter=None,  # type: Optional["_models.Product"]
+        body_parameter=None,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.Product
+        :type body_parameter: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = {
+                    "id": "int",
+                    "name": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -720,7 +770,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "Product")
+            json = self._serialize.body(body_parameter, "object")
         else:
             json = None
 
@@ -747,7 +797,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_property(
         self,
-        body_parameter,  # type: "_models.ClassWrapper"
+        body_parameter,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -755,18 +805,29 @@ class ExplicitOperations(object):
         and the client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.ClassWrapper
+        :type body_parameter: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = {
+                    "value": {
+                        "id": "int",
+                        "name": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "ClassWrapper")
+        json = self._serialize.body(body_parameter, "object")
 
         request = rest_explicit.build_post_required_class_property_request(
             content_type=content_type,
@@ -791,18 +852,29 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_property(
         self,
-        body_parameter=None,  # type: Optional["_models.ClassOptionalWrapper"]
+        body_parameter=None,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.ClassOptionalWrapper
+        :type body_parameter: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = {
+                    "value": {
+                        "id": "int",
+                        "name": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -810,7 +882,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "ClassOptionalWrapper")
+            json = self._serialize.body(body_parameter, "object")
         else:
             json = None
 
@@ -850,6 +922,14 @@ class ExplicitOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -893,6 +973,14 @@ class ExplicitOperations(object):
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -927,7 +1015,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_array_property(
         self,
-        body_parameter,  # type: "_models.ArrayWrapper"
+        body_parameter,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -935,18 +1023,28 @@ class ExplicitOperations(object):
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.ArrayWrapper
+        :type body_parameter: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = {
+                    "value": [
+                        "str"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "ArrayWrapper")
+        json = self._serialize.body(body_parameter, "object")
 
         request = rest_explicit.build_post_required_array_property_request(
             content_type=content_type,
@@ -971,18 +1069,28 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_array_property(
         self,
-        body_parameter=None,  # type: Optional["_models.ArrayOptionalWrapper"]
+        body_parameter=None,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.ArrayOptionalWrapper
+        :type body_parameter: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body_parameter = {
+                    "value": [
+                        "str (optional)"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -990,7 +1098,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "ArrayOptionalWrapper")
+            json = self._serialize.body(body_parameter, "object")
         else:
             json = None
 

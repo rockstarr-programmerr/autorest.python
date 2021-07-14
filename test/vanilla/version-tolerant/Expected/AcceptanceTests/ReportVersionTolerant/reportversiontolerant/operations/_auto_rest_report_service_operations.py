@@ -47,6 +47,14 @@ class AutoRestReportServiceOperationsMixin(object):
         :return: dict mapping str to int, or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -91,6 +99,14 @@ class AutoRestReportServiceOperationsMixin(object):
         :return: dict mapping str to int, or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

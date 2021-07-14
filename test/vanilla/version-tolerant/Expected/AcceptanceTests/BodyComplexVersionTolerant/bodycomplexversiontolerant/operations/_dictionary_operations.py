@@ -58,15 +58,25 @@ class DictionaryOperations(object):
     def get_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DictionaryWrapper"
+        # type: (...) -> Any
         """Get complex types with dictionary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DictionaryWrapper
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "defaultProgram": {
+                        "str": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -83,7 +93,7 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -95,7 +105,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: "_models.DictionaryWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -103,18 +113,28 @@ class DictionaryOperations(object):
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
          "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
-        :type complex_body: ~bodycomplexversiontolerant.models.DictionaryWrapper
+        :type complex_body: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                complex_body = {
+                    "defaultProgram": {
+                        "str": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "DictionaryWrapper")
+        json = self._serialize.body(complex_body, "object")
 
         request = rest_dictionary.build_put_valid_request(
             content_type=content_type,
@@ -140,15 +160,25 @@ class DictionaryOperations(object):
     def get_empty(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DictionaryWrapper"
+        # type: (...) -> Any
         """Get complex types with dictionary property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DictionaryWrapper
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "defaultProgram": {
+                        "str": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -165,7 +195,7 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -177,25 +207,35 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_empty(
         self,
-        complex_body,  # type: "_models.DictionaryWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with dictionary property which is empty.
 
         :param complex_body: Please put an empty dictionary.
-        :type complex_body: ~bodycomplexversiontolerant.models.DictionaryWrapper
+        :type complex_body: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                complex_body = {
+                    "defaultProgram": {
+                        "str": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "DictionaryWrapper")
+        json = self._serialize.body(complex_body, "object")
 
         request = rest_dictionary.build_put_empty_request(
             content_type=content_type,
@@ -221,15 +261,25 @@ class DictionaryOperations(object):
     def get_null(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DictionaryWrapper"
+        # type: (...) -> Any
         """Get complex types with dictionary property which is null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DictionaryWrapper
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "defaultProgram": {
+                        "str": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -246,7 +296,7 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -259,15 +309,25 @@ class DictionaryOperations(object):
     def get_not_provided(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DictionaryWrapper"
+        # type: (...) -> Any
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DictionaryWrapper
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "defaultProgram": {
+                        "str": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -284,7 +344,7 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})

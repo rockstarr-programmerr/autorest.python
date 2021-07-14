@@ -51,23 +51,31 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional["_models.Pet"]:
+    async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional[Any]:
         """Gets pets by id.
 
         :param pet_id: pet id.
         :type pet_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet, or the result of cls(response)
-        :rtype: ~xmserrorresponseversiontolerant.models.Pet or None
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Pet"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
             400: HttpResponseError,
             404: lambda response: ResourceNotFoundError(
-                response=response, model=self._deserialize(_models.NotFoundErrorBase, response)
+                response=response, model=self._deserialize(_models.object, response)
             ),
             501: HttpResponseError,
         }
@@ -90,7 +98,7 @@ class PetOperations:
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("Pet", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -100,23 +108,31 @@ class PetOperations:
     get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
 
     @distributed_trace_async
-    async def do_something(self, what_action: str, **kwargs: Any) -> "_models.PetAction":
+    async def do_something(self, what_action: str, **kwargs: Any) -> Any:
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
         :type what_action: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAction, or the result of cls(response)
-        :rtype: ~xmserrorresponseversiontolerant.models.PetAction
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "actionResponse": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAction"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             500: lambda response: HttpResponseError(
-                response=response, model=self._deserialize(_models.PetActionError, response)
+                response=response, model=self._deserialize(_models.object, response)
             ),
         }
         error_map.update(kwargs.pop("error_map", {}))
@@ -137,7 +153,7 @@ class PetOperations:
             error = self._deserialize.failsafe_deserialize(_models.PetActionError, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("PetAction", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -165,7 +181,7 @@ class PetOperations:
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             500: lambda response: HttpResponseError(
-                response=response, model=self._deserialize(_models.PetActionError, response)
+                response=response, model=self._deserialize(_models.object, response)
             ),
         }
         error_map.update(kwargs.pop("error_map", {}))

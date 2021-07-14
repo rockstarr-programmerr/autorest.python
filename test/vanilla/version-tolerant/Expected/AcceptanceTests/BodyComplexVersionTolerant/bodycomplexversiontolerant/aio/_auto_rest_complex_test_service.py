@@ -7,13 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional
+from typing import Any, Awaitable, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
-from .. import models
 from ._configuration import AutoRestComplexTestServiceConfiguration
 from .operations import (
     ArrayOperations,
@@ -26,6 +25,10 @@ from .operations import (
     PrimitiveOperations,
     ReadonlypropertyOperations,
 )
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Dict
 
 
 class AutoRestComplexTestService:
@@ -60,7 +63,7 @@ class AutoRestComplexTestService:
         self._config = AutoRestComplexTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
@@ -78,7 +81,7 @@ class AutoRestComplexTestService:
         )
         self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodycomplexversiontolerant.rest`.
@@ -87,7 +90,7 @@ class AutoRestComplexTestService:
         >>> from bodycomplexversiontolerant.rest import basic
         >>> request = basic.build_get_valid_request(**kwargs)
         <HttpRequest [GET], url: '/complex/basic/valid'>
-        >>> response = await client._send_request(request)
+        >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

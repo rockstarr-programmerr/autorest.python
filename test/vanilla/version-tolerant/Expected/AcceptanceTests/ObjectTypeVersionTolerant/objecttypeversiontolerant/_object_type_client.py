@@ -45,7 +45,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def _send_request(
+    def send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -59,7 +59,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         >>> from objecttypeversiontolerant.rest import build_get_request
         >>> request = build_get_request(**kwargs)
         <HttpRequest [GET], url: '/objectType/get'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

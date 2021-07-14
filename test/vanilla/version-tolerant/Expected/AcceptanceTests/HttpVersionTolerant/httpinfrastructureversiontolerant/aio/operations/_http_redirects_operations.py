@@ -95,6 +95,14 @@ class HttpRedirectsOperations:
         :return: list of str, or the result of cls(response)
         :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 300
+                response.json() == [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

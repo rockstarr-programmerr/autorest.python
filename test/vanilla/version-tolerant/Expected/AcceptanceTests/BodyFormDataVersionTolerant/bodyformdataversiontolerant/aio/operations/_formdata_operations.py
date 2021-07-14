@@ -157,6 +157,14 @@ class FormdataOperations:
         :return: IO, or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                file_content = [
+                    "IO (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

@@ -45,7 +45,7 @@ class AnythingClient(AnythingClientOperationsMixin):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def _send_request(
+    def send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -59,7 +59,7 @@ class AnythingClient(AnythingClientOperationsMixin):
         >>> from anythingversiontolerant.rest import build_get_object_request
         >>> request = build_get_object_request(**kwargs)
         <HttpRequest [GET], url: '/anything/object'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

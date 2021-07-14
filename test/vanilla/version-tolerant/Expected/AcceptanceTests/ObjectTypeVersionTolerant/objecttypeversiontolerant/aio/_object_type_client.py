@@ -39,7 +39,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `objecttypeversiontolerant.rest`.
@@ -48,7 +48,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         >>> from objecttypeversiontolerant.rest import build_get_request
         >>> request = build_get_request(**kwargs)
         <HttpRequest [GET], url: '/objectType/get'>
-        >>> response = await client._send_request(request)
+        >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

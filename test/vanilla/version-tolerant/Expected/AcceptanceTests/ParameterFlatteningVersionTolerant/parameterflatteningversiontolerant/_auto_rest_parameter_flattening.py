@@ -12,13 +12,12 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
-from . import models
 from ._configuration import AutoRestParameterFlatteningConfiguration
 from .operations import AvailabilitySetsOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -44,7 +43,7 @@ class AutoRestParameterFlattening(object):
         self._config = AutoRestParameterFlatteningConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
@@ -52,7 +51,7 @@ class AutoRestParameterFlattening(object):
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def _send_request(
+    def send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -66,7 +65,7 @@ class AutoRestParameterFlattening(object):
         >>> from parameterflatteningversiontolerant.rest import availability_sets
         >>> request = availability_sets.build_update_request(resource_group_name, avset, json=json, content=content, **kwargs)
         <HttpRequest [PATCH], url: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

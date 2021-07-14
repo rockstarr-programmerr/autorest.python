@@ -16,8 +16,8 @@ _SERIALIZER = Serializer()
 def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     """Get complex types that extend others.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -29,17 +29,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "breed": "str (optional)",
-                "color": "str (optional)",
-                "hates": [
-                    {
-                        "food": "str (optional)",
-                        "id": "int (optional)",
-                        "name": "str (optional)"
-                    }
-                ],
-                "id": "int (optional)",
-                "name": "str (optional)"
+                "breed": "str (optional)"
             }
     """
 
@@ -57,8 +47,8 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that extend others.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put a siamese with id=2, name="Siameee",
@@ -80,17 +70,7 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "breed": "str (optional)",
-                "color": "str (optional)",
-                "hates": [
-                    {
-                        "food": "str (optional)",
-                        "id": "int (optional)",
-                        "name": "str (optional)"
-                    }
-                ],
-                "id": "int (optional)",
-                "name": "str (optional)"
+                "breed": "str (optional)"
             }
     """
 

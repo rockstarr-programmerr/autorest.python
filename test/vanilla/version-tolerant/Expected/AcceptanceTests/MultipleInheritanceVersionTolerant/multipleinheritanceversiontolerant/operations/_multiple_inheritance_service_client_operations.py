@@ -36,15 +36,23 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_horse(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Horse"
+        # type: (...) -> Any
         """Get a horse with name 'Fred' and isAShowHorse true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Horse, or the result of cls(response)
-        :rtype: ~multipleinheritanceversiontolerant.models.Horse
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "isAShowHorse": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Horse"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -61,7 +69,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Horse", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -73,25 +81,33 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_horse(
         self,
-        horse,  # type: "_models.Horse"
+        horse,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false.
-        :type horse: ~multipleinheritanceversiontolerant.models.Horse
+        :type horse: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                horse = {
+                    "isAShowHorse": "bool (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(horse, "Horse")
+        json = self._serialize.body(horse, "object")
 
         request = rest.build_put_horse_request(
             content_type=content_type,
@@ -120,15 +136,23 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_pet(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Pet"
+        # type: (...) -> Any
         """Get a pet with name 'Peanut'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet, or the result of cls(response)
-        :rtype: ~multipleinheritanceversiontolerant.models.Pet
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "name": "str"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -145,7 +169,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Pet", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -157,25 +181,33 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_pet(
         self,
-        pet,  # type: "_models.Pet"
+        pet,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'.
-        :type pet: ~multipleinheritanceversiontolerant.models.Pet
+        :type pet: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                pet = {
+                    "name": "str"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(pet, "Pet")
+        json = self._serialize.body(pet, "object")
 
         request = rest.build_put_pet_request(
             content_type=content_type,
@@ -204,15 +236,24 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_feline(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Feline"
+        # type: (...) -> Any
         """Get a feline where meows and hisses are true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Feline, or the result of cls(response)
-        :rtype: ~multipleinheritanceversiontolerant.models.Feline
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "hisses": "bool (optional)",
+                    "meows": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Feline"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -229,7 +270,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Feline", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -241,25 +282,34 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_feline(
         self,
-        feline,  # type: "_models.Feline"
+        feline,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow.
-        :type feline: ~multipleinheritanceversiontolerant.models.Feline
+        :type feline: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                feline = {
+                    "hisses": "bool (optional)",
+                    "meows": "bool (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(feline, "Feline")
+        json = self._serialize.body(feline, "object")
 
         request = rest.build_put_feline_request(
             content_type=content_type,
@@ -288,15 +338,23 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_cat(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Cat"
+        # type: (...) -> Any
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Cat, or the result of cls(response)
-        :rtype: ~multipleinheritanceversiontolerant.models.Cat
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "likesMilk": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Cat"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -313,7 +371,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Cat", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -325,25 +383,33 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_cat(
         self,
-        cat,  # type: "_models.Cat"
+        cat,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
-        :type cat: ~multipleinheritanceversiontolerant.models.Cat
+        :type cat: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                cat = {
+                    "likesMilk": "bool (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(cat, "Cat")
+        json = self._serialize.body(cat, "object")
 
         request = rest.build_put_cat_request(
             content_type=content_type,
@@ -372,16 +438,24 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_kitten(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Kitten"
+        # type: (...) -> Any
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Kitten, or the result of cls(response)
-        :rtype: ~multipleinheritanceversiontolerant.models.Kitten
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "eatsMiceYet": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Kitten"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -398,7 +472,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Kitten", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -410,7 +484,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_kitten(
         self,
-        kitten,  # type: "_models.Kitten"
+        kitten,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -419,18 +493,26 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true.
-        :type kitten: ~multipleinheritanceversiontolerant.models.Kitten
+        :type kitten: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                kitten = {
+                    "eatsMiceYet": "bool (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(kitten, "Kitten")
+        json = self._serialize.body(kitten, "object")
 
         request = rest.build_put_kitten_request(
             content_type=content_type,

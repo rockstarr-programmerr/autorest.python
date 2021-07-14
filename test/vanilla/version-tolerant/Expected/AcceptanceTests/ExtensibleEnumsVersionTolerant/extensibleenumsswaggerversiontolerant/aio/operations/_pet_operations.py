@@ -51,17 +51,27 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> "_models.Pet":
+    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> Any:
         """get pet by id.
 
         :param pet_id: Pet id.
         :type pet_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet, or the result of cls(response)
-        :rtype: ~extensibleenumsswaggerversiontolerant.models.Pet
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "DaysOfWeek": "str (optional). Default value is \"Friday\"",
+                    "IntEnum": "str",
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -80,7 +90,7 @@ class PetOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Pet", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -90,23 +100,40 @@ class PetOperations:
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs: Any) -> "_models.Pet":
+    async def add_pet(self, pet_param: Any = None, **kwargs: Any) -> Any:
         """add pet.
 
         :param pet_param: pet param.
-        :type pet_param: ~extensibleenumsswaggerversiontolerant.models.Pet
+        :type pet_param: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet, or the result of cls(response)
-        :rtype: ~extensibleenumsswaggerversiontolerant.models.Pet
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                pet_param = {
+                    "DaysOfWeek": "str (optional). Default value is \"Friday\"",
+                    "IntEnum": "str",
+                    "name": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "DaysOfWeek": "str (optional). Default value is \"Friday\"",
+                    "IntEnum": "str",
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if pet_param is not None:
-            json = self._serialize.body(pet_param, "Pet")
+            json = self._serialize.body(pet_param, "object")
         else:
             json = None
 
@@ -126,7 +153,7 @@ class PetOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Pet", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})

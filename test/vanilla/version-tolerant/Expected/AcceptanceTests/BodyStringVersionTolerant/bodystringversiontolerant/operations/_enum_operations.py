@@ -220,15 +220,24 @@ class EnumOperations(object):
     def get_referenced_constant(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.RefColorConstant"
+        # type: (...) -> Any
         """Get value 'green-color' from the constant.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RefColorConstant, or the result of cls(response)
-        :rtype: ~bodystringversiontolerant.models.RefColorConstant
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "ColorConstant": "str",
+                    "field1": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.RefColorConstant"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -245,7 +254,7 @@ class EnumOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("RefColorConstant", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -257,25 +266,34 @@ class EnumOperations(object):
     @distributed_trace
     def put_referenced_constant(
         self,
-        enum_string_body,  # type: "_models.RefColorConstant"
+        enum_string_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body.
-        :type enum_string_body: ~bodystringversiontolerant.models.RefColorConstant
+        :type enum_string_body: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                enum_string_body = {
+                    "ColorConstant": "str",
+                    "field1": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(enum_string_body, "RefColorConstant")
+        json = self._serialize.body(enum_string_body, "object")
 
         request = rest_enum.build_put_referenced_constant_request(
             content_type=content_type,

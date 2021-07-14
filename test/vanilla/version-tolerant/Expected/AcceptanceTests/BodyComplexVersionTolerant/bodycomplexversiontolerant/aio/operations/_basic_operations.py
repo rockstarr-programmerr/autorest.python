@@ -51,15 +51,25 @@ class BasicOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> "_models.Basic":
+    async def get_valid(self, **kwargs: Any) -> Any:
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.Basic
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "color": "str (optional)",
+                    "id": "int (optional)",
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -78,7 +88,7 @@ class BasicOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Basic", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -88,22 +98,32 @@ class BasicOperations:
     get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: "_models.Basic", **kwargs: Any) -> None:
+    async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
-        :type complex_body: ~bodycomplexversiontolerant.models.Basic
+        :type complex_body: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                complex_body = {
+                    "color": "str (optional)",
+                    "id": "int (optional)",
+                    "name": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Basic")
+        json = self._serialize.body(complex_body, "object")
 
         request = rest_basic.build_put_valid_request(
             content_type=content_type,
@@ -128,15 +148,25 @@ class BasicOperations:
     put_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> "_models.Basic":
+    async def get_invalid(self, **kwargs: Any) -> Any:
         """Get a basic complex type that is invalid for the local strong type.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.Basic
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "color": "str (optional)",
+                    "id": "int (optional)",
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -155,7 +185,7 @@ class BasicOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Basic", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -165,15 +195,25 @@ class BasicOperations:
     get_invalid.metadata = {"url": "/complex/basic/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> "_models.Basic":
+    async def get_empty(self, **kwargs: Any) -> Any:
         """Get a basic complex type that is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.Basic
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "color": "str (optional)",
+                    "id": "int (optional)",
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -192,7 +232,7 @@ class BasicOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Basic", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -202,15 +242,25 @@ class BasicOperations:
     get_empty.metadata = {"url": "/complex/basic/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> "_models.Basic":
+    async def get_null(self, **kwargs: Any) -> Any:
         """Get a basic complex type whose properties are null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.Basic
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "color": "str (optional)",
+                    "id": "int (optional)",
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -229,7 +279,7 @@ class BasicOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Basic", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -239,15 +289,25 @@ class BasicOperations:
     get_null.metadata = {"url": "/complex/basic/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> "_models.Basic":
+    async def get_not_provided(self, **kwargs: Any) -> Any:
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.Basic
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "color": "str (optional)",
+                    "id": "int (optional)",
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -266,7 +326,7 @@ class BasicOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Basic", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})

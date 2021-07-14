@@ -58,15 +58,24 @@ class ReadonlypropertyOperations(object):
     def get_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ReadonlyObj"
+        # type: (...) -> Any
         """Get complex types that have readonly properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ReadonlyObj, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.ReadonlyObj
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str (optional)",
+                    "size": "int (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ReadonlyObj"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -83,7 +92,7 @@ class ReadonlypropertyOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("ReadonlyObj", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -95,25 +104,34 @@ class ReadonlypropertyOperations(object):
     @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: "_models.ReadonlyObj"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types that have readonly properties.
 
         :param complex_body:
-        :type complex_body: ~bodycomplexversiontolerant.models.ReadonlyObj
+        :type complex_body: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                complex_body = {
+                    "id": "str (optional)",
+                    "size": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "ReadonlyObj")
+        json = self._serialize.body(complex_body, "object")
 
         request = rest_readonlyproperty.build_put_valid_request(
             content_type=content_type,

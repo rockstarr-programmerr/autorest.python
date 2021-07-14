@@ -58,15 +58,23 @@ class MultipleResponsesOperations(object):
     def get200_model204_no_model_default_error200_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.MyException"]
+        # type: (...) -> Optional[Any]
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or None
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.MyException"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -85,7 +93,7 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -98,15 +106,23 @@ class MultipleResponsesOperations(object):
     def get200_model204_no_model_default_error204_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.MyException"]
+        # type: (...) -> Optional[Any]
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or None
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.MyException"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -125,7 +141,7 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -138,15 +154,23 @@ class MultipleResponsesOperations(object):
     def get200_model204_no_model_default_error201_invalid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.MyException"]
+        # type: (...) -> Optional[Any]
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or None
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.MyException"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -165,7 +189,7 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -178,15 +202,23 @@ class MultipleResponsesOperations(object):
     def get200_model204_no_model_default_error202_none(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.MyException"]
+        # type: (...) -> Optional[Any]
         """Send a 202 response with no payload:.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or None
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.MyException"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -205,7 +237,7 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -218,15 +250,23 @@ class MultipleResponsesOperations(object):
     def get200_model204_no_model_default_error400_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.MyException"]
+        # type: (...) -> Optional[Any]
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or None
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.MyException"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -245,7 +285,7 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -258,16 +298,27 @@ class MultipleResponsesOperations(object):
     def get200_model201_model_default_error200_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Union["_models.MyException", "_models.B"]
+        # type: (...) -> Any
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or B, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or
-         ~httpinfrastructureversiontolerant.models.B
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
+                # response body for status code(s): 201
+                response.json() == {
+                    "textStatusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.B"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -285,10 +336,10 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("B", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -301,16 +352,27 @@ class MultipleResponsesOperations(object):
     def get200_model201_model_default_error201_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Union["_models.MyException", "_models.B"]
+        # type: (...) -> Any
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or B, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or
-         ~httpinfrastructureversiontolerant.models.B
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
+                # response body for status code(s): 201
+                response.json() == {
+                    "textStatusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.B"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -328,10 +390,10 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("B", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -344,16 +406,27 @@ class MultipleResponsesOperations(object):
     def get200_model201_model_default_error400_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Union["_models.MyException", "_models.B"]
+        # type: (...) -> Any
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or B, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or
-         ~httpinfrastructureversiontolerant.models.B
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
+                # response body for status code(s): 201
+                response.json() == {
+                    "textStatusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.B"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -371,10 +444,10 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("B", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -387,16 +460,31 @@ class MultipleResponsesOperations(object):
     def get200_model_a201_model_c404_model_d_default_error200_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Union["_models.MyException", "_models.C", "_models.D"]
+        # type: (...) -> Any
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or
-         ~httpinfrastructureversiontolerant.models.C or ~httpinfrastructureversiontolerant.models.D
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
+                # response body for status code(s): 201
+                response.json() == {
+                    "httpCode": "str (optional)"
+                }
+                # response body for status code(s): 404
+                response.json() == {
+                    "httpStatusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -414,13 +502,13 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -433,16 +521,31 @@ class MultipleResponsesOperations(object):
     def get200_model_a201_model_c404_model_d_default_error201_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Union["_models.MyException", "_models.C", "_models.D"]
+        # type: (...) -> Any
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or
-         ~httpinfrastructureversiontolerant.models.C or ~httpinfrastructureversiontolerant.models.D
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
+                # response body for status code(s): 201
+                response.json() == {
+                    "httpCode": "str (optional)"
+                }
+                # response body for status code(s): 404
+                response.json() == {
+                    "httpStatusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -460,13 +563,13 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -479,16 +582,31 @@ class MultipleResponsesOperations(object):
     def get200_model_a201_model_c404_model_d_default_error404_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Union["_models.MyException", "_models.C", "_models.D"]
+        # type: (...) -> Any
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or
-         ~httpinfrastructureversiontolerant.models.C or ~httpinfrastructureversiontolerant.models.D
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
+                # response body for status code(s): 201
+                response.json() == {
+                    "httpCode": "str (optional)"
+                }
+                # response body for status code(s): 404
+                response.json() == {
+                    "httpStatusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -506,13 +624,13 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -525,16 +643,31 @@ class MultipleResponsesOperations(object):
     def get200_model_a201_model_c404_model_d_default_error400_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Union["_models.MyException", "_models.C", "_models.D"]
+        # type: (...) -> Any
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException or
-         ~httpinfrastructureversiontolerant.models.C or ~httpinfrastructureversiontolerant.models.D
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
+                # response body for status code(s): 201
+                response.json() == {
+                    "httpCode": "str (optional)"
+                }
+                # response body for status code(s): 404
+                response.json() == {
+                    "httpStatusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -552,13 +685,13 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -805,15 +938,23 @@ class MultipleResponsesOperations(object):
     def get_default_model_a200_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.MyException"
+        # type: (...) -> Any
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyException"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -829,7 +970,7 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -842,15 +983,23 @@ class MultipleResponsesOperations(object):
     def get_default_model_a200_none(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.MyException"
+        # type: (...) -> Any
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyException"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -866,7 +1015,7 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1079,16 +1228,24 @@ class MultipleResponsesOperations(object):
     def get200_model_a200_none(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.MyException"
+        # type: (...) -> Any
         """Send a 200 response with no payload, when a payload is expected - client should return a null
         object of thde type for model A.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyException"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1104,7 +1261,7 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1117,15 +1274,23 @@ class MultipleResponsesOperations(object):
     def get200_model_a200_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.MyException"
+        # type: (...) -> Any
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyException"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1141,7 +1306,7 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1154,15 +1319,23 @@ class MultipleResponsesOperations(object):
     def get200_model_a200_invalid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.MyException"
+        # type: (...) -> Any
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyException"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1178,7 +1351,7 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1191,15 +1364,23 @@ class MultipleResponsesOperations(object):
     def get200_model_a400_none(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.MyException"
+        # type: (...) -> Any
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyException"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1215,7 +1396,7 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1228,15 +1409,23 @@ class MultipleResponsesOperations(object):
     def get200_model_a400_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.MyException"
+        # type: (...) -> Any
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyException"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1252,7 +1441,7 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1265,15 +1454,23 @@ class MultipleResponsesOperations(object):
     def get200_model_a400_invalid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.MyException"
+        # type: (...) -> Any
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyException"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1289,7 +1486,7 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1302,15 +1499,23 @@ class MultipleResponsesOperations(object):
     def get200_model_a202_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.MyException"
+        # type: (...) -> Any
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException, or the result of cls(response)
-        :rtype: ~httpinfrastructureversiontolerant.models.MyException
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "statusCode": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyException"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1326,7 +1531,7 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})

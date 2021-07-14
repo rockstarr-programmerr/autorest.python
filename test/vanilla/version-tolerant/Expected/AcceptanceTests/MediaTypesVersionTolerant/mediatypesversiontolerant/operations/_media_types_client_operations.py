@@ -35,14 +35,14 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body(
         self,
-        input=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
+        input=None,  # type: Optional[Union[IO, Any]]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: IO or ~mediatypesversiontolerant.models.SourcePath
+        :type input: IO or Any
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
          "image/tiff", "application/json."
@@ -50,6 +50,14 @@ class MediaTypesClientOperationsMixin(object):
         :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                input = {
+                    "source": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -64,7 +72,7 @@ class MediaTypesClientOperationsMixin(object):
             content = input
         elif content_type.split(";")[0] in ["application/json"]:
             if input is not None:
-                json = self._serialize.body(input, "SourcePath")
+                json = self._serialize.body(input, "object")
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "

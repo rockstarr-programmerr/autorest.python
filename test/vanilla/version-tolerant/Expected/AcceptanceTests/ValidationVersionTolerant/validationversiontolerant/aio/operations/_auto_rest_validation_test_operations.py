@@ -29,9 +29,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
-    async def validation_of_method_parameters(
-        self, resource_group_name: str, id: int, **kwargs: Any
-    ) -> "_models.Product":
+    async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> Any:
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -39,11 +37,34 @@ class AutoRestValidationTestOperationsMixin:
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
-        :rtype: ~validationversiontolerant.models.Product
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "capacity": "int (optional)",
+                    "child": {
+                        "constProperty": "str",
+                        "count": "int (optional)"
+                    },
+                    "constChild": {
+                        "constProperty": "str",
+                        "constProperty2": "str"
+                    },
+                    "constInt": "int",
+                    "constString": "str",
+                    "constStringAsEnum": "str (optional)",
+                    "display_names": [
+                        "str (optional)"
+                    ],
+                    "image": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -65,7 +86,7 @@ class AutoRestValidationTestOperationsMixin:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -75,9 +96,7 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace_async
-    async def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs: Any
-    ) -> "_models.Product":
+    async def validation_of_body(self, resource_group_name: str, id: int, body: Any = None, **kwargs: Any) -> Any:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -85,19 +104,62 @@ class AutoRestValidationTestOperationsMixin:
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :param body:
-        :type body: ~validationversiontolerant.models.Product
+        :type body: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
-        :rtype: ~validationversiontolerant.models.Product
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body = {
+                    "capacity": "int (optional)",
+                    "child": {
+                        "constProperty": "str",
+                        "count": "int (optional)"
+                    },
+                    "constChild": {
+                        "constProperty": "str",
+                        "constProperty2": "str"
+                    },
+                    "constInt": "int",
+                    "constString": "str",
+                    "constStringAsEnum": "str (optional)",
+                    "display_names": [
+                        "str (optional)"
+                    ],
+                    "image": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "capacity": "int (optional)",
+                    "child": {
+                        "constProperty": "str",
+                        "count": "int (optional)"
+                    },
+                    "constChild": {
+                        "constProperty": "str",
+                        "constProperty2": "str"
+                    },
+                    "constInt": "int",
+                    "constString": "str",
+                    "constStringAsEnum": "str (optional)",
+                    "display_names": [
+                        "str (optional)"
+                    ],
+                    "image": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
-            json = self._serialize.body(body, "Product")
+            json = self._serialize.body(body, "object")
         else:
             json = None
 
@@ -121,7 +183,7 @@ class AutoRestValidationTestOperationsMixin:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -163,25 +225,66 @@ class AutoRestValidationTestOperationsMixin:
     get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace_async
-    async def post_with_constant_in_body(
-        self, body: Optional["_models.Product"] = None, **kwargs: Any
-    ) -> "_models.Product":
+    async def post_with_constant_in_body(self, body: Any = None, **kwargs: Any) -> Any:
         """post_with_constant_in_body.
 
         :param body:
-        :type body: ~validationversiontolerant.models.Product
+        :type body: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
-        :rtype: ~validationversiontolerant.models.Product
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                body = {
+                    "capacity": "int (optional)",
+                    "child": {
+                        "constProperty": "str",
+                        "count": "int (optional)"
+                    },
+                    "constChild": {
+                        "constProperty": "str",
+                        "constProperty2": "str"
+                    },
+                    "constInt": "int",
+                    "constString": "str",
+                    "constStringAsEnum": "str (optional)",
+                    "display_names": [
+                        "str (optional)"
+                    ],
+                    "image": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "capacity": "int (optional)",
+                    "child": {
+                        "constProperty": "str",
+                        "count": "int (optional)"
+                    },
+                    "constChild": {
+                        "constProperty": "str",
+                        "constProperty2": "str"
+                    },
+                    "constInt": "int",
+                    "constString": "str",
+                    "constStringAsEnum": "str (optional)",
+                    "display_names": [
+                        "str (optional)"
+                    ],
+                    "image": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
-            json = self._serialize.body(body, "Product")
+            json = self._serialize.body(body, "object")
         else:
             json = None
 
@@ -201,7 +304,7 @@ class AutoRestValidationTestOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
