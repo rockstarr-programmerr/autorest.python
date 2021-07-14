@@ -114,7 +114,7 @@
                     "signature": "async def _test_lro_initial(\n    self,\n    product: Optional[\"_models.Product\"] = None,\n    **kwargs: Any\n) -\u003e Optional[\"_models.Product\"]:\n",
                     "doc": "\n\n:param product: Product to put.\n:type product: ~multiapicredentialdefaultpolicy.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapicredentialdefaultpolicy.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
-                "call": "product"
+                "call": "product, content_type"
             },
             "begin_test_lro" : {
                 "sync": {
@@ -126,7 +126,7 @@
                     "signature": "async def begin_test_lro(\n    self,\n    product: Optional[\"_models.Product\"] = None,\n    **kwargs: Any\n) -\u003e AsyncLROPoller[\"_models.Product\"]:\n",
                     "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put.\n:type product: ~multiapicredentialdefaultpolicy.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword str continuation_token: A continuation token to restart a poller from a saved state.\n:keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for\n this operation to not poll, or pass in your own initialized polling object for a personal\n polling strategy.\n:paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod\n:keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n Retry-After header is present.\n:return: An instance of AsyncLROPoller that returns either Product or the result of\n cls(response)\n:rtype: ~azure.core.polling.AsyncLROPoller[~multiapicredentialdefaultpolicy.v1.models.Product]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
-                "call": "product"
+                "call": "product, content_type"
             },
             "_test_lro_and_paging_initial" : {
                 "sync": {

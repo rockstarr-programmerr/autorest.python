@@ -225,6 +225,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_big_float_request(
@@ -304,6 +306,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_big_double_request(
@@ -379,6 +383,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         number_body = 99999999.99
         json = self._serialize.body(number_body, "float")
 
@@ -455,6 +461,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         number_body = -99999999.99
         json = self._serialize.body(number_body, "float")
 
@@ -535,6 +543,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_big_decimal_request(
@@ -610,6 +620,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         number_body = 99999999.99
         json = self._serialize.body(number_body, "float")
 
@@ -686,6 +698,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         number_body = -99999999.99
         json = self._serialize.body(number_body, "float")
 
@@ -766,6 +780,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_small_float_request(
@@ -845,6 +861,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_small_double_request(
@@ -924,6 +942,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_small_decimal_request(

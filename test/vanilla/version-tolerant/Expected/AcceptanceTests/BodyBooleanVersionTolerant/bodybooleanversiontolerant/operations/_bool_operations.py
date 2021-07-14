@@ -107,6 +107,8 @@ class BoolOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         bool_body = True
         json = self._serialize.body(bool_body, "bool")
 
@@ -183,6 +185,8 @@ class BoolOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         bool_body = False
         json = self._serialize.body(bool_body, "bool")
 

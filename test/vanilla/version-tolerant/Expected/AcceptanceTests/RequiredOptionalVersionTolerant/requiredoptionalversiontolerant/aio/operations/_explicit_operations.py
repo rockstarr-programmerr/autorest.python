@@ -64,6 +64,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
+
         content = body_parameter
 
         request = rest_explicit.build_put_optional_binary_body_request(
@@ -102,6 +104,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
+
         content = body_parameter
 
         request = rest_explicit.build_put_required_binary_body_request(
@@ -141,6 +145,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(body_parameter, "int")
 
         request = rest_explicit.build_post_required_integer_parameter_request(
@@ -179,6 +185,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "int")
         else:
@@ -221,6 +229,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(body_parameter, "IntWrapper")
 
         request = rest_explicit.build_post_required_integer_property_request(
@@ -261,6 +271,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "IntOptionalWrapper")
         else:
@@ -376,6 +388,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(body_parameter, "str")
 
         request = rest_explicit.build_post_required_string_parameter_request(
@@ -414,6 +428,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "str")
         else:
@@ -456,6 +472,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(body_parameter, "StringWrapper")
 
         request = rest_explicit.build_post_required_string_property_request(
@@ -496,6 +514,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "StringOptionalWrapper")
         else:
@@ -611,6 +631,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(body_parameter, "Product")
 
         request = rest_explicit.build_post_required_class_parameter_request(
@@ -651,6 +673,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "Product")
         else:
@@ -693,6 +717,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(body_parameter, "ClassWrapper")
 
         request = rest_explicit.build_post_required_class_property_request(
@@ -733,6 +759,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "ClassOptionalWrapper")
         else:
@@ -775,6 +803,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(body_parameter, "[str]")
 
         request = rest_explicit.build_post_required_array_parameter_request(
@@ -813,6 +843,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "[str]")
         else:
@@ -855,6 +887,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(body_parameter, "ArrayWrapper")
 
         request = rest_explicit.build_post_required_array_property_request(
@@ -895,6 +929,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "ArrayOptionalWrapper")
         else:

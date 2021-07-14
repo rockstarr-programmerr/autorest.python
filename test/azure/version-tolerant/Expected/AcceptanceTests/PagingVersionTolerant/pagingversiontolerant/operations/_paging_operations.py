@@ -900,10 +900,10 @@ class PagingOperations(object):
         # type: (...) -> Iterable["_models.OdataProductResult"]
         """A paging operation that doesn't return a full URL, just a fragment.
 
-        :keyword api_version: Sets the api version to use.
-        :paramtype api_version: str
         :param tenant: Sets the tenant to use.
         :type tenant: str
+        :keyword api_version: Sets the api version to use.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~pagingversiontolerant.models.OdataProductResult]
@@ -1103,6 +1103,7 @@ class PagingOperations(object):
          ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~pagingversiontolerant.models.ProductResult]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -1173,7 +1174,6 @@ class PagingOperations(object):
             )
 
         kwargs.pop("error_map", None)
-        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             def internal_get_next(next_link=None):

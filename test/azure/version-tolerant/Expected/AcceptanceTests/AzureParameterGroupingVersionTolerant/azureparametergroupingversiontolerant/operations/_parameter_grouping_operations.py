@@ -72,6 +72,7 @@ class ParameterGroupingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         parameter_grouping_post_required_parameters = kwargs.pop(
             "parameter_grouping_post_required_parameters"
         )  # type: "_models.ParameterGroupingPostRequiredParameters"
@@ -157,6 +158,54 @@ class ParameterGroupingOperations(object):
             return cls(pipeline_response, None, {})
 
     post_optional.metadata = {"url": "/parameterGrouping/postOptional"}  # type: ignore
+
+    @distributed_trace
+    def post_reserved_words(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Post a grouped parameters with reserved words.
+
+        :keyword parameter_grouping_post_reserved_words_parameters: Parameter group.
+        :paramtype parameter_grouping_post_reserved_words_parameters:
+         ~azureparametergroupingversiontolerant.models.ParameterGroupingPostReservedWordsParameters
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+        parameter_grouping_post_reserved_words_parameters = kwargs.pop(
+            "parameter_grouping_post_reserved_words_parameters", None
+        )  # type: Optional["_models.ParameterGroupingPostReservedWordsParameters"]
+
+        _from_parameter = None
+        _accept_parameter = None
+        if parameter_grouping_post_reserved_words_parameters is not None:
+            _from_parameter = parameter_grouping_post_reserved_words_parameters.from_property
+            _accept_parameter = parameter_grouping_post_reserved_words_parameters.accept
+
+        request = rest_parameter_grouping.build_post_reserved_words_request(
+            from_parameter=_from_parameter,
+            accept_parameter=_accept_parameter,
+            template_url=self.post_reserved_words.metadata["url"],
+        )._to_pipeline_transport_request()
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    post_reserved_words.metadata = {"url": "/parameterGrouping/postReservedWords"}  # type: ignore
 
     @distributed_trace
     def post_multi_param_groups(

@@ -42,6 +42,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if resource_array is not None:
             json = self._serialize.body(resource_array, "[Resource]")
         else:
@@ -123,6 +125,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if resource_array is not None:
             json = self._serialize.body(resource_array, "[WrappedProduct]")
         else:
@@ -204,6 +208,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if resource_dictionary is not None:
             json = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
         else:
@@ -284,6 +290,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if resource_complex_object is not None:
             json = self._serialize.body(resource_complex_object, "ResourceCollection")
         else:
@@ -364,6 +372,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if simple_body_product is not None:
             json = self._serialize.body(simple_body_product, "SimpleProduct")
         else:
@@ -431,6 +441,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         _simple_body_product = _models.SimpleProduct(
             product_id=product_id,
             description=description,
@@ -487,6 +499,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         _name = None
         _simple_body_product = None
         _product_id = None

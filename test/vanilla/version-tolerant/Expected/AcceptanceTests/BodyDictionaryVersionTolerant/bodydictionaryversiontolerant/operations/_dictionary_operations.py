@@ -150,6 +150,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{str}")
 
         request = rest_dictionary.build_put_empty_request(
@@ -381,6 +383,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{bool}")
 
         request = rest_dictionary.build_put_boolean_tfft_request(
@@ -536,6 +540,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{int}")
 
         request = rest_dictionary.build_put_integer_valid_request(
@@ -691,6 +697,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{long}")
 
         request = rest_dictionary.build_put_long_valid_request(
@@ -846,6 +854,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{float}")
 
         request = rest_dictionary.build_put_float_valid_request(
@@ -1001,6 +1011,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{float}")
 
         request = rest_dictionary.build_put_double_valid_request(
@@ -1156,6 +1168,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{str}")
 
         request = rest_dictionary.build_put_string_valid_request(
@@ -1311,6 +1325,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{date}")
 
         request = rest_dictionary.build_put_date_valid_request(
@@ -1468,6 +1484,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{iso-8601}")
 
         request = rest_dictionary.build_put_date_time_valid_request(
@@ -1625,6 +1643,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{rfc-1123}")
 
         request = rest_dictionary.build_put_date_time_rfc1123_valid_request(
@@ -1704,6 +1724,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{duration}")
 
         request = rest_dictionary.build_put_duration_valid_request(
@@ -1785,6 +1807,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{bytearray}")
 
         request = rest_dictionary.build_put_byte_valid_request(
@@ -2098,6 +2122,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{Widget}")
 
         request = rest_dictionary.build_put_complex_valid_request(
@@ -2331,6 +2357,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{[str]}")
 
         request = rest_dictionary.build_put_array_valid_request(
@@ -2568,6 +2596,8 @@ class DictionaryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{{str}}")
 
         request = rest_dictionary.build_put_dictionary_valid_request(

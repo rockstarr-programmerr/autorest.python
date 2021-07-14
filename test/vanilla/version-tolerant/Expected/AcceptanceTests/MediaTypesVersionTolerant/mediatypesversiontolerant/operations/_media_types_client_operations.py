@@ -54,6 +54,10 @@ class MediaTypesClientOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop(
+            "content_type", "application/json"
+        )  # type: Optional[Union[str, "_models.ContentType"]]
+
         json = None
         content = None
         if content_type.split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
@@ -110,6 +114,8 @@ class MediaTypesClientOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "text/plain")  # type: Optional[str]
+
         if input is not None:
             content = self._serialize.body(input, "str")
         else:

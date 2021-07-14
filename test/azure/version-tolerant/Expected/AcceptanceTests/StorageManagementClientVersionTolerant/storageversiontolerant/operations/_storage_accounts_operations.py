@@ -80,6 +80,8 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.CheckNameAvailabilityResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
         request = rest_storage_accounts.build_check_name_availability_request(
@@ -117,6 +119,8 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
         request = rest_storage_accounts.build_create_request_initial(
@@ -182,6 +186,7 @@ class StorageAccountsOperations(object):
         :rtype: ~azure.core.polling.LROPoller[~storageversiontolerant.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -191,12 +196,12 @@ class StorageAccountsOperations(object):
                 resource_group_name=resource_group_name,
                 account_name=account_name,
                 parameters=parameters,
+                content_type=content_type,
                 cls=lambda x, y, z: x,
                 **kwargs
             )
 
         kwargs.pop("error_map", None)
-        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
@@ -354,6 +359,8 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
 
         request = rest_storage_accounts.build_update_request(
@@ -584,6 +591,8 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountKeys"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(regenerate_key, "StorageAccountRegenerateKeyParameters")
 
         request = rest_storage_accounts.build_regenerate_key_request(

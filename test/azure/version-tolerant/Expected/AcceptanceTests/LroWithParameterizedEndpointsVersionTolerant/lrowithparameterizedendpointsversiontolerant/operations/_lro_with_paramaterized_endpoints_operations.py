@@ -95,6 +95,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        account_name = kwargs.pop("account_name")  # type: str
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -105,8 +106,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
             )
 
         kwargs.pop("error_map", None)
-        kwargs.pop("content_type", None)
-        account_name = kwargs.pop("account_name")  # type: str
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
@@ -205,6 +204,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        account_name = kwargs.pop("account_name")  # type: str
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -215,8 +215,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
             )
 
         kwargs.pop("error_map", None)
-        kwargs.pop("content_type", None)
-        account_name = kwargs.pop("account_name")  # type: str
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response

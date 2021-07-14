@@ -133,6 +133,8 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(complex_body, "Fish")
 
         request = rest_polymorphism.build_put_valid_request(
@@ -325,6 +327,8 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(complex_body, "Salmon")
 
         request = rest_polymorphism.build_put_complicated_request(
@@ -363,6 +367,8 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Salmon"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(complex_body, "Salmon")
 
         request = rest_polymorphism.build_put_missing_discriminator_request(
@@ -432,6 +438,8 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(complex_body, "Fish")
 
         request = rest_polymorphism.build_put_valid_missing_required_request(

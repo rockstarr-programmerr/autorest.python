@@ -213,6 +213,8 @@ class DatetimeOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_utc_max_date_time_request(
@@ -254,6 +256,8 @@ class DatetimeOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_utc_max_date_time7_digits_request(
@@ -406,6 +410,8 @@ class DatetimeOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_positive_offset_max_date_time_request(
@@ -518,6 +524,8 @@ class DatetimeOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_negative_offset_max_date_time_request(
@@ -630,6 +638,8 @@ class DatetimeOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_utc_min_date_time_request(
@@ -705,6 +715,8 @@ class DatetimeOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_positive_offset_min_date_time_request(
@@ -780,6 +792,8 @@ class DatetimeOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_negative_offset_min_date_time_request(

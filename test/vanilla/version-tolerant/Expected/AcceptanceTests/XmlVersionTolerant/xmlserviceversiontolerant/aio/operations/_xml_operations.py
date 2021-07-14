@@ -100,6 +100,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
         request = rest_xml.build_put_complex_type_ref_no_meta_request(
@@ -173,6 +175,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
         request = rest_xml.build_put_complex_type_ref_with_meta_request(
@@ -247,6 +251,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = rest_xml.build_put_simple_request(
@@ -321,6 +327,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
         request = rest_xml.build_put_wrapped_lists_request(
@@ -430,6 +438,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = rest_xml.build_put_empty_list_request(
@@ -503,6 +513,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
         request = rest_xml.build_put_empty_wrapped_lists_request(
@@ -576,6 +588,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
@@ -650,6 +664,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
@@ -724,6 +740,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
@@ -798,6 +816,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         content = self._serialize.body(banana, "Banana", is_xml=True)
 
         request = rest_xml.build_put_empty_child_element_request(
@@ -907,6 +927,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = rest_xml.build_put_service_properties_request(
@@ -980,6 +1002,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
         content = self._serialize.body(
             properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
@@ -1057,6 +1081,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(properties, "JSONInput")
 
         request = rest_xml.build_json_input_request(
@@ -1204,6 +1230,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         content = self._serialize.body(slideshow, "ModelWithByteProperty", is_xml=True)
 
         request = rest_xml.build_put_binary_request(
@@ -1279,6 +1307,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
         content = self._serialize.body(model, "ModelWithUrlProperty", is_xml=True)
 
         request = rest_xml.build_put_uri_request(

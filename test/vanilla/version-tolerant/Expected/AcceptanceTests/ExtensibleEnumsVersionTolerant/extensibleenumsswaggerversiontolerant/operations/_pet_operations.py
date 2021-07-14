@@ -115,6 +115,8 @@ class PetOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         if pet_param is not None:
             json = self._serialize.body(pet_param, "Pet")
         else:

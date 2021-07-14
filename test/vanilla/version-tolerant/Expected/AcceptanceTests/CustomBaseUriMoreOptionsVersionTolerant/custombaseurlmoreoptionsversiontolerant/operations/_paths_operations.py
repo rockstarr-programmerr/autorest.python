@@ -63,12 +63,12 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get a 200 to test a valid base uri.
 
+        :param key_name: The key name with value 'key1'.
+        :type key_name: str
         :keyword vault: The vault name, e.g. https://myvault.
         :paramtype vault: str
         :keyword secret: Secret value.
         :paramtype secret: str
-        :param key_name: The key name with value 'key1'.
-        :type key_name: str
         :keyword key_version: The key version. Default value 'v1'.
         :paramtype key_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
