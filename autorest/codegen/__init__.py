@@ -84,24 +84,27 @@ class CodeGenerator(Plugin):
         # Create a code model
         low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
         version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
-        show_models = self._autorestapi.get_boolean_value("show-models", True)
-        show_builders = self._autorestapi.get_boolean_value("show-builders", False)
-        show_operations = self._autorestapi.get_boolean_value("show-operations", True)
-        show_send_request = self._autorestapi.get_boolean_value("show-send-request", False)
-        only_path_and_body_params_positional = self._autorestapi.get_boolean_value(
-            "only-path-and-body-params-positional", False
+
+        show_models = self._autorestapi.get_boolean_value(
+            "show-models",
+            not (low_level_client or version_tolerant)
         )
-        if low_level_client:
-            show_models = False
-            show_builders = True
-            show_operations = False
-            show_send_request = True
-            only_path_and_body_params_positional = True
-        elif version_tolerant:
-            show_models = True
-            show_builders = True
-            show_operations = True
-            only_path_and_body_params_positional = True
+        show_builders = self._autorestapi.get_boolean_value(
+            "show-builders",
+            low_level_client or version_tolerant
+        )
+        show_operations = self._autorestapi.get_boolean_value(
+            "show-operations",
+            not low_level_client
+        )
+        show_send_request = self._autorestapi.get_boolean_value(
+            "show-send-request",
+            low_level_client or version_tolerant
+        )
+        only_path_and_body_params_positional = self._autorestapi.get_boolean_value(
+            "only-path-and-body-params-positional",
+            low_level_client or version_tolerant
+        )
         code_model = CodeModel(
             show_builders=show_builders,
             show_models=show_models,
