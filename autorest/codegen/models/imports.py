@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum
-from typing import Dict, Optional, Set, Tuple, Union
+from typing import Dict, List, Optional, Set, Tuple, Union
 
 
 class ImportType(str, Enum):
@@ -38,6 +38,9 @@ class FileImport:
         ] = imports or dict()
         # has sync and async type definitions
         self.type_definitions: Dict[str, Tuple[str, str]] = {}
+
+        # customization classes. Mapping from name to whether they're python3 only
+        self.customization_classes: Dict[str, bool] = {}
 
     def _add_import(
         self,
@@ -88,6 +91,9 @@ class FileImport:
         self._add_import("typing", ImportType.STDLIB, "TypeVar", TypingSection.CONDITIONAL)
         self.type_definitions[type_name] = (type_value, async_type_value or type_value)
 
+    def add_customization_class(self, class_name: str, is_python3_file: bool) -> None:
+        self.customization_classes[class_name] = is_python3_file
+
     def merge(self, file_import: "FileImport") -> None:
         """Merge the given file import format."""
         for typing_section, import_type_dict in file_import.imports.items():
@@ -96,3 +102,4 @@ class FileImport:
                     for module_name in module_list:
                         self._add_import(package_name, import_type, module_name, typing_section)
         self.type_definitions.update(file_import.type_definitions)
+        self.customization_classes.update(file_import.customization_classes)

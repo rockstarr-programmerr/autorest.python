@@ -11,7 +11,7 @@ from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .lro_paging_operation import LROPagingOperation
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -50,6 +50,16 @@ class OperationGroup(BaseModel):
         self.operations = operations
         self.api_versions = api_versions
 
+    def add_customization_class(self, file_import: FileImport, async_mode: bool) -> None:
+        customization_class_name = f"{self.class_name}Customization"
+
+        file_import.add_from_import(
+            ".._patch", customization_class_name, ImportType.LOCAL, TypingSection.TYPING
+        )
+        file_import.add_customization_class(
+            customization_class_name, self.code_model.options["python3_only"] or async_mode
+        )
+
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         for operation in self.operations:
@@ -58,6 +68,7 @@ class OperationGroup(BaseModel):
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
+        self.add_customization_class(file_import, async_mode)
         file_import.add_from_import("azure.core.exceptions", "ClientAuthenticationError", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE)
