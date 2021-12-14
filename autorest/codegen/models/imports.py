@@ -91,8 +91,14 @@ class FileImport:
         self._add_import("typing", ImportType.STDLIB, "TypeVar", TypingSection.CONDITIONAL)
         self.type_definitions[type_name] = (type_value, async_type_value or type_value)
 
-    def add_customization_class(self, class_name: str, is_python3_file: bool) -> None:
-        self.customization_classes[class_name] = is_python3_file
+    def add_customization_class(
+        self, class_name: str, is_python3_file: bool, path_to_patch: str
+    ) -> None:
+        customization_class_name = f"{class_name}Customization"
+        self.add_from_import(
+            f"{path_to_patch}_patch", customization_class_name, ImportType.LOCAL, TypingSection.TYPING
+        )
+        self.customization_classes[customization_class_name] = is_python3_file
 
     def merge(self, file_import: "FileImport") -> None:
         """Merge the given file import format."""

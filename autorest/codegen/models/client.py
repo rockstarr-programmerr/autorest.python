@@ -62,6 +62,9 @@ class Client:
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
+        file_import.add_customization_class(
+            self.code_model.class_name, self.code_model.options["python3_only"] or async_mode, "."
+        )
         if async_mode:
             file_import.add_from_import("typing", "Awaitable", ImportType.STDLIB)
             file_import.add_from_import(
