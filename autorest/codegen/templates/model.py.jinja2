@@ -3,9 +3,9 @@
 
 
 {% if basename %}
-class {{ model.name }}({{ basename }}):
+class _{{ model.name }}Generated(_{{ basename }}Generated):
 {% else %}
-class {{ model.name }}(msrest.serialization.Model):
+class _{{ model.name }}Generated(msrest.serialization.Model):
 {% endif %}
     """{{ model.description }}
     {% if model.discriminator_name %}
@@ -90,3 +90,6 @@ class {{ model.name }}(msrest.serialization.Model):
     {% for arg in init_args(model) %}
         {{ arg }}
     {% endfor %}
+
+class {{ model.name }}({{ model.name }}Customization, {{ (basename + ", ") if basename else "" }}_{{ model.name }}Generated):
+    pass

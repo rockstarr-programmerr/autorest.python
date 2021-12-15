@@ -87,19 +87,19 @@ class FileImportSerializer:
         return "\n".join(declarations)
 
     def _define_customization_classes_if_not_in_patch(self) -> str:
-        def _get_definition(customization_class: str, is_python3_file: bool) -> str:
+        def _get_definition(customization_class: str, is_python3_file: bool, path_to_patch: str) -> str:
             parent = "" if is_python3_file else "(object)"
             return "\n".join([
                 "    try:",
-                f"        from .._patch import {customization_class}",
+                f"        from {path_to_patch}_patch import {customization_class}",
                 "    except ImportError:",
                 f"        class {customization_class}{parent}:",
                 "            pass",
             ])
 
         return "\n".join(
-            _get_definition(customization_class, is_python3_file)
-            for customization_class, is_python3_file in self._file_import.customization_classes.items()
+            _get_definition(customization_class, is_python3_file, path_to_patch)
+            for customization_class, (is_python3_file, path_to_patch) in self._file_import.customization_classes.items()
         )
 
     def __str__(self) -> str:
@@ -121,6 +121,10 @@ class FileImportSerializer:
         if typing_imports_dict:
             typing_imports += "\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    "
             typing_imports += "\n\n    ".join(_get_import_clauses(typing_imports_dict, "\n    "))
+        if not self.is_python3_file:
+            typing_imports += self._get_typing_definitions()
         if self._file_import.customization_classes:
             typing_imports += f"\nelse:\n{self._define_customization_classes_if_not_in_patch()}"
-        return regular_imports + typing_imports + self._get_typing_definitions()
+        if self.is_python3_file:
+            typing_imports += self._get_typing_definitions()
+        return regular_imports + typing_imports

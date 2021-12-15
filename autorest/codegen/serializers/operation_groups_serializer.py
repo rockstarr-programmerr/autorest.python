@@ -41,9 +41,10 @@ class OperationGroupsSerializer:
         operation_groups = [self.operation_group] if self.operation_group else self.code_model.operation_groups
         imports = FileImport()
         for operation_group in operation_groups:
-            imports.merge(operation_group.imports(
-                async_mode=self.async_mode,
-            ))
+            imports.merge(
+                operation_group.imports(async_mode=self.async_mode),
+                merge_customization_classes=True
+            )
 
         template = self.env.get_or_select_template("operation_groups_container.py.jinja2")
         return template.render(

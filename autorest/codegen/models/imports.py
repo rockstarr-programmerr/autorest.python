@@ -39,8 +39,8 @@ class FileImport:
         # has sync and async type definitions
         self.type_definitions: Dict[str, Tuple[str, str]] = {}
 
-        # customization classes. Mapping from name to whether they're python3 only
-        self.customization_classes: Dict[str, bool] = {}
+        # customization classes. Mapping from name to tuple of whether they're python3 only and the path to patch
+        self.customization_classes: Dict[str, Tuple[bool, str]] = {}
 
     def _add_import(
         self,
@@ -98,9 +98,9 @@ class FileImport:
         self.add_from_import(
             f"{path_to_patch}_patch", customization_class_name, ImportType.LOCAL, TypingSection.TYPING
         )
-        self.customization_classes[customization_class_name] = is_python3_file
+        self.customization_classes[customization_class_name] = tuple([is_python3_file, path_to_patch])
 
-    def merge(self, file_import: "FileImport") -> None:
+    def merge(self, file_import: "FileImport", merge_customization_classes: bool = False) -> None:
         """Merge the given file import format."""
         for typing_section, import_type_dict in file_import.imports.items():
             for import_type, package_list in import_type_dict.items():
@@ -108,4 +108,5 @@ class FileImport:
                     for module_name in module_list:
                         self._add_import(package_name, import_type, module_name, typing_section)
         self.type_definitions.update(file_import.type_definitions)
-        self.customization_classes.update(file_import.customization_classes)
+        if merge_customization_classes:
+            self.customization_classes.update(file_import.customization_classes)

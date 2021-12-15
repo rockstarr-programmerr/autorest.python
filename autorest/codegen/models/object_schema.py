@@ -214,6 +214,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         file_import = FileImport()
         if self.is_exception:
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+        file_import.add_customization_class(self.name, False, "...")
         return file_import
 
 class HiddenModelObjectSchema(ObjectSchema):

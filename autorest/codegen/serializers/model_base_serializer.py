@@ -46,7 +46,7 @@ class ModelBaseSerializer:
         file_import = FileImport()
         file_import.add_import("msrest.serialization", ImportType.AZURECORE)
         for model in self.code_model.sorted_schemas:
-            file_import.merge(model.imports())
+            file_import.merge(model.imports(), merge_customization_classes=True)
         return file_import
 
     @staticmethod
@@ -74,7 +74,7 @@ class ModelBaseSerializer:
     def init_args(self, model: ObjectSchema) -> List[str]:
         init_args = []
         properties_to_pass_to_super = self.properties_to_pass_to_super(model)
-        init_args.append(f"super({model.name}, self).__init__({properties_to_pass_to_super})")
+        init_args.append(f"super(_{model.name}Generated, self).__init__({properties_to_pass_to_super})")
         for prop in ModelBaseSerializer.get_properties_to_initialize(model):
             if prop.is_discriminator:
                 discriminator_value = f"'{model.discriminator_value}'" if model.discriminator_value else None
