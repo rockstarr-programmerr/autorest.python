@@ -20,7 +20,7 @@ parameters:
     default:
     - name: azure-messaging-webpubsubservice
       service: webpubsub
-    - name: azure-storage-queue
+    - name: azure-storage-file-share
       service: storage
 
 jobs:
