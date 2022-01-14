@@ -20,6 +20,10 @@ parameters:
     default:
     - name: azure-messaging-webpubsubservice
       service: webpubsub
+    - name: azure-schemaregistry
+      service: schemaregistry
+    - name: azure-containerregistry
+      service: containerregistry
 
 jobs:
   - job: "AutoRest_Python_CI"
