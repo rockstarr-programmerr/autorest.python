@@ -67,9 +67,9 @@ class QueriesOperations:
         request = build_queries_array_string_multi_null_request(
             array_query=array_query,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -100,9 +100,9 @@ class QueriesOperations:
         request = build_queries_array_string_multi_empty_request(
             array_query=array_query,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -135,9 +135,9 @@ class QueriesOperations:
         request = build_queries_array_string_multi_valid_request(
             array_query=array_query,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

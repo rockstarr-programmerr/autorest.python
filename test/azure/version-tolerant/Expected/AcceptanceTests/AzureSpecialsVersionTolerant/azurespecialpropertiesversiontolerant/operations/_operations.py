@@ -559,7 +559,7 @@ def build_header_custom_named_request_id_head_request(*, foo_client_request_id: 
     return HttpRequest(method="HEAD", url=_url, headers=_header_parameters, **kwargs)
 
 
-class XMsClientRequestIdOperations(object):
+class XMsClientRequestIdOperations:
     """XMsClientRequestIdOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -591,9 +591,9 @@ class XMsClientRequestIdOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xms_client_request_id_get_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -626,9 +626,9 @@ class XMsClientRequestIdOperations(object):
         request = build_xms_client_request_id_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -641,7 +641,7 @@ class XMsClientRequestIdOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class SubscriptionInCredentialsOperations(object):
+class SubscriptionInCredentialsOperations:
     """SubscriptionInCredentialsOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -675,9 +675,9 @@ class SubscriptionInCredentialsOperations(object):
         request = build_subscription_in_credentials_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -705,9 +705,9 @@ class SubscriptionInCredentialsOperations(object):
         request = build_subscription_in_credentials_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -740,9 +740,9 @@ class SubscriptionInCredentialsOperations(object):
             subscription_id=self._config.subscription_id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -770,9 +770,9 @@ class SubscriptionInCredentialsOperations(object):
         request = build_subscription_in_credentials_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -800,9 +800,9 @@ class SubscriptionInCredentialsOperations(object):
         request = build_subscription_in_credentials_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -815,7 +815,7 @@ class SubscriptionInCredentialsOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class SubscriptionInMethodOperations(object):
+class SubscriptionInMethodOperations:
     """SubscriptionInMethodOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -854,9 +854,9 @@ class SubscriptionInMethodOperations(object):
         request = build_subscription_in_method_post_method_local_valid_request(
             subscription_id=subscription_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -889,9 +889,9 @@ class SubscriptionInMethodOperations(object):
         request = build_subscription_in_method_post_method_local_null_request(
             subscription_id=subscription_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -923,9 +923,9 @@ class SubscriptionInMethodOperations(object):
         request = build_subscription_in_method_post_path_local_valid_request(
             subscription_id=subscription_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -958,9 +958,9 @@ class SubscriptionInMethodOperations(object):
         request = build_subscription_in_method_post_swagger_local_valid_request(
             subscription_id=subscription_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -973,7 +973,7 @@ class SubscriptionInMethodOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class ApiVersionDefaultOperations(object):
+class ApiVersionDefaultOperations:
     """ApiVersionDefaultOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1008,9 +1008,9 @@ class ApiVersionDefaultOperations(object):
         request = build_api_version_default_get_method_global_valid_request(
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1041,9 +1041,9 @@ class ApiVersionDefaultOperations(object):
         request = build_api_version_default_get_method_global_not_provided_valid_request(
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1072,9 +1072,9 @@ class ApiVersionDefaultOperations(object):
         request = build_api_version_default_get_path_global_valid_request(
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1103,9 +1103,9 @@ class ApiVersionDefaultOperations(object):
         request = build_api_version_default_get_swagger_global_valid_request(
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1118,7 +1118,7 @@ class ApiVersionDefaultOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class ApiVersionLocalOperations(object):
+class ApiVersionLocalOperations:
     """ApiVersionLocalOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1156,9 +1156,9 @@ class ApiVersionLocalOperations(object):
         request = build_api_version_local_get_method_local_valid_request(
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1190,9 +1190,9 @@ class ApiVersionLocalOperations(object):
         request = build_api_version_local_get_method_local_null_request(
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1224,9 +1224,9 @@ class ApiVersionLocalOperations(object):
         request = build_api_version_local_get_path_local_valid_request(
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1259,9 +1259,9 @@ class ApiVersionLocalOperations(object):
         request = build_api_version_local_get_swagger_local_valid_request(
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1274,7 +1274,7 @@ class ApiVersionLocalOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class SkipUrlEncodingOperations(object):
+class SkipUrlEncodingOperations:
     """SkipUrlEncodingOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1311,9 +1311,9 @@ class SkipUrlEncodingOperations(object):
         request = build_skip_url_encoding_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1344,9 +1344,9 @@ class SkipUrlEncodingOperations(object):
         request = build_skip_url_encoding_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1379,9 +1379,9 @@ class SkipUrlEncodingOperations(object):
         request = build_skip_url_encoding_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1412,9 +1412,9 @@ class SkipUrlEncodingOperations(object):
         request = build_skip_url_encoding_get_method_query_valid_request(
             q1=q1,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1445,9 +1445,9 @@ class SkipUrlEncodingOperations(object):
         request = build_skip_url_encoding_get_method_query_null_request(
             q1=q1,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1476,9 +1476,9 @@ class SkipUrlEncodingOperations(object):
         request = build_skip_url_encoding_get_path_query_valid_request(
             q1=q1,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1511,9 +1511,9 @@ class SkipUrlEncodingOperations(object):
         request = build_skip_url_encoding_get_swagger_query_valid_request(
             q1=q1,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1526,7 +1526,7 @@ class SkipUrlEncodingOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class OdataOperations(object):
+class OdataOperations:
     """OdataOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1569,9 +1569,9 @@ class OdataOperations(object):
             top=top,
             orderby=orderby,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1584,7 +1584,7 @@ class OdataOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class HeaderOperations(object):
+class HeaderOperations:
     """HeaderOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1621,9 +1621,9 @@ class HeaderOperations(object):
         request = build_header_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1658,9 +1658,9 @@ class HeaderOperations(object):
         request = build_header_custom_named_request_id_param_grouping_request(
             foo_client_request_id=foo_client_request_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1692,9 +1692,9 @@ class HeaderOperations(object):
         request = build_header_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

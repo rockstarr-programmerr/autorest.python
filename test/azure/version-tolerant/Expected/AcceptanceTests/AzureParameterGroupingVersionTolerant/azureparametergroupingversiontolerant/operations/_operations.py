@@ -168,7 +168,7 @@ def build_parameter_grouping_post_shared_parameter_group_object_request(
     return HttpRequest(method="POST", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
-class ParameterGroupingOperations(object):
+class ParameterGroupingOperations:
     """ParameterGroupingOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -219,9 +219,9 @@ class ParameterGroupingOperations(object):
             custom_header=custom_header,
             query=query,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -255,9 +255,9 @@ class ParameterGroupingOperations(object):
             custom_header=custom_header,
             query=query,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -291,9 +291,9 @@ class ParameterGroupingOperations(object):
             from_parameter=from_parameter,
             accept_parameter=accept_parameter,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -339,9 +339,9 @@ class ParameterGroupingOperations(object):
             header_two=header_two,
             query_two=query_two,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -375,9 +375,9 @@ class ParameterGroupingOperations(object):
             header_one=header_one,
             query_one=query_one,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

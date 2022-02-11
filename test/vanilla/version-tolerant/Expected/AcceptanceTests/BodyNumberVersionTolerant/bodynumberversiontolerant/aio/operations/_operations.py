@@ -83,9 +83,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_null_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -117,9 +117,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_invalid_float_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -151,9 +151,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_invalid_double_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -185,9 +185,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_invalid_decimal_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -230,9 +230,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -257,9 +257,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_big_float_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -302,9 +302,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -329,9 +329,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_big_double_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -374,9 +374,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=number_body,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -401,9 +401,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_big_double_positive_decimal_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -446,9 +446,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=number_body,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -473,9 +473,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_big_double_negative_decimal_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -518,9 +518,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -545,9 +545,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_big_decimal_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -590,9 +590,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=number_body,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -617,9 +617,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_big_decimal_positive_decimal_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -662,9 +662,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=number_body,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -689,9 +689,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_big_decimal_negative_decimal_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -734,9 +734,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -761,9 +761,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_small_float_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -806,9 +806,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -833,9 +833,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_small_double_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -878,9 +878,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -905,9 +905,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_number_get_small_decimal_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

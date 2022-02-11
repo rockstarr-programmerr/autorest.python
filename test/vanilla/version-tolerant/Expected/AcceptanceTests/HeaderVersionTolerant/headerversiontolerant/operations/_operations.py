@@ -423,7 +423,7 @@ def build_header_custom_request_id_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
-class HeaderOperations(object):  # pylint: disable=too-many-public-methods
+class HeaderOperations:  # pylint: disable=too-many-public-methods
     """HeaderOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -460,9 +460,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_param_existing_key_request(
             user_agent_parameter=user_agent_parameter,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -487,9 +487,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_header_response_existing_key_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -521,9 +521,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_param_protected_key_request(
             content_type=content_type,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -548,9 +548,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_header_response_protected_key_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -588,9 +588,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -621,9 +621,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_integer_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -661,9 +661,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -692,9 +692,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_long_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -732,9 +732,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -763,9 +763,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_float_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -803,9 +803,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -836,9 +836,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_double_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -876,9 +876,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -907,9 +907,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_bool_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -949,9 +949,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -983,9 +983,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_string_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1023,9 +1023,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1054,9 +1054,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_date_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1095,9 +1095,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1128,9 +1128,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_datetime_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1169,9 +1169,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1203,9 +1203,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_datetime_rfc1123_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1242,9 +1242,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1275,9 +1275,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_duration_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1314,9 +1314,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1345,9 +1345,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_byte_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1387,9 +1387,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
             scenario=scenario,
             value=value,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1419,9 +1419,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request = build_header_response_enum_request(
             scenario=scenario,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1450,9 +1450,9 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_header_custom_request_id_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

@@ -271,7 +271,7 @@ def build_contants_put_client_constants_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
-class ContantsOperations(object):
+class ContantsOperations:
     """ContantsOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -310,9 +310,9 @@ class ContantsOperations(object):
         request = build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -345,9 +345,9 @@ class ContantsOperations(object):
         request = build_contants_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -380,9 +380,9 @@ class ContantsOperations(object):
         request = build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -415,9 +415,9 @@ class ContantsOperations(object):
         request = build_contants_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -450,9 +450,9 @@ class ContantsOperations(object):
         request = build_contants_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -485,9 +485,9 @@ class ContantsOperations(object):
         request = build_contants_put_no_model_as_string_required_two_value_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -523,9 +523,9 @@ class ContantsOperations(object):
         request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -561,9 +561,9 @@ class ContantsOperations(object):
         request = build_contants_put_no_model_as_string_required_one_value_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -596,9 +596,9 @@ class ContantsOperations(object):
         request = build_contants_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -631,9 +631,9 @@ class ContantsOperations(object):
         request = build_contants_put_model_as_string_no_required_two_value_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -666,9 +666,9 @@ class ContantsOperations(object):
         request = build_contants_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -701,9 +701,9 @@ class ContantsOperations(object):
         request = build_contants_put_model_as_string_no_required_one_value_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -736,9 +736,9 @@ class ContantsOperations(object):
         request = build_contants_put_model_as_string_required_two_value_no_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -771,9 +771,9 @@ class ContantsOperations(object):
         request = build_contants_put_model_as_string_required_two_value_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -806,9 +806,9 @@ class ContantsOperations(object):
         request = build_contants_put_model_as_string_required_one_value_no_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -841,9 +841,9 @@ class ContantsOperations(object):
         request = build_contants_put_model_as_string_required_one_value_default_request(
             input=input,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -873,9 +873,9 @@ class ContantsOperations(object):
             query_constant=self._config.query_constant,
             path_constant=self._config.path_constant,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

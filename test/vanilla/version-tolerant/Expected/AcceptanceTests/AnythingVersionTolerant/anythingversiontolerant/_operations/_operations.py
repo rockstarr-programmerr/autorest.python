@@ -22,6 +22,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
+from .._vendor import MixinABC
+
 T = TypeVar("T")
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -108,7 +110,7 @@ def build_put_array_request(*, json: JSONType = None, content: Any = None, **kwa
     return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
-class AnythingClientOperationsMixin(object):
+class AnythingClientOperationsMixin(MixinABC):
     @distributed_trace
     def get_object(self, **kwargs: Any) -> Any:
         """Basic get that returns an object as anything. Returns object { 'message': 'An object was
@@ -123,9 +125,9 @@ class AnythingClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_object_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -167,9 +169,9 @@ class AnythingClientOperationsMixin(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -194,9 +196,9 @@ class AnythingClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_string_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -238,9 +240,9 @@ class AnythingClientOperationsMixin(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -265,9 +267,9 @@ class AnythingClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_array_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -309,9 +311,9 @@ class AnythingClientOperationsMixin(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

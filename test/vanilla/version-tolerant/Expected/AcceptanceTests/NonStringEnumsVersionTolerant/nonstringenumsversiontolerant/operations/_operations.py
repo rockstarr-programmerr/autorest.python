@@ -86,7 +86,7 @@ def build_float_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
-class IntOperations(object):
+class IntOperations:
     """IntOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -129,9 +129,9 @@ class IntOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -169,9 +169,9 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_int_get_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -191,7 +191,7 @@ class IntOperations(object):
         return deserialized
 
 
-class FloatOperations(object):
+class FloatOperations:
     """FloatOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -234,9 +234,9 @@ class FloatOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -274,9 +274,9 @@ class FloatOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_float_get_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

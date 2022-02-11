@@ -28,6 +28,7 @@ from ...operations._operations import (
     build_operation_with_json_param_request,
     build_operation_with_url_request,
 )
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 JSONType = Any
@@ -69,9 +70,9 @@ class ImportOperations:
         request = build_import_builders_operation_one_request(
             parameter1=parameter1,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -91,7 +92,7 @@ class ImportOperations:
         return deserialized
 
 
-class ReservedWordsClientOperationsMixin:
+class ReservedWordsClientOperationsMixin(MixinABC):
     @distributed_trace_async
     async def operation_with_content_param(self, content: IO, **kwargs: Any) -> Any:
         """Operation with body param called content. Pass in b'hello, world'.
@@ -114,9 +115,9 @@ class ReservedWordsClientOperationsMixin:
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -157,9 +158,9 @@ class ReservedWordsClientOperationsMixin:
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -208,9 +209,9 @@ class ReservedWordsClientOperationsMixin:
             content_type=content_type,
             data=data,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -259,9 +260,9 @@ class ReservedWordsClientOperationsMixin:
             content_type=content_type,
             files=files,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -308,9 +309,9 @@ class ReservedWordsClientOperationsMixin:
             header_parameters=header_parameters,
             query_parameters=query_parameters,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

@@ -354,7 +354,7 @@ def build_usage_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
-class StorageAccountsOperations(object):
+class StorageAccountsOperations:
     """StorageAccountsOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -421,9 +421,9 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -462,9 +462,9 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -670,9 +670,9 @@ class StorageAccountsOperations(object):
             subscription_id=self._config.subscription_id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -782,9 +782,9 @@ class StorageAccountsOperations(object):
             subscription_id=self._config.subscription_id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -938,9 +938,9 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -992,9 +992,9 @@ class StorageAccountsOperations(object):
             subscription_id=self._config.subscription_id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1121,7 +1121,7 @@ class StorageAccountsOperations(object):
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
@@ -1129,7 +1129,7 @@ class StorageAccountsOperations(object):
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -1267,7 +1267,7 @@ class StorageAccountsOperations(object):
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
@@ -1276,7 +1276,7 @@ class StorageAccountsOperations(object):
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -1352,9 +1352,9 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1374,7 +1374,7 @@ class StorageAccountsOperations(object):
         return deserialized
 
 
-class UsageOperations(object):
+class UsageOperations:
     """UsageOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1434,9 +1434,9 @@ class UsageOperations(object):
             subscription_id=self._config.subscription_id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

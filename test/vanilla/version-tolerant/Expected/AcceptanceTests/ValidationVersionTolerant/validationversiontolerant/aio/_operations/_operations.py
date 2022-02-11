@@ -26,13 +26,14 @@ from ..._operations._operations import (
     build_validation_of_body_request,
     build_validation_of_method_parameters_request,
 )
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestValidationTestOperationsMixin:
+class AutoRestValidationTestOperationsMixin(MixinABC):
     @distributed_trace_async
     async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSONType:
         """Validates input parameters on the method. See swagger for details.
@@ -87,9 +88,9 @@ class AutoRestValidationTestOperationsMixin:
             id=id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -201,9 +202,9 @@ class AutoRestValidationTestOperationsMixin:
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -242,9 +243,9 @@ class AutoRestValidationTestOperationsMixin:
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -343,9 +344,9 @@ class AutoRestValidationTestOperationsMixin:
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

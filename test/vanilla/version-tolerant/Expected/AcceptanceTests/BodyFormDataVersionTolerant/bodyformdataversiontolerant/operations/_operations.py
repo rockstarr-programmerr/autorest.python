@@ -82,7 +82,7 @@ def build_formdata_upload_files_request(
     return HttpRequest(method="POST", url=_url, headers=_header_parameters, files=files, content=content, **kwargs)
 
 
-class FormdataOperations(object):
+class FormdataOperations:
     """FormdataOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -131,9 +131,9 @@ class FormdataOperations(object):
             content_type=content_type,
             files=files,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
         response = pipeline_response.http_response
@@ -171,9 +171,9 @@ class FormdataOperations(object):
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
         response = pipeline_response.http_response
@@ -220,9 +220,9 @@ class FormdataOperations(object):
             content_type=content_type,
             files=files,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
         response = pipeline_response.http_response

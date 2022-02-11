@@ -1,3 +1,4 @@
+{% import 'keywords.jinja2' as keywords with context %}
 {{ code_model.options['license_header'] }}
 
 {{ imports }}
@@ -23,4 +24,12 @@ def _format_url_section(template, **kwargs):
                 c for c in formatted_components if "{{{}}}".format(key.args[0]) not in c
             ]
             template = "/".join(components)
+{% endif %}
+{% if code_model.need_mixin_abc %}
+
+class MixinABC(ABC):
+    _client: {{ keywords.async_class }}PipelineClient
+    _config: {{ code_model.class_name }}Configuration
+    _serializer: Serializer
+    _deserializer: Deserializer
 {% endif %}

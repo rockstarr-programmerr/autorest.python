@@ -65,7 +65,7 @@ def build_pet_add_pet_request(*, json: JSONType = None, content: Any = None, **k
     return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
-class PetOperations(object):
+class PetOperations:
     """PetOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -112,9 +112,9 @@ class PetOperations(object):
         request = build_pet_get_by_pet_id_request(
             pet_id=pet_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -179,9 +179,9 @@ class PetOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

@@ -806,7 +806,7 @@ def build_flattencomplex_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
-class BasicOperations(object):
+class BasicOperations:
     """BasicOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -849,9 +849,9 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_basic_get_valid_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -908,9 +908,9 @@ class BasicOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -947,9 +947,9 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_basic_get_invalid_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -993,9 +993,9 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_basic_get_empty_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1039,9 +1039,9 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_basic_get_null_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1085,9 +1085,9 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_basic_get_not_provided_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1107,7 +1107,7 @@ class BasicOperations(object):
         return deserialized
 
 
-class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
+class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     """PrimitiveOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1147,9 +1147,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_int_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1199,9 +1199,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1235,9 +1235,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_long_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1287,9 +1287,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1323,9 +1323,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_float_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1377,9 +1377,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1414,9 +1414,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_double_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1470,9 +1470,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1506,9 +1506,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_bool_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1558,9 +1558,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1595,9 +1595,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_string_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1650,9 +1650,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1686,9 +1686,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_date_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1738,9 +1738,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1774,9 +1774,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_date_time_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1828,9 +1828,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1864,9 +1864,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_date_time_rfc1123_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1919,9 +1919,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1954,9 +1954,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_duration_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2007,9 +2007,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2042,9 +2042,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_primitive_get_byte_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2093,9 +2093,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2108,7 +2108,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
 
-class ArrayOperations(object):
+class ArrayOperations:
     """ArrayOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -2149,9 +2149,9 @@ class ArrayOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_array_get_valid_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2205,9 +2205,9 @@ class ArrayOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2242,9 +2242,9 @@ class ArrayOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_array_get_empty_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2297,9 +2297,9 @@ class ArrayOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2334,9 +2334,9 @@ class ArrayOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_array_get_not_provided_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2356,7 +2356,7 @@ class ArrayOperations(object):
         return deserialized
 
 
-class DictionaryOperations(object):
+class DictionaryOperations:
     """DictionaryOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -2397,9 +2397,9 @@ class DictionaryOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_dictionary_get_valid_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2453,9 +2453,9 @@ class DictionaryOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2490,9 +2490,9 @@ class DictionaryOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_dictionary_get_empty_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2545,9 +2545,9 @@ class DictionaryOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2582,9 +2582,9 @@ class DictionaryOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_dictionary_get_null_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2626,9 +2626,9 @@ class DictionaryOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_dictionary_get_not_provided_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2648,7 +2648,7 @@ class DictionaryOperations(object):
         return deserialized
 
 
-class InheritanceOperations(object):
+class InheritanceOperations:
     """InheritanceOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -2697,9 +2697,9 @@ class InheritanceOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_inheritance_get_valid_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2762,9 +2762,9 @@ class InheritanceOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2777,7 +2777,7 @@ class InheritanceOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class PolymorphismOperations(object):
+class PolymorphismOperations:
     """PolymorphismOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -2821,9 +2821,9 @@ class PolymorphismOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_polymorphism_get_valid_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2913,9 +2913,9 @@ class PolymorphismOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2949,9 +2949,9 @@ class PolymorphismOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_polymorphism_get_dot_syntax_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3016,9 +3016,9 @@ class PolymorphismOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_polymorphism_get_composed_with_discriminator_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3083,9 +3083,9 @@ class PolymorphismOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_polymorphism_get_composed_without_discriminator_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3140,9 +3140,9 @@ class PolymorphismOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_polymorphism_get_complicated_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3210,9 +3210,9 @@ class PolymorphismOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3289,9 +3289,9 @@ class PolymorphismOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3376,9 +3376,9 @@ class PolymorphismOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3391,7 +3391,7 @@ class PolymorphismOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class PolymorphicrecursiveOperations(object):
+class PolymorphicrecursiveOperations:
     """PolymorphicrecursiveOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -3435,9 +3435,9 @@ class PolymorphicrecursiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_polymorphicrecursive_get_valid_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3547,9 +3547,9 @@ class PolymorphicrecursiveOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3562,7 +3562,7 @@ class PolymorphicrecursiveOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class ReadonlypropertyOperations(object):
+class ReadonlypropertyOperations:
     """ReadonlypropertyOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -3602,9 +3602,9 @@ class ReadonlypropertyOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_readonlyproperty_get_valid_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3656,9 +3656,9 @@ class ReadonlypropertyOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3671,7 +3671,7 @@ class ReadonlypropertyOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class FlattencomplexOperations(object):
+class FlattencomplexOperations:
     """FlattencomplexOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -3714,9 +3714,9 @@ class FlattencomplexOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_flattencomplex_get_valid_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

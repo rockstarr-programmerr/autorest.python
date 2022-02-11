@@ -59,7 +59,7 @@ def build_group_get_sample_resource_group_request(
     return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
-class GroupOperations(object):
+class GroupOperations:
     """GroupOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -107,9 +107,9 @@ class GroupOperations(object):
             resource_group_name=resource_group_name,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

@@ -328,6 +328,12 @@ class JinjaSerializer:
             aio_path / Path("_configuration.py"), aio_general_serializer.serialize_config_file()
         )
 
+        if code_model.need_vendored_code:
+            self._autorestapi.write_file(
+                aio_path / Path("_vendor.py"),
+                aio_general_serializer.serialize_vendor_file()
+            )
+
 
     def _serialize_and_write_metadata(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
         metadata_serializer = MetadataSerializer(code_model, env)

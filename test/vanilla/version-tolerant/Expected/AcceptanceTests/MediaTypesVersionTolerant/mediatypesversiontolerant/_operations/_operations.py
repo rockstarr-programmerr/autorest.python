@@ -22,6 +22,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
+from .._vendor import MixinABC
+
 T = TypeVar("T")
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -130,7 +132,7 @@ def build_put_text_and_json_body_request(*, json: JSONType = None, content: Any 
     return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
-class MediaTypesClientOperationsMixin(object):
+class MediaTypesClientOperationsMixin(MixinABC):
     @distributed_trace
     def analyze_body(self, input: Optional[Union[IO, JSONType]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
@@ -160,6 +162,7 @@ class MediaTypesClientOperationsMixin(object):
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             if input is not None:
                 _json = input
@@ -176,9 +179,9 @@ class MediaTypesClientOperationsMixin(object):
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -229,6 +232,7 @@ class MediaTypesClientOperationsMixin(object):
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             if input is not None:
                 _json = input
@@ -245,9 +249,9 @@ class MediaTypesClientOperationsMixin(object):
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -281,9 +285,9 @@ class MediaTypesClientOperationsMixin(object):
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -321,6 +325,7 @@ class MediaTypesClientOperationsMixin(object):
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             _json = message
         elif content_type.split(";")[0] in ["application/octet-stream"]:
@@ -336,9 +341,9 @@ class MediaTypesClientOperationsMixin(object):
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -380,6 +385,7 @@ class MediaTypesClientOperationsMixin(object):
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             _json = message
         elif content_type.split(";")[0] in ["application/octet-stream", "text/plain"]:
@@ -395,9 +401,9 @@ class MediaTypesClientOperationsMixin(object):
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -436,6 +442,7 @@ class MediaTypesClientOperationsMixin(object):
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             _json = message
         elif content_type.split(";")[0] in ["text/plain"]:
@@ -451,9 +458,9 @@ class MediaTypesClientOperationsMixin(object):
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

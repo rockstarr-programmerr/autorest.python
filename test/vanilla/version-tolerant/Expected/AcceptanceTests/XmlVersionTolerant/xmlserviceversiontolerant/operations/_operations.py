@@ -520,7 +520,7 @@ def build_xml_put_uri_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
 
 
-class XmlOperations(object):  # pylint: disable=too-many-public-methods
+class XmlOperations:  # pylint: disable=too-many-public-methods
     """XmlOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -562,9 +562,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_complex_type_ref_no_meta_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -618,9 +618,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -656,9 +656,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_complex_type_ref_with_meta_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -712,9 +712,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -727,11 +727,11 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_simple(self, **kwargs: Any) -> JSONType:
+    def get_simple(self, **kwargs: Any) -> ET.Element:
         """Get a simple XML document.
 
-        :return: JSON object
-        :rtype: JSONType
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -753,14 +753,14 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
                     "title": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_simple_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -780,11 +780,13 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_simple(self, slideshow: JSONType, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put_simple(  # pylint: disable=inconsistent-return-statements
+        self, slideshow: ET.Element, **kwargs: Any
+    ) -> None:
         """Put a simple XML document.
 
         :param slideshow:
-        :type slideshow: JSONType
+        :type slideshow: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -820,9 +822,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -860,9 +862,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_wrapped_lists_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -918,9 +920,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -945,9 +947,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_headers_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -963,11 +965,11 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def get_empty_list(self, **kwargs: Any) -> JSONType:
+    def get_empty_list(self, **kwargs: Any) -> ET.Element:
         """Get an empty list.
 
-        :return: JSON object
-        :rtype: JSONType
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -989,14 +991,14 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
                     "title": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_empty_list_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1017,12 +1019,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_empty_list(  # pylint: disable=inconsistent-return-statements
-        self, slideshow: JSONType, **kwargs: Any
+        self, slideshow: ET.Element, **kwargs: Any
     ) -> None:
         """Puts an empty list.
 
         :param slideshow:
-        :type slideshow: JSONType
+        :type slideshow: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1058,9 +1060,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1098,9 +1100,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_empty_wrapped_lists_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1156,9 +1158,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1171,11 +1173,11 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_root_list(self, **kwargs: Any) -> List[JSONType]:
+    def get_root_list(self, **kwargs: Any) -> List[ET.Element]:
         """Gets a list as the root element.
 
-        :return: list of JSON object
-        :rtype: list[JSONType]
+        :return: list of XML Element
+        :rtype: list[ET.Element]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1191,14 +1193,14 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[ET.Element]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_root_list_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1219,12 +1221,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_root_list(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[JSONType], **kwargs: Any
+        self, bananas: List[ET.Element], **kwargs: Any
     ) -> None:
         """Puts a list as the root element.
 
         :param bananas:
-        :type bananas: list[JSONType]
+        :type bananas: list[ET.Element]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1254,9 +1256,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1269,11 +1271,11 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_root_list_single_item(self, **kwargs: Any) -> List[JSONType]:
+    def get_root_list_single_item(self, **kwargs: Any) -> List[ET.Element]:
         """Gets a list with a single item.
 
-        :return: list of JSON object
-        :rtype: list[JSONType]
+        :return: list of XML Element
+        :rtype: list[ET.Element]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1289,14 +1291,14 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[ET.Element]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_root_list_single_item_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1317,12 +1319,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[JSONType], **kwargs: Any
+        self, bananas: List[ET.Element], **kwargs: Any
     ) -> None:
         """Puts a list with a single item.
 
         :param bananas:
-        :type bananas: list[JSONType]
+        :type bananas: list[ET.Element]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1352,9 +1354,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1367,11 +1369,11 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_empty_root_list(self, **kwargs: Any) -> List[JSONType]:
+    def get_empty_root_list(self, **kwargs: Any) -> List[ET.Element]:
         """Gets an empty list as the root element.
 
-        :return: list of JSON object
-        :rtype: list[JSONType]
+        :return: list of XML Element
+        :rtype: list[ET.Element]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1387,14 +1389,14 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[ET.Element]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_empty_root_list_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1415,12 +1417,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[JSONType], **kwargs: Any
+        self, bananas: List[ET.Element], **kwargs: Any
     ) -> None:
         """Puts an empty list as the root element.
 
         :param bananas:
-        :type bananas: list[JSONType]
+        :type bananas: list[ET.Element]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1450,9 +1452,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1465,11 +1467,11 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_empty_child_element(self, **kwargs: Any) -> JSONType:
+    def get_empty_child_element(self, **kwargs: Any) -> ET.Element:
         """Gets an XML document with an empty child element.
 
-        :return: JSON object
-        :rtype: JSONType
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1483,14 +1485,14 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
                     "name": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_empty_child_element_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1511,12 +1513,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_empty_child_element(  # pylint: disable=inconsistent-return-statements
-        self, banana: JSONType, **kwargs: Any
+        self, banana: ET.Element, **kwargs: Any
     ) -> None:
         """Puts a value with an empty child element.
 
         :param banana:
-        :type banana: JSONType
+        :type banana: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1544,9 +1546,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1559,14 +1561,14 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def list_containers(self, **kwargs: Any) -> JSONType:
+    def list_containers(self, **kwargs: Any) -> ET.Element:
         """Lists containers in a storage account.
 
         :keyword comp: The default value is "list". Note that overriding this default value may result
          in unsupported behavior.
         :paramtype comp: str
-        :return: JSON object
-        :rtype: JSONType
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1602,7 +1604,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
                     "ServiceEndpoint": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1611,9 +1613,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         request = build_xml_list_containers_request(
             comp=comp,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1741,9 +1743,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             comp=comp,
             restype=restype,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1880,9 +1882,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1895,7 +1897,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_acls(self, **kwargs: Any) -> List[JSONType]:
+    def get_acls(self, **kwargs: Any) -> List[ET.Element]:
         """Gets storage ACLs for a container.
 
         :keyword comp: The default value is "acl". Note that overriding this default value may result
@@ -1904,8 +1906,8 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :keyword restype: The default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
-        :return: list of JSON object
-        :rtype: list[JSONType]
+        :return: list of XML Element
+        :rtype: list[ET.Element]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1926,7 +1928,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[ET.Element]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1937,9 +1939,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             comp=comp,
             restype=restype,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1960,12 +1962,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_acls(  # pylint: disable=inconsistent-return-statements
-        self, properties: List[JSONType], **kwargs: Any
+        self, properties: List[ET.Element], **kwargs: Any
     ) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
-        :type properties: list[JSONType]
+        :type properties: list[ET.Element]
         :keyword comp: The default value is "acl". Note that overriding this default value may result
          in unsupported behavior.
         :paramtype comp: str
@@ -2010,9 +2012,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2025,7 +2027,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def list_blobs(self, **kwargs: Any) -> JSONType:
+    def list_blobs(self, **kwargs: Any) -> ET.Element:
         """Lists blobs in a storage container.
 
         :keyword comp: The default value is "list". Note that overriding this default value may result
@@ -2034,8 +2036,8 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :keyword restype: The default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
-        :return: JSON object
-        :rtype: JSONType
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2130,7 +2132,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
                     "ServiceEndpoint": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2141,9 +2143,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             comp=comp,
             restype=restype,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2193,9 +2195,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2228,9 +2230,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_json_output_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2250,12 +2252,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def get_xms_text(self, **kwargs: Any) -> JSONType:
+    def get_xms_text(self, **kwargs: Any) -> ET.Element:
         """Get back an XML object with an x-ms-text property, which should translate to the returned
         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
-        :return: JSON object
-        :rtype: JSONType
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2267,14 +2269,14 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
                     "language": "str"  # Optional. Returned value should be 'english'.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_xms_text_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2314,9 +2316,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_bytes_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2365,9 +2367,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2400,9 +2402,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_uri_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2451,9 +2453,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

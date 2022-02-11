@@ -66,7 +66,7 @@ def build_files_get_empty_file_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
-class FilesOperations(object):
+class FilesOperations:
     """FilesOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -97,9 +97,9 @@ class FilesOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_files_get_file_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
         response = pipeline_response.http_response
@@ -128,9 +128,9 @@ class FilesOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_files_get_file_large_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
         response = pipeline_response.http_response
@@ -159,9 +159,9 @@ class FilesOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_files_get_empty_file_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
         response = pipeline_response.http_response

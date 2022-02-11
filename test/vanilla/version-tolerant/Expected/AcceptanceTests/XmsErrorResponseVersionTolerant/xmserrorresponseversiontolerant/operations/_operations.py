@@ -83,7 +83,7 @@ def build_pet_has_models_param_request(*, models: Optional[str] = "value1", **kw
     return HttpRequest(method="POST", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
-class PetOperations(object):
+class PetOperations:
     """PetOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -133,9 +133,9 @@ class PetOperations(object):
         request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -186,9 +186,9 @@ class PetOperations(object):
         request = build_pet_do_something_request(
             what_action=what_action,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -233,9 +233,9 @@ class PetOperations(object):
         request = build_pet_has_models_param_request(
             models=models,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

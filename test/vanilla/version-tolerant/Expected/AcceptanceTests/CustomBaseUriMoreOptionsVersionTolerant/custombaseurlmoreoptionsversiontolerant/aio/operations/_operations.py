@@ -78,9 +78,9 @@ class PathsOperations:
                 "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
             ),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

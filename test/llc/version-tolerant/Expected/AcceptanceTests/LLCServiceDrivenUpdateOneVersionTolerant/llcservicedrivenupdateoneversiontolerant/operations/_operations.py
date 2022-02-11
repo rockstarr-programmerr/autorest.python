@@ -145,7 +145,7 @@ def build_params_get_new_operation_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
-class ParamsOperations(object):
+class ParamsOperations:
     """ParamsOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -180,9 +180,9 @@ class ParamsOperations(object):
         request = build_params_head_no_params_request(
             new_parameter=new_parameter,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -221,9 +221,9 @@ class ParamsOperations(object):
             parameter=parameter,
             new_parameter=new_parameter,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -272,9 +272,9 @@ class ParamsOperations(object):
             optional_param=optional_param,
             new_parameter=new_parameter,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -314,6 +314,7 @@ class ParamsOperations(object):
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             _json = parameter
         elif content_type.split(";")[0] in ["image/jpeg"]:
@@ -329,9 +330,9 @@ class ParamsOperations(object):
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -363,9 +364,9 @@ class ParamsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_params_delete_parameters_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -399,9 +400,9 @@ class ParamsOperations(object):
             optional_param=optional_param,
             new_parameter=new_parameter,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -433,9 +434,9 @@ class ParamsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_params_get_new_operation_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

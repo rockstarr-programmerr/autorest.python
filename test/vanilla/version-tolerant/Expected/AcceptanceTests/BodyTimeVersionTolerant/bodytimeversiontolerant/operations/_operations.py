@@ -59,7 +59,7 @@ def build_time_put_request(*, json: JSONType = None, content: Any = None, **kwar
     return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
-class TimeOperations(object):
+class TimeOperations:
     """TimeOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -90,9 +90,9 @@ class TimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_time_get_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -133,9 +133,9 @@ class TimeOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

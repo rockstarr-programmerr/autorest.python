@@ -110,9 +110,9 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -151,9 +151,9 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -359,9 +359,9 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -471,9 +471,9 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -629,9 +629,9 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -683,9 +683,9 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -812,7 +812,7 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
@@ -820,7 +820,7 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -958,7 +958,7 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
@@ -967,7 +967,7 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -1043,9 +1043,9 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1125,9 +1125,9 @@ class UsageOperations:
             subscription_id=self._config.subscription_id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

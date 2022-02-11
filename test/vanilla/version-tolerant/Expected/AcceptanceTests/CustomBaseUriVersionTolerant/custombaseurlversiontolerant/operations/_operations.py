@@ -40,7 +40,7 @@ def build_paths_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
-class PathsOperations(object):
+class PathsOperations:
     """PathsOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -77,9 +77,9 @@ class PathsOperations(object):
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

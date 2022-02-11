@@ -56,7 +56,7 @@ def build_paths_get_empty_request(
     return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
-class PathsOperations(object):
+class PathsOperations:
     """PathsOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -108,9 +108,9 @@ class PathsOperations(object):
                 "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
             ),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

@@ -390,7 +390,7 @@ def build_paging_get_paging_model_with_item_name_with_xms_client_name_request(**
     return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
-class PagingOperations(object):
+class PagingOperations:
     """PagingOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -440,12 +440,12 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_no_item_name_pages_request()
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_get_no_item_name_pages_request()
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -504,12 +504,12 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_null_next_link_name_pages_request()
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_get_null_next_link_name_pages_request()
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -568,12 +568,12 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_single_pages_request()
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_get_single_pages_request()
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -633,12 +633,12 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_first_response_empty_request()
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_first_response_empty_request()
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -716,7 +716,7 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
@@ -725,7 +725,7 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                 )
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -797,14 +797,14 @@ class PagingOperations(object):
                     query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_next_operation_with_query_params_request(
                     query_constant=query_constant,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
 
@@ -882,7 +882,7 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
@@ -891,7 +891,7 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                 )
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -973,7 +973,7 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
@@ -983,7 +983,7 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                 )
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -1043,12 +1043,12 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_multiple_pages_retry_first_request()
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_get_multiple_pages_retry_first_request()
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -1108,12 +1108,12 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_multiple_pages_retry_second_request()
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_get_multiple_pages_retry_second_request()
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -1172,12 +1172,12 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_single_pages_failure_request()
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_get_single_pages_failure_request()
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -1236,12 +1236,12 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_multiple_pages_failure_request()
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_get_multiple_pages_failure_request()
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -1300,12 +1300,12 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_multiple_pages_failure_uri_request()
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_get_multiple_pages_failure_uri_request()
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -1374,7 +1374,7 @@ class PagingOperations(object):
                     tenant=tenant,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
@@ -1383,7 +1383,7 @@ class PagingOperations(object):
                     next_link=next_link,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
 
@@ -1452,7 +1452,7 @@ class PagingOperations(object):
                     tenant=tenant,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
@@ -1461,7 +1461,7 @@ class PagingOperations(object):
                     next_link=next_link,
                     api_version=api_version,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             return request
 
@@ -1505,9 +1505,9 @@ class PagingOperations(object):
             maxresults=maxresults,
             timeout=timeout,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1568,7 +1568,7 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
@@ -1577,7 +1577,7 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                 )
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
@@ -1672,12 +1672,12 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request()
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(request.url)  # type: ignore
 
             else:
 
                 request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request()
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
             return request
 
