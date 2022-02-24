@@ -207,7 +207,9 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
             lambda parameter: parameter.implementation == self.implementation
         )
         positional = [p for p in parameters_of_this_implementation if p.is_positional]
-        keyword_only = [p for p in parameters_of_this_implementation if p.is_keyword_only]
+        keyword_only = self._filter_out_multiple_content_type(
+            [p for p in parameters_of_this_implementation if p.is_keyword_only]
+        )
         kwargs = self._filter_out_multiple_content_type(
             [p for p in parameters_of_this_implementation if p.is_kwarg]
         )
