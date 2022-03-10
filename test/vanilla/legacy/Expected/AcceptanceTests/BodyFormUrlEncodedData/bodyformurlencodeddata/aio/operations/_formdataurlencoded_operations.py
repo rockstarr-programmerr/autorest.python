@@ -32,26 +32,23 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class FormdataurlencodedOperations:
-    """FormdataurlencodedOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodyformurlencodeddata.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~bodyformurlencodeddata.aio.BodyFormsDataURLEncoded`'s
+        :attr:`formdataurlencoded` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def update_pet_with_form(  # pylint: disable=inconsistent-return-statements
@@ -76,9 +73,9 @@ class FormdataurlencodedOperations:
         :type pet_food: str or ~bodyformurlencodeddata.models.PetFood
         :param pet_age: How many years is it old?.
         :type pet_age: int
-        :param name: Updated name of the pet.
+        :param name: Updated name of the pet. Default value is None.
         :type name: str
-        :param status: Updated status of the pet.
+        :param status: Updated status of the pet. Default value is None.
         :type status: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -135,8 +132,8 @@ class FormdataurlencodedOperations:
         :param access_token: AAD access token, mandatory when grant_type is access_token_refresh_token
          or access_token.
         :type access_token: str
-        :keyword grant_type: Constant part of a formdata body. The default value is "access_token".
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword grant_type: Constant part of a formdata body. Default value is "access_token". Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype grant_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

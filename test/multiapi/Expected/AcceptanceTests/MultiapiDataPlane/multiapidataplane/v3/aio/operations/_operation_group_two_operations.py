@@ -21,40 +21,41 @@ T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class OperationGroupTwoOperations:
-    """OperationGroupTwoOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~multiapidataplane.v3.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~multiapidataplane.v3.aio.MultiapiServiceClient`'s
+        :attr:`operation_group_two` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+
 
     @distributed_trace_async
     async def test_four(  # pylint: disable=inconsistent-return-statements
         self,
         input: Optional[Union[IO, "_models.SourcePath"]] = None,
+        *,
+        content_type: Optional[Union[str, "_models.ContentType"]] = "application/json",
         **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: IO or ~multiapidataplane.v3.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
-         "image/tiff", "application/json."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
+         value is "application/json".
+        :paramtype content_type: str or ~multiapidataplane.v3.models.ContentType
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -67,7 +68,6 @@ class OperationGroupTwoOperations:
         error_map.update(kwargs.pop('error_map', {}))
 
         api_version = kwargs.pop('api_version', "3.0.0")  # type: str
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[Union[str, "_models.ContentType"]]
 
         _json = None
         _content = None

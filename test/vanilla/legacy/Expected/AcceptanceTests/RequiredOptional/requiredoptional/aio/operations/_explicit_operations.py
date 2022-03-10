@@ -54,26 +54,23 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ExplicitOperations:  # pylint: disable=too-many-public-methods
-    """ExplicitOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~requiredoptional.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~requiredoptional.aio.AutoRestRequiredOptionalTestService`'s
+        :attr:`explicit` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
@@ -81,7 +78,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional body parameter.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -214,7 +211,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -307,7 +304,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
-        :param value:
+        :param value:  Default value is None.
         :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -395,7 +392,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-        :param header_parameter:
+        :param header_parameter:  Default value is None.
         :type header_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -479,7 +476,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional string. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -572,7 +569,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
-        :param value:
+        :param value:  Default value is None.
         :type value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -660,7 +657,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -744,7 +741,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: ~requiredoptional.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -837,7 +834,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
-        :param value:
+        :param value:  Default value is None.
         :type value: ~requiredoptional.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -930,7 +927,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional array. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1023,7 +1020,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
-        :param value:
+        :param value:  Default value is None.
         :type value: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1111,7 +1108,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-        :param header_parameter:
+        :param header_parameter:  Default value is None.
         :type header_parameter: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

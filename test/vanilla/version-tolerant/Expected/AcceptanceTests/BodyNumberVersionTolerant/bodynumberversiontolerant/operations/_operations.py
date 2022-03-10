@@ -363,22 +363,21 @@ def build_number_get_small_decimal_request(**kwargs: Any) -> HttpRequest:
 
 
 class NumberOperations:  # pylint: disable=too-many-public-methods
-    """NumberOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~bodynumberversiontolerant.AutoRestNumberTestService`'s
+        :attr:`number` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_null(self, **kwargs: Any) -> Optional[float]:
@@ -404,10 +403,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -438,10 +434,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -472,10 +465,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -506,10 +496,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -578,10 +565,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -650,10 +634,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -664,7 +645,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     def put_big_double_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big double value 99999999.99.
 
-        :keyword number_body: The default value is 99999999.99. Note that overriding this default value
+        :keyword number_body:  Default value is 99999999.99. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
@@ -720,10 +701,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -734,8 +712,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     def put_big_double_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big double value -99999999.99.
 
-        :keyword number_body: The default value is -99999999.99. Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword number_body:  Default value is -99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
         :rtype: None
@@ -790,10 +768,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -862,10 +837,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -876,7 +848,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big decimal value 99999999.99.
 
-        :keyword number_body: The default value is 99999999.99. Note that overriding this default value
+        :keyword number_body:  Default value is 99999999.99. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
@@ -932,10 +904,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -946,8 +915,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big decimal value -99999999.99.
 
-        :keyword number_body: The default value is -99999999.99. Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword number_body:  Default value is -99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
         :rtype: None
@@ -1002,10 +971,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1074,10 +1040,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1146,10 +1109,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1218,10 +1178,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})

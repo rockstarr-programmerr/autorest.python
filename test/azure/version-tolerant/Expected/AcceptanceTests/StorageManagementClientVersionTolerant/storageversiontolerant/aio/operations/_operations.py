@@ -44,31 +44,35 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class StorageAccountsOperations:
-    """StorageAccountsOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~storageversiontolerant.aio.StorageManagementClient`'s
+        :attr:`storage_accounts` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def check_name_availability(self, account_name: JSONType, **kwargs: Any) -> JSONType:
+    async def check_name_availability(
+        self, account_name: JSONType, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> JSONType:
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: JSONType
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -100,7 +104,6 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _json = account_name
 
@@ -121,10 +124,7 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -132,14 +132,19 @@ class StorageAccountsOperations:
         return deserialized
 
     async def _create_initial(
-        self, resource_group_name: str, account_name: str, parameters: JSONType, **kwargs: Any
+        self,
+        resource_group_name: str,
+        account_name: str,
+        parameters: JSONType,
+        *,
+        content_type: Optional[str] = "application/json",
+        **kwargs: Any
     ) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _json = parameters
 
@@ -176,7 +181,13 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def begin_create(
-        self, resource_group_name: str, account_name: str, parameters: JSONType, **kwargs: Any
+        self,
+        resource_group_name: str,
+        account_name: str,
+        parameters: JSONType,
+        *,
+        content_type: Optional[str] = "application/json",
+        **kwargs: Any
     ) -> AsyncLROPoller[JSONType]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
@@ -191,6 +202,9 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: JSONType
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -289,7 +303,6 @@ class StorageAccountsOperations:
                 }
         """
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -299,8 +312,8 @@ class StorageAccountsOperations:
                 resource_group_name=resource_group_name,
                 account_name=account_name,
                 parameters=parameters,
-                api_version=api_version,
                 content_type=content_type,
+                api_version=api_version,
                 cls=lambda x, y, z: x,
                 **kwargs
             )
@@ -308,10 +321,7 @@ class StorageAccountsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -482,10 +492,7 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -494,7 +501,13 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def update(
-        self, resource_group_name: str, account_name: str, parameters: JSONType, **kwargs: Any
+        self,
+        resource_group_name: str,
+        account_name: str,
+        parameters: JSONType,
+        *,
+        content_type: Optional[str] = "application/json",
+        **kwargs: Any
     ) -> JSONType:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
@@ -513,6 +526,9 @@ class StorageAccountsOperations:
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
         :type parameters: JSONType
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -617,7 +633,6 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _json = parameters
 
@@ -640,10 +655,7 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -694,10 +706,7 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -818,7 +827,6 @@ class StorageAccountsOperations:
 
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
-                    api_version=api_version,
                 )
                 request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
@@ -965,7 +973,6 @@ class StorageAccountsOperations:
                 request = build_storage_accounts_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
-                    api_version=api_version,
                 )
                 request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
@@ -996,7 +1003,13 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def regenerate_key(
-        self, resource_group_name: str, account_name: str, regenerate_key: JSONType, **kwargs: Any
+        self,
+        resource_group_name: str,
+        account_name: str,
+        regenerate_key: JSONType,
+        *,
+        content_type: Optional[str] = "application/json",
+        **kwargs: Any
     ) -> JSONType:
         """Regenerates the access keys for the specified storage account.
 
@@ -1008,6 +1021,9 @@ class StorageAccountsOperations:
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated.
         :type regenerate_key: JSONType
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1031,7 +1047,6 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _json = regenerate_key
 
@@ -1054,10 +1069,7 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1066,22 +1078,21 @@ class StorageAccountsOperations:
 
 
 class UsageOperations:
-    """UsageOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~storageversiontolerant.aio.StorageManagementClient`'s
+        :attr:`usage` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def list(self, **kwargs: Any) -> JSONType:
@@ -1136,10 +1147,7 @@ class UsageOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})

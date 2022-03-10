@@ -7,6 +7,8 @@
 
 from abc import ABC
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 
 from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
@@ -26,3 +28,5 @@ def _format_url_section(template, **kwargs):
 class MixinABC(ABC):
     _client: PipelineClient
     _config: AutoRestResourceFlatteningTestServiceConfiguration
+    _serializer: Serializer
+    _deserializer: Deserializer

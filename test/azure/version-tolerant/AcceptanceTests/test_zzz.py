@@ -36,12 +36,11 @@ class TestAcceptance(object):
         report = client.get_report(qualifier=platform.python_version())
 
         # Add tests that wont be supported due to the nature of Python here
-        not_supported = {}
+        not_supported = {
+        }
 
         # Please add missing features or failing tests here
-        missing_features_or_bugs = {
-            "LROPatchInlineCompleteIgnoreHeaders": 1,
-        }
+        missing_features_or_bugs = {}
 
         print("Coverage:")
         self._print_report(report, not_supported, missing_features_or_bugs)

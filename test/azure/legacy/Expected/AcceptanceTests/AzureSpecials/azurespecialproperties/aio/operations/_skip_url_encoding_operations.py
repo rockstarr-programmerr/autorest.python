@@ -38,26 +38,23 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class SkipUrlEncodingOperations:
-    """SkipUrlEncodingOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azurespecialproperties.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`skip_url_encoding` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_method_path_valid(  # pylint: disable=inconsistent-return-statements
@@ -141,8 +138,8 @@ class SkipUrlEncodingOperations:
     async def get_swagger_path_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
-         default value is "path1/path2/path3". Note that overriding this default value may result in
+        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
+         Default value is "path1/path2/path3". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype unencoded_path_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -223,7 +220,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded query parameter with value null.
 
-        :param q1: Unencoded query parameter with value null.
+        :param q1: Unencoded query parameter with value null. Default value is None.
         :type q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -299,7 +296,7 @@ class SkipUrlEncodingOperations:
     async def get_swagger_query_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
+        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. Default
          value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype q1: str

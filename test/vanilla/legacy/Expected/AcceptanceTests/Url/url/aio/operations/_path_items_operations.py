@@ -34,26 +34,23 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class PathItemsOperations:
-    """PathItemsOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~url.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~url.aio.AutoRestUrlTestService`'s
+        :attr:`path_items` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_all_with_values(  # pylint: disable=inconsistent-return-statements
@@ -73,9 +70,9 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'.
+        :param local_string_query: should contain value 'localStringQuery'. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -131,9 +128,9 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'.
+        :param local_string_query: should contain value 'localStringQuery'. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -189,9 +186,9 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :type path_item_string_query: str
-        :param local_string_query: should contain null value.
+        :param local_string_query: should contain null value. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -246,9 +243,9 @@ class PathItemsOperations:
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: should contain value null.
+        :param path_item_string_query: should contain value null. Default value is None.
         :type path_item_string_query: str
-        :param local_string_query: should contain value null.
+        :param local_string_query: should contain value null. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

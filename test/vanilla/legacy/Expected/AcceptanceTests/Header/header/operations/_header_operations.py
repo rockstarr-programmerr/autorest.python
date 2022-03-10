@@ -723,26 +723,23 @@ def build_custom_request_id_request(
 
 # fmt: on
 class HeaderOperations(object):  # pylint: disable=too-many-public-methods
-    """HeaderOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~header.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~header.AutoRestSwaggerBATHeaderService`'s
+        :attr:`header` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def param_existing_key(  # pylint: disable=inconsistent-return-statements
@@ -1381,7 +1378,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          "empty".
         :type scenario: str
         :param value: Send a post request with header values "The quick brown fox jumps over the lazy
-         dog" or null or "".
+         dog" or null or "". Default value is None.
         :type value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1660,7 +1657,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
-         01 Jan 0001 00:00:00 GMT".
+         01 Jan 0001 00:00:00 GMT". Default value is None.
         :type value: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1936,7 +1933,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
         :type scenario: str
-        :param value: Send a post request with header values 'GREY'.
+        :param value: Send a post request with header values 'GREY'. Default value is None.
         :type value: str or ~header.models.GreyscaleColors
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

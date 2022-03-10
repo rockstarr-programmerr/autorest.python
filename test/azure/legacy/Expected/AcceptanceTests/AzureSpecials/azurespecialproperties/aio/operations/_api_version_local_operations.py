@@ -35,33 +35,30 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ApiVersionLocalOperations:
-    """ApiVersionLocalOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azurespecialproperties.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`api_version_local` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_method_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
-         value is "2.0". Note that overriding this default value may result in unsupported behavior.
+        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
+         is "2.0". Note that overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -103,7 +100,7 @@ class ApiVersionLocalOperations:
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
         :param api_version: This should appear as a method parameter, use value null, this should
-         result in no serialized parameter.
+         result in no serialized parameter. Default value is None.
         :type api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -140,8 +137,8 @@ class ApiVersionLocalOperations:
     async def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
-         value is "2.0". Note that overriding this default value may result in unsupported behavior.
+        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
+         is "2.0". Note that overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -181,7 +178,7 @@ class ApiVersionLocalOperations:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
-         The default value is "2.0". Note that overriding this default value may result in unsupported
+         Default value is "2.0". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response

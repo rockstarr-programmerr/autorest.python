@@ -35,26 +35,23 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ParameterGroupingOperations:
-    """ParameterGroupingOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azureparametergrouping.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azureparametergrouping.aio.AutoRestParameterGroupingTestService`'s
+        :attr:`parameter_grouping` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def post_required(  # pylint: disable=inconsistent-return-statements
@@ -123,7 +120,7 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
-        :param parameter_grouping_post_optional_parameters: Parameter group.
+        :param parameter_grouping_post_optional_parameters: Parameter group. Default value is None.
         :type parameter_grouping_post_optional_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -174,7 +171,8 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post a grouped parameters with reserved words.
 
-        :param parameter_grouping_post_reserved_words_parameters: Parameter group.
+        :param parameter_grouping_post_reserved_words_parameters: Parameter group. Default value is
+         None.
         :type parameter_grouping_post_reserved_words_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostReservedWordsParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -226,9 +224,10 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post parameters from multiple different parameter groups.
 
-        :param first_parameter_group: Parameter group.
+        :param first_parameter_group: Parameter group. Default value is None.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
-        :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
+        :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group. Default
+         value is None.
         :type parameter_grouping_post_multi_param_groups_second_param_group:
          ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -282,7 +281,7 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post parameters with a shared parameter group object.
 
-        :param first_parameter_group: Parameter group.
+        :param first_parameter_group: Parameter group. Default value is None.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

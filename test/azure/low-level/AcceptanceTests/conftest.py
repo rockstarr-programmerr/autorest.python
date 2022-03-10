@@ -37,7 +37,7 @@ cwd = dirname(realpath(__file__))
 
 #Ideally this would be in a common helper library shared between the tests
 def start_server_process():
-    cmd = "node {}/../../../../node_modules/@microsoft.azure/autorest.testserver".format(cwd)
+    cmd = "node {}/../../../../node_modules/@microsoft.azure/autorest.testserver/dist/cli/cli.js run --appendCoverage".format(cwd)
     if os.name == 'nt': #On windows, subprocess creation works without being in the shell
         return subprocess.Popen(cmd)
 
@@ -56,11 +56,6 @@ def testserver():
     server = start_server_process()
     yield
     terminate_server_process(server)
-
-# Ignore collection of async tests for Python 2
-collect_ignore = []
-if sys.version_info < (3,5):
-    collect_ignore.append("asynctests")
 
 @pytest.fixture()
 def base_send_request():

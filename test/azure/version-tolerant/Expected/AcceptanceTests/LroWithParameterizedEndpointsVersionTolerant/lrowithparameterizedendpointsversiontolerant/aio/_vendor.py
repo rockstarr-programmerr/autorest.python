@@ -7,6 +7,8 @@
 
 from abc import ABC
 
+from msrest import Deserializer, Serializer
+
 from azure.core import AsyncPipelineClient
 
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
@@ -26,3 +28,5 @@ def _format_url_section(template, **kwargs):
 class MixinABC(ABC):
     _client: AsyncPipelineClient
     _config: LROWithParamaterizedEndpointsConfiguration
+    _serializer: Serializer
+    _deserializer: Deserializer

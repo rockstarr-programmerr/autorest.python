@@ -7,6 +7,8 @@
 
 from abc import ABC
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 
 from ._configuration import AutoRestReportServiceConfiguration
@@ -15,3 +17,5 @@ from ._configuration import AutoRestReportServiceConfiguration
 class MixinABC(ABC):
     _client: PipelineClient
     _config: AutoRestReportServiceConfiguration
+    _serializer: Serializer
+    _deserializer: Deserializer

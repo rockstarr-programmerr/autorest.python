@@ -7,6 +7,8 @@
 
 from abc import ABC
 
+from msrest import Deserializer, Serializer
+
 from azure.core import AsyncPipelineClient
 
 from ._configuration import IncorrectReturnedErrorModelConfiguration
@@ -15,3 +17,5 @@ from ._configuration import IncorrectReturnedErrorModelConfiguration
 class MixinABC(ABC):
     _client: AsyncPipelineClient
     _config: IncorrectReturnedErrorModelConfiguration
+    _serializer: Serializer
+    _deserializer: Deserializer

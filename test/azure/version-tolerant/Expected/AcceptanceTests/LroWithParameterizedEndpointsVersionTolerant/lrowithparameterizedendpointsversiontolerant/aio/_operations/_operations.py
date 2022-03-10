@@ -100,10 +100,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -184,8 +181,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
 
         :param account_name: Account Name. Pass in 'local' to pass test.
         :type account_name: str
-        :keyword constant_parameter: Next link for the list operation. The default value is
-         "iAmConstant". Note that overriding this default value may result in unsupported behavior.
+        :keyword constant_parameter: Next link for the list operation. Default value is "iAmConstant".
+         Note that overriding this default value may result in unsupported behavior.
         :paramtype constant_parameter: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
@@ -211,10 +208,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized

@@ -121,26 +121,23 @@ def build_array_string_multi_valid_request(
 
 # fmt: on
 class QueriesOperations(object):
-    """QueriesOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~urlmulticollectionformat.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~urlmulticollectionformat.AutoRestUrlMutliCollectionFormatTestService`'s
+        :attr:`queries` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def array_string_multi_null(  # pylint: disable=inconsistent-return-statements
@@ -151,7 +148,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get a null array of string using the multi-array format.
 
-        :param array_query: a null array of string using the multi-array format.
+        :param array_query: a null array of string using the multi-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -193,7 +190,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get an empty array [] of string using the multi-array format.
 
-        :param array_query: an empty array [] of string using the multi-array format.
+        :param array_query: an empty array [] of string using the multi-array format. Default value is
+         None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -237,7 +235,7 @@ class QueriesOperations(object):
         mult-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the mult-array format.
+         ''] using the mult-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

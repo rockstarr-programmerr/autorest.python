@@ -60,7 +60,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_default_request(
 
 
 def build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"
@@ -272,22 +272,21 @@ def build_contants_put_client_constants_request(**kwargs: Any) -> HttpRequest:
 
 
 class ContantsOperations:
-    """ContantsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~constantsversiontolerant.AutoRestSwaggerConstantService`'s
+        :attr:`contants` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
@@ -297,7 +296,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -332,7 +331,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -361,13 +360,13 @@ class ContantsOperations:
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1".
+        :keyword input: Possible values are "value1" or None. Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -402,7 +401,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1".
+        :keyword input: Possible values are "value1" or None. Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -472,7 +471,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -507,8 +506,8 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1". Note that overriding this default value may
-         result in unsupported behavior.
+        :keyword input:  Default value is "value1". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -545,8 +544,8 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1". Note that overriding this default value may
-         result in unsupported behavior.
+        :keyword input:  Default value is "value1". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -583,7 +582,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -618,7 +617,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -653,7 +652,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: "value1"
+        :keyword input: "value1" Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -688,7 +687,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: "value1"
+        :keyword input: "value1" Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -758,7 +757,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -828,7 +827,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: "value1"
+        :keyword input: "value1" Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None

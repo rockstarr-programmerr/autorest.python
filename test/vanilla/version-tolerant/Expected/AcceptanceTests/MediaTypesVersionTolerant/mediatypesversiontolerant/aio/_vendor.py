@@ -7,6 +7,8 @@
 
 from abc import ABC
 
+from msrest import Deserializer, Serializer
+
 from azure.core import AsyncPipelineClient
 
 from ._configuration import MediaTypesClientConfiguration
@@ -15,3 +17,5 @@ from ._configuration import MediaTypesClientConfiguration
 class MixinABC(ABC):
     _client: AsyncPipelineClient
     _config: MediaTypesClientConfiguration
+    _serializer: Serializer
+    _deserializer: Deserializer

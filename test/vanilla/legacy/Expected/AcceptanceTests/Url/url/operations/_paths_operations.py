@@ -756,26 +756,23 @@ def build_unix_time_url_request(
 
 # fmt: on
 class PathsOperations(object):  # pylint: disable=too-many-public-methods
-    """PathsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~url.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~url.AutoRestUrlTestService`'s
+        :attr:`paths` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_boolean_true(  # pylint: disable=inconsistent-return-statements
@@ -784,7 +781,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get true Boolean value on path.
 
-        :keyword bool_path: true boolean value. The default value is True. Note that overriding this
+        :keyword bool_path: true boolean value. Default value is True. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -827,7 +824,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get false Boolean value on path.
 
-        :keyword bool_path: false boolean value. The default value is False. Note that overriding this
+        :keyword bool_path: false boolean value. Default value is False. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -870,8 +867,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '1000000' integer value.
 
-        :keyword int_path: '1000000' integer value. The default value is 1000000. Note that overriding
-         this default value may result in unsupported behavior.
+        :keyword int_path: '1000000' integer value. Default value is 1000000. Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype int_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -913,8 +910,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '-1000000' integer value.
 
-        :keyword int_path: '-1000000' integer value. The default value is -1000000. Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword int_path: '-1000000' integer value. Default value is -1000000. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype int_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -956,8 +953,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
-        :keyword long_path: '10000000000' 64 bit integer value. The default value is 10000000000. Note
-         that overriding this default value may result in unsupported behavior.
+        :keyword long_path: '10000000000' 64 bit integer value. Default value is 10000000000. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype long_path: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -999,8 +996,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
 
-        :keyword long_path: '-10000000000' 64 bit integer value. The default value is -10000000000.
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword long_path: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype long_path: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1042,7 +1039,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
-        :keyword float_path: '1.034E+20'numeric value. The default value is 103400000000000000000. Note
+        :keyword float_path: '1.034E+20'numeric value. Default value is 103400000000000000000. Note
          that overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1085,7 +1082,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
 
-        :keyword float_path: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+        :keyword float_path: '-1.034E-20'numeric value. Default value is -1.034e-20. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1128,7 +1125,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '9999999.999' numeric value.
 
-        :keyword double_path: '9999999.999'numeric value. The default value is 9999999.999. Note that
+        :keyword double_path: '9999999.999'numeric value. Default value is 9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1171,7 +1168,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
 
-        :keyword double_path: '-9999999.999'numeric value. The default value is -9999999.999. Note that
+        :keyword double_path: '-9999999.999'numeric value. Default value is -9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1214,8 +1211,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. Default value is "啊齄丂狛狜隣郎隣兀﨩". Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1257,8 +1254,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
-         is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
+        :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. Default value is
+         "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1303,7 +1300,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
-        :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. The default value is
+        :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. Default value is
          "begin!*'();:@&=+$,end". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype string_path: str
@@ -1347,8 +1344,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get ''.
 
-        :keyword string_path: '' string value. The default value is "". Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword string_path: '' string value. Default value is "". Note that overriding this default
+         value may result in unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1558,8 +1555,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '' as byte array.
 
-        :keyword byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8").
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword byte_path: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype byte_path: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1643,8 +1640,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '2012-01-01' as date.
 
-        :keyword date_path: '2012-01-01' as date. The default value is "2012-01-01". Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword date_path: '2012-01-01' as date. Default value is "2012-01-01". Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype date_path: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1729,7 +1726,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
+        :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. Default value is
          "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype date_time_path: ~datetime.datetime

@@ -1529,22 +1529,21 @@ def build_multiple_responses_get200_model_a202_valid_request(**kwargs: Any) -> H
 
 
 class HttpFailureOperations:
-    """HttpFailureOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_failure` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_empty_error(self, **kwargs: Any) -> bool:
@@ -1570,10 +1569,7 @@ class HttpFailureOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1604,10 +1600,7 @@ class HttpFailureOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1638,10 +1631,7 @@ class HttpFailureOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1650,22 +1640,21 @@ class HttpFailureOperations:
 
 
 class HttpSuccessOperations:
-    """HttpSuccessOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_success` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head200(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1718,10 +1707,7 @@ class HttpSuccessOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1752,10 +1738,7 @@ class HttpSuccessOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1764,11 +1747,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put boolean value true returning 200 success.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1805,11 +1789,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def patch200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1846,11 +1831,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1887,11 +1873,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def delete200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Delete simple boolean value true returns 200.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1928,11 +1915,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 201.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1969,11 +1957,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2010,11 +1999,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2051,11 +2041,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def patch202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2092,11 +2083,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2133,11 +2125,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def delete202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2201,11 +2194,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2242,11 +2236,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def patch204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2283,11 +2278,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2324,11 +2320,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def delete204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2392,22 +2389,21 @@ class HttpSuccessOperations:
 
 
 class HttpRedirectsOperations:
-    """HttpRedirectsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_redirects` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head300(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2551,12 +2547,13 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def put301(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2658,12 +2655,13 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def patch302(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2703,12 +2701,13 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def post303(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2842,11 +2841,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def put307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2887,11 +2887,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def patch307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2932,11 +2933,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def post307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2977,11 +2979,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def delete307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3022,22 +3025,21 @@ class HttpRedirectsOperations:
 
 
 class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
-    """HttpClientFailureOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_client_failure` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -3122,11 +3124,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3163,11 +3166,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def patch400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3204,11 +3208,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3245,11 +3250,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def delete400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3394,11 +3400,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put404(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3435,11 +3442,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def patch405(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3476,11 +3484,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post406(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3517,11 +3526,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def delete407(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3558,11 +3568,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put409(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3707,11 +3718,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put413(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3748,11 +3760,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def patch414(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3789,11 +3802,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post415(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3857,11 +3871,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def delete417(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3925,22 +3940,21 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
 
 class HttpServerFailureOperations:
-    """HttpServerFailureOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_server_failure` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head501(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -3998,11 +4012,12 @@ class HttpServerFailureOperations:
 
     @distributed_trace
     def post505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4039,11 +4054,12 @@ class HttpServerFailureOperations:
 
     @distributed_trace
     def delete505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4080,22 +4096,21 @@ class HttpServerFailureOperations:
 
 
 class HttpRetryOperations:
-    """HttpRetryOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_retry` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head408(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -4126,11 +4141,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def put500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4167,11 +4183,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def patch500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4257,10 +4274,7 @@ class HttpRetryOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4269,11 +4283,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def post503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4310,11 +4325,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def delete503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4351,11 +4367,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def put504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4392,11 +4409,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def patch504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4433,22 +4451,21 @@ class HttpRetryOperations:
 
 
 class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
-    """MultipleResponsesOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`multiple_responses` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[JSONType]:
@@ -4708,16 +4725,10 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4762,16 +4773,10 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4816,16 +4821,10 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4873,22 +4872,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 404:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4936,22 +4926,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 404:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4999,22 +4980,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 404:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5062,22 +5034,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 404:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5319,10 +5282,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5361,10 +5321,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5566,10 +5523,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5608,10 +5562,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5650,10 +5601,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5692,10 +5640,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5734,10 +5679,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5776,10 +5718,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5818,10 +5757,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})

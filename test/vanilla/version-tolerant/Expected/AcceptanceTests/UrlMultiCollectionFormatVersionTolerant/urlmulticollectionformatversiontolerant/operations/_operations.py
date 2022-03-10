@@ -93,22 +93,21 @@ def build_queries_array_string_multi_valid_request(
 
 
 class QueriesOperations:
-    """QueriesOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~urlmulticollectionformatversiontolerant.AutoRestUrlMutliCollectionFormatTestService`'s
+        :attr:`queries` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def array_string_multi_null(  # pylint: disable=inconsistent-return-statements
@@ -116,7 +115,8 @@ class QueriesOperations:
     ) -> None:
         """Get a null array of string using the multi-array format.
 
-        :keyword array_query: a null array of string using the multi-array format.
+        :keyword array_query: a null array of string using the multi-array format. Default value is
+         None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -149,7 +149,8 @@ class QueriesOperations:
     ) -> None:
         """Get an empty array [] of string using the multi-array format.
 
-        :keyword array_query: an empty array [] of string using the multi-array format.
+        :keyword array_query: an empty array [] of string using the multi-array format. Default value
+         is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -184,7 +185,7 @@ class QueriesOperations:
         mult-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the mult-array format.
+         ''] using the mult-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None

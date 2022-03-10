@@ -84,22 +84,21 @@ def build_pet_has_models_param_request(*, models: Optional[str] = "value1", **kw
 
 
 class PetOperations:
-    """PetOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~xmserrorresponseversiontolerant.XMSErrorResponseExtensions`'s
+        :attr:`pet` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional[JSONType]:
@@ -197,10 +196,7 @@ class PetOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -215,7 +211,7 @@ class PetOperations:
         conflict with the input param name 'models'.
 
         :keyword models: Make sure model deserialization doesn't conflict with this param name, which
-         has input name 'models'. Use client default value in call.
+         has input name 'models'. Use client default value in call. Default value is "value1".
         :paramtype models: str
         :return: None
         :rtype: None

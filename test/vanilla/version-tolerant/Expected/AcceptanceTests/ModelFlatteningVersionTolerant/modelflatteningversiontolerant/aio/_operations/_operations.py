@@ -47,7 +47,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> None:
         """Put External Resource as an Array.
 
-        :param resource_array: External Resource as an Array to put.
+        :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSONType]
         :return: None
         :rtype: None
@@ -149,10 +149,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -166,7 +163,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        :param resource_array: External Resource as an Array to put.
+        :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSONType]
         :return: None
         :rtype: None
@@ -248,10 +245,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -264,7 +258,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> None:
         """Put External Resource as a Dictionary.
 
-        :param resource_dictionary: External Resource as a Dictionary to put.
+        :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: dict[str, JSONType]
         :return: None
         :rtype: None
@@ -375,10 +369,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -391,7 +382,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
-        :param resource_complex_object: External Resource as a ResourceCollection to put.
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
+         is None.
         :type resource_complex_object: JSONType
         :return: None
         :rtype: None
@@ -592,10 +584,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -606,7 +595,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     async def put_simple_product(self, simple_body_product: JSONType = None, **kwargs: Any) -> JSONType:
         """Put Simple Product with client flattening true on the model.
 
-        :param simple_body_product: Simple body product to put.
+        :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: JSONType
         :return: JSON object
         :rtype: JSONType
@@ -677,10 +666,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -691,7 +677,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     async def post_flattened_simple_product(self, simple_body_product: JSONType = None, **kwargs: Any) -> JSONType:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
-        :param simple_body_product: Simple body product to post.
+        :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: JSONType
         :return: JSON object
         :rtype: JSONType
@@ -762,10 +748,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -780,7 +763,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         :param name: Product name with value 'groupproduct'.
         :type name: str
-        :param simple_body_product: Simple body product to put.
+        :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: JSONType
         :return: JSON object
         :rtype: JSONType
@@ -852,10 +835,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})

@@ -27,6 +27,7 @@ from ..models import (
     SchemaResponse,
     IOSchema,
     ParameterStyle,
+    ParameterLocation
 )
 from . import utils
 
@@ -152,12 +153,21 @@ def _serialize_flattened_body(builder) -> List[str]:
     return retval
 
 def _content_type_docstring(builder) -> str:
-    content_type_str = (
-        ":keyword str content_type: Media type of the body sent to the API. " +
-        f'Default value is "{builder.parameters.default_content_type}". ' +
-        'Allowed values are: "{}."'.format('", "'.join(builder.parameters.content_types))
+    content_types = [f'"{c}"' for c in builder.parameters.content_types]
+    if len(content_types) == 2:
+        possible_values_str = " or ".join(content_types)
+    else:
+        possible_values_str = ", ".join(
+            content_types[: len(content_types) - 1]
+        ) + f", and {content_types[-1]}"
+    default_value = next(
+        p for p in builder.parameters.method if p.rest_api_name == "Content-Type"
+    ).default_value_declaration
+    return (
+        ":keyword content_type: Media type of the body sent to the API. " +
+        f"Possible values are: {possible_values_str}. " +
+        f"Default value is {default_value}."
     )
-    return content_type_str
 
 class _BuilderSerializerProtocol(ABC):
     @property
@@ -304,13 +314,14 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             description_list.append(
                 f":{param.docstring_type_keyword} { param.serialized_name }: { param.docstring_type }"
             )
-        try:
-            request_builder: RequestBuilder = cast(Operation, builder).request_builder
-        except AttributeError:
-            request_builder = cast(RequestBuilder, builder)
 
-        if len(request_builder.schema_requests) > 1:
-            description_list.append(_content_type_docstring(builder))
+        if len(builder.parameters.content_types) > 1:
+            description_list = [
+                _content_type_docstring(builder) if l.startswith(":keyword content_type:") else l
+                for l in description_list
+            ]
+            if not any(l for l in description_list if l.startswith(":keyword content_type:")):
+                description_list.append(_content_type_docstring(builder))
         return description_list
 
     def param_description_and_response_docstring(self, builder) -> List[str]:
@@ -789,6 +800,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         builder,
         request_builder: RequestBuilder,
         template_url: Optional[str] = None,
+        is_next_request: bool = False,
     ) -> List[str]:
         retval = []
         if len(builder.body_kwargs_to_pass_to_request_builder) > 1:
@@ -827,6 +839,16 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 not parameter.constant and
                 parameter.serialized_name not in builder.body_kwargs_to_pass_to_request_builder
             ):
+                continue
+            if (
+                is_next_request and
+                not bool(builder.next_request_builder) and
+                not self.code_model.options["reformat_next_link"] and
+                parameter.location == ParameterLocation.Query
+            ):
+                # if we don't want to reformat query parameters for next link calls
+                # in paging operations with a single swagger operation defintion,
+                # we skip passing query params when building the next request
                 continue
             high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
@@ -1076,11 +1098,13 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         else:
             request_builder = builder.request_builder
             template_url = "next_link"
+
         request_builder = builder.next_request_builder or builder.request_builder
         return self._call_request_builder_helper(
             builder,
             request_builder,
             template_url=template_url,
+            is_next_request=True
         )
 
     def _prepare_request_callback(self, builder) -> List[str]:

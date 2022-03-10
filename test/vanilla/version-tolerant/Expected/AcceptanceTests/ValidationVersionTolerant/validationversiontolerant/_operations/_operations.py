@@ -210,10 +210,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -228,7 +225,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param body:
+        :param body:  Default value is None.
         :type body: JSONType
         :return: JSON object
         :rtype: JSONType
@@ -322,10 +319,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -336,8 +330,8 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
     def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """get_with_constant_in_path.
 
-        :keyword constant_param: The default value is "constant". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword constant_param:  Default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype constant_param: str
         :return: None
         :rtype: None
@@ -370,10 +364,10 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
     def post_with_constant_in_body(self, body: JSONType = None, **kwargs: Any) -> JSONType:
         """post_with_constant_in_body.
 
-        :param body:
+        :param body:  Default value is None.
         :type body: JSONType
-        :keyword constant_param: The default value is "constant". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword constant_param:  Default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype constant_param: str
         :return: JSON object
         :rtype: JSONType
@@ -464,10 +458,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})

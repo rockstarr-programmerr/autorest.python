@@ -73,7 +73,7 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
 
         :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
          in for Python). The only effect is, that generators that run all tests several times, can
-         distinguish the generated reports.
+         distinguish the generated reports. Default value is None.
         :paramtype qualifier: str
         :return: dict mapping str to int
         :rtype: dict[str, int]
@@ -105,10 +105,7 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -121,7 +118,7 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
 
         :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
          in for Python). The only effect is, that generators that run all tests several times, can
-         distinguish the generated reports.
+         distinguish the generated reports. Default value is None.
         :paramtype qualifier: str
         :return: dict mapping str to int
         :rtype: dict[str, int]
@@ -153,10 +150,7 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})

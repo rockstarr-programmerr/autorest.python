@@ -169,22 +169,21 @@ def build_parameter_grouping_post_shared_parameter_group_object_request(
 
 
 class ParameterGroupingOperations:
-    """ParameterGroupingOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azureparametergroupingversiontolerant.AutoRestParameterGroupingTestService`'s
+        :attr:`parameter_grouping` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def post_required(  # pylint: disable=inconsistent-return-statements
@@ -196,9 +195,9 @@ class ParameterGroupingOperations:
         :type path: str
         :param body:
         :type body: int
-        :keyword custom_header:
+        :keyword custom_header:  Default value is None.
         :paramtype custom_header: str
-        :keyword query: Query parameter with default.
+        :keyword query: Query parameter with default. Default value is 30.
         :paramtype query: int
         :return: None
         :rtype: None
@@ -239,9 +238,9 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
-        :keyword custom_header:
+        :keyword custom_header:  Default value is None.
         :paramtype custom_header: str
-        :keyword query: Query parameter with default.
+        :keyword query: Query parameter with default. Default value is 30.
         :paramtype query: int
         :return: None
         :rtype: None
@@ -275,9 +274,11 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post a grouped parameters with reserved words.
 
-        :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass.
+        :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass. Default value is
+         None.
         :paramtype from_parameter: str
-        :keyword accept_parameter: 'accept' is a reserved word. Pass in 'yes' to pass.
+        :keyword accept_parameter: 'accept' is a reserved word. Pass in 'yes' to pass. Default value is
+         None.
         :paramtype accept_parameter: str
         :return: None
         :rtype: None
@@ -317,13 +318,13 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post parameters from multiple different parameter groups.
 
-        :keyword header_one:
+        :keyword header_one:  Default value is None.
         :paramtype header_one: str
-        :keyword query_one: Query parameter with default.
+        :keyword query_one: Query parameter with default. Default value is 30.
         :paramtype query_one: int
-        :keyword header_two:
+        :keyword header_two:  Default value is None.
         :paramtype header_two: str
-        :keyword query_two: Query parameter with default.
+        :keyword query_two: Query parameter with default. Default value is 30.
         :paramtype query_two: int
         :return: None
         :rtype: None
@@ -359,9 +360,9 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post parameters with a shared parameter group object.
 
-        :keyword header_one:
+        :keyword header_one:  Default value is None.
         :paramtype header_one: str
-        :keyword query_one: Query parameter with default.
+        :keyword query_one: Query parameter with default. Default value is 30.
         :paramtype query_one: int
         :return: None
         :rtype: None

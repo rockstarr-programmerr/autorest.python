@@ -31,22 +31,21 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class FormdataurlencodedOperations:
-    """FormdataurlencodedOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~bodyformurlencodeddataversiontolerant.aio.BodyFormsDataURLEncoded`'s
+        :attr:`formdataurlencoded` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def update_pet_with_form(  # pylint: disable=inconsistent-return-statements
@@ -70,13 +69,14 @@ class FormdataurlencodedOperations:
 
                 # form-encoded input template you can fill out and use as your `data` input.
                 data = {
-                    "name": "str",  # Optional. Updated name of the pet.
+                    "name": "str",  # Optional. Updated name of the pet. Default value is None.
                     "pet_age": 0,  # How many years is it old?.
                     "pet_food": "str",  # Can take a value of meat, or fish, or plant. Possible
                       values are: "meat", "fish", and "plant".
                     "pet_type": "str",  # Can take a value of dog, or cat, or fish. Possible
                       values are: "dog", "cat", and "fish".
-                    "status": "str"  # Optional. Updated status of the pet.
+                    "status": "str"  # Optional. Updated status of the pet. Default value is
+                      None.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -126,8 +126,8 @@ class FormdataurlencodedOperations:
                     "access_token": "str",  # AAD access token, mandatory when grant_type is
                       access_token_refresh_token or access_token.
                     "grant_type": "access_token",  # Default value is "access_token". Constant
-                      part of a formdata body. The default value is "access_token". Note that
-                      overriding this default value may result in unsupported behavior.
+                      part of a formdata body. Default value is "access_token". Note that overriding
+                      this default value may result in unsupported behavior.
                     "service": "str"  # Indicates the name of your Azure container registry.
                 }
         """

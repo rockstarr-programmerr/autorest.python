@@ -113,22 +113,21 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class LROsOperations:  # pylint: disable=too-many-public-methods
-    """LROsOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lros` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     async def _put200_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
@@ -174,7 +173,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -239,10 +238,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -294,10 +290,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             "str", response.headers.get("Azure-AsyncOperation")
         )
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -311,7 +304,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 200 to the initial request with location header. We
         should not have any subsequent calls after receiving this first response.
 
-        :param product: Product to patch.
+        :param product: Product to patch. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -381,10 +374,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -433,20 +423,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -459,7 +443,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     ) -> AsyncLROPoller[JSONType]:
         """Long running patch request, service returns a 201 to the initial request with async header.
 
-        :param product: Product to patch.
+        :param product: Product to patch. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -524,10 +508,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -580,10 +561,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
@@ -591,10 +569,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -608,7 +583,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """Long running patch request, service returns a 202 to the initial request with async and
         location header.
 
-        :param product: Product to patch.
+        :param product: Product to patch. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -673,10 +648,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -723,10 +695,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -738,7 +707,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -803,10 +772,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -911,10 +877,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -961,10 +924,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -978,7 +938,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 200 to the initial request, with an entity that
         does not contain ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -1043,10 +1003,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1093,10 +1050,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1109,7 +1063,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         that points to a polling URL that returns a 200 and an entity that doesn't contains
         ProvisioningState.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -1174,10 +1128,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1225,16 +1176,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1249,7 +1194,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -1314,10 +1259,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1364,10 +1306,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1382,7 +1321,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -1447,10 +1386,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1498,16 +1434,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1522,7 +1452,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -1587,10 +1517,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1637,10 +1564,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1655,7 +1579,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -1720,10 +1644,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1773,10 +1694,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers = {}
         response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1788,7 +1706,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -1856,10 +1774,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
             response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -1913,10 +1828,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1931,7 +1843,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -2003,10 +1915,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -2059,10 +1968,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -2077,7 +1983,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -2148,10 +2054,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -2205,10 +2108,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -2221,7 +2121,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -2293,10 +2193,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -2349,10 +2246,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -2367,7 +2261,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -2438,10 +2332,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -2493,10 +2384,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             "str", response.headers.get("Azure-AsyncOperation")
         )
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -2511,7 +2399,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Azure-AsyncOperation header. Subsequent calls to operation status do not contain
         Azure-AsyncOperation header.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -2581,10 +2469,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -2631,10 +2516,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2645,7 +2527,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     async def begin_put_non_resource(self, sku: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request with non resource.
 
-        :param sku: sku to put.
+        :param sku: sku to put. Default value is None.
         :type sku: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -2686,10 +2568,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2736,10 +2615,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2750,7 +2626,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     async def begin_put_async_non_resource(self, sku: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request with non resource.
 
-        :param sku: Sku to put.
+        :param sku: Sku to put. Default value is None.
         :type sku: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -2791,10 +2667,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2841,10 +2714,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2855,7 +2725,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     async def begin_put_sub_resource(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request with sub resource.
 
-        :param product: Sub Product to put.
+        :param product: Sub Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -2906,10 +2776,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2956,10 +2823,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2970,7 +2834,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     async def begin_put_async_sub_resource(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request with sub resource.
 
-        :param product: Sub Product to put.
+        :param product: Sub Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -3021,10 +2885,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3063,19 +2924,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -3132,10 +2987,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3174,19 +3026,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -3241,10 +3087,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3283,19 +3126,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -3350,10 +3187,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3520,10 +3354,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3624,10 +3455,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4103,16 +3931,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4154,10 +3976,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4220,7 +4039,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -4315,10 +4134,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -4330,7 +4146,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -4399,10 +4215,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -4439,10 +4252,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4497,10 +4307,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4537,10 +4344,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4595,10 +4399,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4637,10 +4438,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4697,10 +4495,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4775,7 +4570,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -4840,10 +4635,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4920,7 +4712,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -4985,10 +4777,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5055,7 +4844,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -5166,7 +4955,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -5232,22 +5021,21 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
 
 class LRORetrysOperations:
-    """LRORetrysOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lro_retrys` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     async def _put201_creating_succeeded200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -5277,16 +5065,10 @@ class LRORetrysOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5301,7 +5083,7 @@ class LRORetrysOperations:
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -5366,10 +5148,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5423,10 +5202,7 @@ class LRORetrysOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -5441,7 +5217,7 @@ class LRORetrysOperations:
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -5513,10 +5289,7 @@ class LRORetrysOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -5555,19 +5328,13 @@ class LRORetrysOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -5624,10 +5391,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5835,7 +5599,7 @@ class LRORetrysOperations:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -5946,7 +5710,7 @@ class LRORetrysOperations:
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -6012,22 +5776,21 @@ class LRORetrysOperations:
 
 
 class LROSADsOperations:  # pylint: disable=too-many-public-methods
-    """LROSADsOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lrosads` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     async def _put_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -6057,16 +5820,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -6077,7 +5834,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     async def begin_put_non_retry400(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request, service returns a 400 to the initial request.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -6142,10 +5899,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -6193,16 +5947,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -6216,7 +5964,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -6281,10 +6029,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -6334,16 +6079,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -6357,7 +6096,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -6422,10 +6161,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -6479,10 +6215,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -6496,7 +6229,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -6568,10 +6301,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -6847,7 +6577,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 400 with no error body.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -6953,7 +6683,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 with a location header.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -7063,7 +6793,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -7157,16 +6887,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -7179,7 +6903,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     ) -> AsyncLROPoller[JSONType]:
         """Long running put request, service returns a 201 to the initial request with no payload.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -7244,10 +6968,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -7301,10 +7022,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -7319,7 +7037,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -7391,10 +7109,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -7450,10 +7165,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -7468,7 +7180,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -7540,10 +7252,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -7746,7 +7455,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running post request, service returns a 202 to the initial request, without a location
         header.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -7857,7 +7566,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -7965,7 +7674,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 200 to the initial request, with an entity that is
         not a valid json.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -8030,10 +7739,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -8089,10 +7795,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -8107,7 +7810,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -8179,10 +7882,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -8238,10 +7938,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -8256,7 +7953,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -8328,10 +8025,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -8615,7 +8309,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running post request, service returns a 202 to the initial request, with invalid
         'Location' and 'Retry-After' headers.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -8726,7 +8420,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -8837,7 +8531,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -8903,22 +8597,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
 
 class LROsCustomHeaderOperations:
-    """LROsCustomHeaderOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lr_os_custom_header` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     async def _put_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -8954,10 +8647,7 @@ class LROsCustomHeaderOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -8973,7 +8663,7 @@ class LROsCustomHeaderOperations:
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -9045,10 +8735,7 @@ class LROsCustomHeaderOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -9096,16 +8783,10 @@ class LROsCustomHeaderOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -9121,7 +8802,7 @@ class LROsCustomHeaderOperations:
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -9186,10 +8867,7 @@ class LROsCustomHeaderOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -9253,7 +8931,7 @@ class LROsCustomHeaderOperations:
         all requests. Long running post request, service returns a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -9365,7 +9043,7 @@ class LROsCustomHeaderOperations:
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: JSONType
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for

@@ -7,6 +7,8 @@
 
 from abc import ABC
 
+from msrest import Deserializer, Serializer
+
 from azure.core import AsyncPipelineClient
 
 from ._configuration import MultipleInheritanceServiceClientConfiguration
@@ -15,3 +17,5 @@ from ._configuration import MultipleInheritanceServiceClientConfiguration
 class MixinABC(ABC):
     _client: AsyncPipelineClient
     _config: MultipleInheritanceServiceClientConfiguration
+    _serializer: Serializer
+    _deserializer: Deserializer

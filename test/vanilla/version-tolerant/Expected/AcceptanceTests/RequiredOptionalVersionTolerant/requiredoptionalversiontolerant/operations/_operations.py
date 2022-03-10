@@ -579,22 +579,21 @@ def build_explicit_post_optional_array_header_request(
 
 
 class ImplicitOperations:
-    """ImplicitOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~requiredoptionalversiontolerant.AutoRestRequiredOptionalTestService`'s
+        :attr:`implicit` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_required_path(  # pylint: disable=inconsistent-return-statements
@@ -635,7 +634,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional query parameter.
 
-        :keyword query_parameter:
+        :keyword query_parameter:  Default value is None.
         :paramtype query_parameter: str
         :return: None
         :rtype: None
@@ -668,7 +667,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional header parameter.
 
-        :keyword query_parameter:
+        :keyword query_parameter:  Default value is None.
         :paramtype query_parameter: str
         :return: None
         :rtype: None
@@ -701,7 +700,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional body parameter.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: str
         :return: None
         :rtype: None
@@ -742,7 +741,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional body parameter.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: IO
         :return: None
         :rtype: None
@@ -863,22 +862,21 @@ class ImplicitOperations:
 
 
 class ExplicitOperations:  # pylint: disable=too-many-public-methods
-    """ExplicitOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~requiredoptionalversiontolerant.AutoRestRequiredOptionalTestService`'s
+        :attr:`explicit` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
@@ -886,7 +884,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional body parameter.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: IO
         :return: None
         :rtype: None
@@ -1001,7 +999,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: int
         :return: None
         :rtype: None
@@ -1089,7 +1087,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: JSONType
         :return: None
         :rtype: None
@@ -1172,7 +1170,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-        :keyword header_parameter:
+        :keyword header_parameter:  Default value is None.
         :paramtype header_parameter: int
         :return: None
         :rtype: None
@@ -1244,7 +1242,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional string. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: str
         :return: None
         :rtype: None
@@ -1332,7 +1330,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: JSONType
         :return: None
         :rtype: None
@@ -1415,7 +1413,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
-        :keyword body_parameter:
+        :keyword body_parameter:  Default value is None.
         :paramtype body_parameter: str
         :return: None
         :rtype: None
@@ -1496,7 +1494,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: JSONType
         :return: None
         :rtype: None
@@ -1596,7 +1594,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: JSONType
         :return: None
         :rtype: None
@@ -1695,7 +1693,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional array. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: list[str]
         :return: None
         :rtype: None
@@ -1793,7 +1791,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: JSONType
         :return: None
         :rtype: None
@@ -1878,7 +1876,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-        :keyword header_parameter:
+        :keyword header_parameter:  Default value is None.
         :paramtype header_parameter: list[str]
         :return: None
         :rtype: None

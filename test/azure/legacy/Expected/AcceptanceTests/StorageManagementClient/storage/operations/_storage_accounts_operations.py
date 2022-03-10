@@ -370,26 +370,23 @@ def build_regenerate_key_request(
 
 # fmt: on
 class StorageAccountsOperations(object):
-    """StorageAccountsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~storage.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~storage.StorageManagementClient`'s
+        :attr:`storage_accounts` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def check_name_availability(
@@ -404,6 +401,9 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult, or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
@@ -517,6 +517,9 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -541,8 +544,8 @@ class StorageAccountsOperations(object):
                 resource_group_name=resource_group_name,
                 account_name=account_name,
                 parameters=parameters,
-                api_version=api_version,
                 content_type=content_type,
+                api_version=api_version,
                 cls=lambda x, y, z: x,
                 **kwargs
             )
@@ -706,6 +709,9 @@ class StorageAccountsOperations(object):
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount, or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
@@ -838,7 +844,6 @@ class StorageAccountsOperations(object):
 
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
-                    api_version=api_version,
                     template_url=next_link,
                 )
                 request = _convert_request(request)
@@ -912,7 +917,6 @@ class StorageAccountsOperations(object):
                 request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
-                    api_version=api_version,
                     template_url=next_link,
                 )
                 request = _convert_request(request)
@@ -962,8 +966,11 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
-        :param key_name:
+        :param key_name:  Default value is None.
         :type key_name: str or ~storage.models.KeyName
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys, or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys

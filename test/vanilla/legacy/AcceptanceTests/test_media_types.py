@@ -69,15 +69,21 @@ class TestMediaTypes(object):
         content = b"hello, world"
         client.binary_body_with_two_content_types(content, content_type="application/octet-stream")
 
+    def test_binary_body_three_content_types(self, client):
+        json_input = json.dumps({"hello":"world"})
+        client.binary_body_with_three_content_types(json_input)
+
+        content = b"hello, world"
+        client.binary_body_with_three_content_types(content, content_type="application/octet-stream")
+
+        content = "hello, world"
+        client.binary_body_with_three_content_types(content, content_type="text/plain")
+
     def test_models(self):
         from mediatypes.models import SourcePath
 
-        if sys.version_info >= (3,5):
-            from mediatypes.models._models_py3 import SourcePath as SourcePathPy3
-            assert SourcePath == SourcePathPy3
-        else:
-            from mediatypes.models._models import SourcePath as SourcePathPy2
-            assert SourcePath == SourcePathPy2
+        from mediatypes.models._models_py3 import SourcePath as SourcePathPy3
+        assert SourcePath == SourcePathPy3
 
     def test_operation_groups(self):
         from mediatypes.operations import MediaTypesClientOperationsMixin

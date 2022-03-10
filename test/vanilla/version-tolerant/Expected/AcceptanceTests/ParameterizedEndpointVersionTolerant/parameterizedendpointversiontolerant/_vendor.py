@@ -7,6 +7,8 @@
 
 from abc import ABC
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 
 from ._configuration import ParmaterizedEndpointClientConfiguration
@@ -15,3 +17,5 @@ from ._configuration import ParmaterizedEndpointClientConfiguration
 class MixinABC(ABC):
     _client: PipelineClient
     _config: ParmaterizedEndpointClientConfiguration
+    _serializer: Serializer
+    _deserializer: Deserializer

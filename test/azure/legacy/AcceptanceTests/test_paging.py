@@ -180,14 +180,16 @@ class TestPaging(object):
         items = [i for i in pages]
         assert len(items) == 1
 
+    def test_duplicate_params(self, client):
+        pages = list(client.paging.duplicate_params(filter="foo"))
+        assert len(pages) == 1
+        assert pages[0].properties.id == 1
+        assert pages[0].properties.name == "Product"
+
     def test_models(self):
         from paging.models import OperationResult
-        if sys.version_info >= (3,5):
-            from paging.models._models_py3 import OperationResult as OperationResultPy3
-            assert OperationResult == OperationResultPy3
-        else:
-            from paging.models._models import OperationResult as OperationResultPy2
-            assert OperationResult == OperationResultPy2
+        from paging.models._models_py3 import OperationResult as OperationResultPy3
+        assert OperationResult == OperationResultPy3
 
     def test_operation_groups(self):
         from paging.operations import PagingOperations

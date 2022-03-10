@@ -1028,26 +1028,23 @@ def build_post_async_retrycanceled_request_initial(
 
 # fmt: on
 class LROsOperations(object):  # pylint: disable=too-many-public-methods
-    """LROsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~lro.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~lro.AutoRestLongRunningOperationTestService`'s
+        :attr:`lros` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     def _put200_succeeded_initial(
         self,
@@ -1104,7 +1101,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1211,7 +1208,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 200 to the initial request with location header. We
         should not have any subsequent calls after receiving this first response.
 
-        :param product: Product to patch.
+        :param product: Product to patch. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1326,7 +1323,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> LROPoller["_models.Product"]
         """Long running patch request, service returns a 201 to the initial request with async header.
 
-        :param product: Product to patch.
+        :param product: Product to patch. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1438,7 +1435,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         """Long running patch request, service returns a 202 to the initial request with async and
         location header.
 
-        :param product: Product to patch.
+        :param product: Product to patch. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1540,7 +1537,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1736,7 +1733,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 200 to the initial request, with an entity that
         does not contain ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1839,7 +1836,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         that points to a polling URL that returns a 200 and an entity that doesn't contains
         ProvisioningState.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -1946,7 +1943,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2049,7 +2046,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2156,7 +2153,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2259,7 +2256,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2364,7 +2361,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2477,7 +2474,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2593,7 +2590,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2709,7 +2706,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2825,7 +2822,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -2939,7 +2936,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         Azure-AsyncOperation header. Subsequent calls to operation status do not contain
         Azure-AsyncOperation header.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3045,7 +3042,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> LROPoller["_models.Sku"]
         """Long running put request with non resource.
 
-        :param sku: sku to put.
+        :param sku: sku to put. Default value is None.
         :type sku: ~lro.models.Sku
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3146,7 +3143,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> LROPoller["_models.Sku"]
         """Long running put request with non resource.
 
-        :param sku: Sku to put.
+        :param sku: Sku to put. Default value is None.
         :type sku: ~lro.models.Sku
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3248,7 +3245,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> LROPoller["_models.SubProduct"]
         """Long running put request with sub resource.
 
-        :param provisioning_state:
+        :param provisioning_state:  Default value is None.
         :type provisioning_state: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3350,7 +3347,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> LROPoller["_models.SubProduct"]
         """Long running put request with sub resource.
 
-        :param provisioning_state:
+        :param provisioning_state:  Default value is None.
         :type provisioning_state: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -4575,7 +4572,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -4678,7 +4675,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -5052,7 +5049,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -5165,7 +5162,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -5271,7 +5268,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -5374,7 +5371,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.

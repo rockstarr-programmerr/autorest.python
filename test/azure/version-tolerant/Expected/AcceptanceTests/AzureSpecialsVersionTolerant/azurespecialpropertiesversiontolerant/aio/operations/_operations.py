@@ -59,22 +59,21 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class XMsClientRequestIdOperations:
-    """XMsClientRequestIdOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`xms_client_request_id` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -141,22 +140,21 @@ class XMsClientRequestIdOperations:
 
 
 class SubscriptionInCredentialsOperations:
-    """SubscriptionInCredentialsOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`subscription_in_credentials` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def post_method_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -315,22 +313,21 @@ class SubscriptionInCredentialsOperations:
 
 
 class SubscriptionInMethodOperations:
-    """SubscriptionInMethodOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`subscription_in_method` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def post_method_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -473,22 +470,21 @@ class SubscriptionInMethodOperations:
 
 
 class ApiVersionDefaultOperations:
-    """ApiVersionDefaultOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`api_version_default` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_method_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -618,29 +614,28 @@ class ApiVersionDefaultOperations:
 
 
 class ApiVersionLocalOperations:
-    """ApiVersionLocalOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`api_version_local` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_method_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
-         value is "2.0". Note that overriding this default value may result in unsupported behavior.
+        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
+         is "2.0". Note that overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -676,7 +671,7 @@ class ApiVersionLocalOperations:
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value null, this should
-         result in no serialized parameter.
+         result in no serialized parameter. Default value is None.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -707,8 +702,8 @@ class ApiVersionLocalOperations:
     async def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
-         value is "2.0". Note that overriding this default value may result in unsupported behavior.
+        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
+         is "2.0". Note that overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -742,7 +737,7 @@ class ApiVersionLocalOperations:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
-         The default value is "2.0". Note that overriding this default value may result in unsupported
+         Default value is "2.0". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype api_version: str
         :return: None
@@ -774,22 +769,21 @@ class ApiVersionLocalOperations:
 
 
 class SkipUrlEncodingOperations:
-    """SkipUrlEncodingOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`skip_url_encoding` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_method_path_valid(  # pylint: disable=inconsistent-return-statements
@@ -861,8 +855,8 @@ class SkipUrlEncodingOperations:
     async def get_swagger_path_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
-         default value is "path1/path2/path3". Note that overriding this default value may result in
+        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
+         Default value is "path1/path2/path3". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype unencoded_path_param: str
         :return: None
@@ -931,7 +925,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded query parameter with value null.
 
-        :keyword q1: Unencoded query parameter with value null.
+        :keyword q1: Unencoded query parameter with value null. Default value is None.
         :paramtype q1: str
         :return: None
         :rtype: None
@@ -995,7 +989,7 @@ class SkipUrlEncodingOperations:
     async def get_swagger_query_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
+        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. Default
          value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype q1: str
@@ -1028,22 +1022,21 @@ class SkipUrlEncodingOperations:
 
 
 class OdataOperations:
-    """OdataOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`odata` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_with_filter(  # pylint: disable=inconsistent-return-statements
@@ -1051,11 +1044,12 @@ class OdataOperations:
     ) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
-        :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
+        :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''. Default
+         value is None.
         :paramtype filter: str
-        :keyword top: The top parameter with value 10.
+        :keyword top: The top parameter with value 10. Default value is None.
         :paramtype top: int
-        :keyword orderby: The orderby parameter with value id.
+        :keyword orderby: The orderby parameter with value id. Default value is None.
         :paramtype orderby: str
         :return: None
         :rtype: None
@@ -1086,22 +1080,21 @@ class OdataOperations:
 
 
 class HeaderOperations:
-    """HeaderOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`header` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def custom_named_request_id(  # pylint: disable=inconsistent-return-statements
