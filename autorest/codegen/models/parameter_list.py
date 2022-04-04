@@ -150,6 +150,8 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
             lambda parameter: parameter.implementation == self.implementation
         )
         positional = [p for p in parameters_of_this_implementation if p.is_positional]
+        if self.request_body:
+            positional.append(self.request_body)
         keyword_only = [p for p in parameters_of_this_implementation if p.is_keyword_only]
         kwargs = [p for p in parameters_of_this_implementation if p.is_kwarg]
         def _sort(params):
@@ -233,32 +235,32 @@ class ParameterOnlyPathAndBodyPositionalList(ParameterList):
     @property
     def method(self) -> List[Parameter]:
         method_params = super().method
-        files_params = [p for p in method_params if p.is_multipart]
-        data_params = [p for p in method_params if p.is_data_input]
-        if not (files_params or data_params):
-            return method_params
+        # files_params = [p for p in method_params if p.is_multipart]
+        # data_params = [p for p in method_params if p.is_data_input]
+        # if not (files_params or data_params):
+        #     return method_params
 
-        # update files param
-        file_and_data_params = []
-        if files_params:
-            files_param = _create_files_or_data_param(
-                files_params,
-                serialized_name="files",
-                description="Multipart input for files. See the template in our example to find the input shape."
-            )
-            file_and_data_params.append(files_param)
-        if data_params:
-            data_param = _create_files_or_data_param(
-                data_params,
-                serialized_name="data",
-                description="Form-encoded input for data. See the template in our example to find the input shape."
-            )
-            file_and_data_params.append(data_param)
-        method_params = [p for p in method_params if not p.is_multipart and not p.is_data_input]
+        # # update files param
+        # file_and_data_params = []
+        # if files_params:
+        #     files_param = _create_files_or_data_param(
+        #         files_params,
+        #         serialized_name="files",
+        #         description="Multipart input for files. See the template in our example to find the input shape."
+        #     )
+        #     file_and_data_params.append(files_param)
+        # if data_params:
+        #     data_param = _create_files_or_data_param(
+        #         data_params,
+        #         serialized_name="data",
+        #         description="Form-encoded input for data. See the template in our example to find the input shape."
+        #     )
+        #     file_and_data_params.append(data_param)
+        method_params = [p for p in method_params]
         positional = [p for p in method_params if p.is_positional]
         keyword_only = [p for p in method_params if p.is_keyword_only]
         kwargs = [p for p in method_params if p.is_kwarg]
-        return positional + file_and_data_params + keyword_only + kwargs
+        return positional + keyword_only + kwargs
 
 def get_parameter_list(code_model):
     if code_model.options["only_path_and_body_params_positional"]:

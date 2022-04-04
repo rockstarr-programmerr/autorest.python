@@ -74,7 +74,7 @@ class OperationGroup(BaseModel):
         for operation in self.operations:
             file_import.merge(operation.imports(async_mode, is_python3_file))
         local_path = "..." if async_mode else ".."
-        if self.code_model.has_schemas and self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"]:
             file_import.add_submodule_import(local_path, "models", ImportType.LOCAL, alias="_models")
         if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
             if not self.code_model.options["combine_operation_files"]:

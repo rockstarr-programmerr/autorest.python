@@ -26,7 +26,7 @@ _LOGGER = logging.getLogger(__name__)
 _HIDDEN_KWARGS = ["content_type"]
 
 
-class ParameterLocation(Enum):
+class ParameterLocation(str, Enum):
     Path = "path"
     Body = "body"
     Query = "query"
@@ -93,6 +93,7 @@ class RequestBody(BaseParameter):
         self.is_positional = True
         self.is_kwarg = False
         self.serialized_name = "json"
+        self.default_value = None
 
     @property
     def serialization_type(self) -> str:
@@ -119,6 +120,9 @@ class RequestBody(BaseParameter):
 
     def method_signature(self, is_python3_file: bool) -> str:
         return f"body: {self.type_annotation()},"
+
+    def imports(self) -> FileImport:
+        return self.types[0].imports()
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
@@ -167,6 +171,9 @@ class Parameter(BaseParameter):  # pylint: disable=too-many-instance-attributes,
         self.is_body_kwarg = False
         self.need_import = True
         self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.inputtable_by_user))
+        self.skip_url_encoding = True
+        self.style = ParameterStyle.simple
+        self.explode = False
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -175,8 +182,8 @@ class Parameter(BaseParameter):  # pylint: disable=too-many-instance-attributes,
     def is_json_parameter(self) -> bool:
         if self.is_multipart or self.is_data_input:
             return False
-        if self.style == ParameterStyle.xml:
-            return False
+        # if self.style == ParameterStyle.xml:
+        #     return False
         return True
 
     @property
@@ -368,9 +375,10 @@ class Parameter(BaseParameter):  # pylint: disable=too-many-instance-attributes,
 
     @property
     def is_hidden(self) -> bool:
-        return self.serialized_name in _HIDDEN_KWARGS and self.is_kwarg or (
-            self.yaml_data["implementation"] == "Client" and self.constant
-        )
+        return False
+        # return self.serialized_name in _HIDDEN_KWARGS and self.is_kwarg or (
+        #     self.yaml_data["implementation"] == "Client" and self.constant
+        # )
 
     @property
     def is_content_type(self) -> bool:

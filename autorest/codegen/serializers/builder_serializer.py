@@ -381,7 +381,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         if property_with_discriminator:
             polymorphic_schemas = [
                 s
-                for s in self.code_model.sorted_schemas
+                for s in self.code_model.object_types
                 if s.name in property_with_discriminator.schema.subtype_map.values()
             ]
             num_schemas = min(self.code_model.options["polymorphic_examples"], len(polymorphic_schemas))
@@ -535,7 +535,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
             retval.append("    headers=_headers,")
         if builder.parameters.request_body:
             retval.extend([
-                f"    {body_kwarg}={body_kwarg},"
+                f"    {body_kwarg}=body,"
                 for body_kwarg in self._body_params_to_pass_to_request_creation(builder)
             ])
         retval.append("    **kwargs")
@@ -600,14 +600,11 @@ class RequestBuilderPython3Serializer(_RequestBuilderBaseSerializer):
         return builder.parameters.kwargs_to_pop(is_python3_file=True)
 
     def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
-        body_kwargs = list(builder.parameters.body_kwarg_names.keys())
-        if body_kwargs:
-            return body_kwargs
         if builder.parameters.request_body:
             # this means we have a constant body
             # only doing json body in this case
             return ["json"]
-        return body_kwargs
+        return []
 
 
 ############################## NORMAL OPERATIONS ##############################
@@ -740,7 +737,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         body_kwarg_to_pass = "json"# builder.body_kwargs_to_pass_to_request_builder[0]
         if self.code_model.options["models_mode"]:
             return (
-                f"_{body_kwarg_to_pass} = self._serialize.body(_json, "
+                f"_{body_kwarg_to_pass} = self._serialize.body(body, "
                 f"'{ body_param.serialization_type }'{body_is_xml}{ pass_ser_ctxt })"
             )
         return f"_{body_kwarg_to_pass} = _json"
@@ -868,6 +865,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 continue
             high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
+        if builder.parameters.request_body:
+            retval.append(f"    body=_json,")
         if not self.code_model.options["version_tolerant"]:
             template_url = template_url or f"self.{builder.name}.metadata['url']"
             retval.append(f"    template_url={template_url},")

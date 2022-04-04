@@ -42,7 +42,7 @@ def test_pet_cat_kitten_horse_wood(code_model):
         [wood, horse, cat, pet, kitten]
     )
     code_model.sort_schemas()
-    sorted_schemas = code_model.sorted_schemas
+    sorted_schemas = code_model.object_types
     # assert pet is before cat
     assert sorted_schemas.index(pet) < sorted_schemas.index(cat)
     # assert pet is before horse
@@ -68,7 +68,7 @@ def test_multiple_inheritance(code_model):
         [kid, person, teacher, carbon_object, employee, object_on_earth]
     )
     code_model.sort_schemas()
-    sorted_schemas = code_model.sorted_schemas
+    sorted_schemas = code_model.object_types
     # assert carbon object and object on earth is in front of person
     assert sorted_schemas.index(carbon_object) < sorted_schemas.index(person)
     assert sorted_schemas.index(object_on_earth) < sorted_schemas.index(person)

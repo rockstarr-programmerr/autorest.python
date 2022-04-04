@@ -19,14 +19,17 @@ class ModelPython3Serializer(ModelBaseSerializer):
 
     def init_line(self, model: ObjectSchema) -> List[str]:
         init_properties_declaration = []
+        seen_param_names = []
         init_line_parameters = [
             p for p in model.properties if not p.readonly and not p.is_discriminator and not p.constant
         ]
-        init_line_parameters.sort(key=lambda x: x.required, reverse=True)
+        init_line_parameters.sort(key=lambda x: not x.optional, reverse=True)
         if init_line_parameters:
             init_properties_declaration.append("*")
         for param in init_line_parameters:
-            init_properties_declaration.append(self.initialize_standard_property(param))
+            if param.serialized_name not in seen_param_names:
+                init_properties_declaration.append(self.initialize_standard_property(param))
+                seen_param_names.append(param.serialized_name)
 
         return init_properties_declaration
 
@@ -41,23 +44,23 @@ class ModelPython3Serializer(ModelBaseSerializer):
                     and not prop.constant
                     and not prop.readonly
                 ):
-                    properties_to_pass_to_super.append(f"{prop.name}={prop.name}")
+                    properties_to_pass_to_super.append(f"{prop.serialized_name}={prop.serialized_name}")
         properties_to_pass_to_super.append("**kwargs")
         return ", ".join(properties_to_pass_to_super)
 
     def required_property_no_default_init(self, prop: Property) -> str:
-        return f"{prop.name}: {prop.type_annotation()}"
+        return f"{prop.serialized_name}: {prop.type_annotation()}"
 
     def optional_property_init(self, prop: Property) -> str:
         default = prop.default_value_declaration
-        return f"{prop.name}: {prop.type_annotation()} = {default}"
+        return f"{prop.serialized_name}: {prop.type_annotation()} = {default}"
 
     def initialize_standard_arg(self, prop: Property) -> str:
-        return f"self.{prop.name} = {prop.name}"
+        return f"self.{prop.serialized_name} = {prop.serialized_name}"
 
     def imports(self) -> FileImport:
         file_import = super(ModelPython3Serializer, self).imports()
-        for model in self.code_model.sorted_schemas:
+        for model in self.code_model.object_types:
             init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
             for param in init_line_parameters:
                 file_import.merge(param.model_file_imports())

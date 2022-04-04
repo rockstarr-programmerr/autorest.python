@@ -26,6 +26,11 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.type = type
         self.optional = yaml_data["optional"]
         self.description = yaml_data.get("description", "")
+        self.readonly = False
+        self.is_discriminator = False
+        self.constant = False
+        self.default_value = None
+        self.default_value_declaration = None
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Property":

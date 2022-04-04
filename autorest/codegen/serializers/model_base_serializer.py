@@ -14,12 +14,12 @@ def _documentation_string(
     prop: Property, description_keyword: str, docstring_type_keyword: str
 ) -> List[str]:
     retval: List[str] = []
-    sphinx_prefix = f":{description_keyword} {prop.name}:"
+    sphinx_prefix = f":{description_keyword} {prop.serialized_name}:"
     retval.append(
         f"{sphinx_prefix} {prop.description}" if prop.description
         else sphinx_prefix
     )
-    retval.append(f":{docstring_type_keyword} {prop.name}: {prop.schema.docstring_type}")
+    retval.append(f":{docstring_type_keyword} {prop.serialized_name}: {prop.type.docstring_type}")
     return retval
 
 
@@ -46,7 +46,7 @@ class ModelBaseSerializer:
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_import("msrest.serialization", ImportType.AZURECORE)
-        for model in self.code_model.sorted_schemas:
+        for model in self.code_model.object_types:
             file_import.merge(model.imports())
         return file_import
 
@@ -54,7 +54,7 @@ class ModelBaseSerializer:
     def get_properties_to_initialize(model: ObjectSchema) -> List[Property]:
         if model.base_models:
             properties_to_initialize = list({
-                p.name: p
+                p.serialized_name: p
                 for bm in model.base_models
                 for p in model.properties
                 if p not in cast(ObjectSchema, bm).properties or p.is_discriminator or p.constant
@@ -90,15 +90,15 @@ class ModelBaseSerializer:
                     typing = "Optional[str]"
                 else:
                     typing = "str"
-                init_args.append(f"self.{prop.name} = {discriminator_value}  # type: {typing}")
+                init_args.append(f"self.{prop.serialized_name} = {discriminator_value}  # type: {typing}")
             elif prop.readonly:
-                init_args.append(f"self.{prop.name} = None")
+                init_args.append(f"self.{prop.serialized_name} = None")
             elif not prop.constant:
                 init_args.append(self.initialize_standard_arg(prop))
         return init_args
 
     def initialize_standard_property(self, prop: Property):
-        if prop.required and not prop.default_value:
+        if not prop.optional and not prop.default_value:
             return self.required_property_no_default_init(prop)
         return self.optional_property_init(prop)
 

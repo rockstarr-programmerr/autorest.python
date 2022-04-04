@@ -73,9 +73,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self.request_builder_ids: Dict[int, RequestBuilder] = {}
         self.package_dependency: Dict[str, str] = {}
         self._credential_model: Optional[CredentialModel] = None
-        self.object_types = [t for t in self.types_map.values() if isinstance(t, ObjectSchema)]
-        self.enums = [t for t in self.types_map.values() if isinstance(t, EnumSchema)]
-        self.sorted_schemas = self.object_types
+
+    @property
+    def object_types(self) -> List[ObjectSchema]:
+        return [t for t in self.types_map.values() if isinstance(t, ObjectSchema)]
+
+    @property
+    def enums(self) -> List[EnumSchema]:
+        return [t for t in self.types_map.values() if isinstance(t, EnumSchema)]
 
     @property
     def global_parameters(self) -> GlobalParameterList:
@@ -141,7 +146,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         sorted_schemas: List[ObjectSchema] = []
         for schema in sorted(self.object_types.values(), key=lambda x: x.name.lower()):
             sorted_schemas.extend(CodeModel._sort_schemas_helper(schema, seen_schema_names, seen_schema_yaml_ids))
-        self.sorted_schemas = sorted_schemas
+        self.object_types = sorted_schemas
 
     def format_lro_operations(self) -> None:
         """Adds operations and attributes needed for LROs.
