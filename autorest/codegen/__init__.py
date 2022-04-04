@@ -11,7 +11,7 @@ import yaml
 
 from .. import Plugin
 from .models.code_model import CodeModel
-from .models import build_schema
+from .models import build_type
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
 from .models.parameter_list import GlobalParameterList
@@ -28,7 +28,7 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
     # Create operations
     if code_model.options["show_operations"] and yaml_data.get("operationGroups"):
         code_model.operation_groups = [
-            OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
+            OperationGroup.from_yaml(op_group, code_model) for op_group in yaml_data["operationGroups"]
         ]
     if yaml_data.get("schemas"):
         code_model.add_inheritance_to_models()
@@ -124,19 +124,6 @@ class CodeGenerator(Plugin):
                     break
 
     @staticmethod
-    def _build_exceptions_set(yaml_data: List[Dict[str, Any]]) -> Set[int]:
-        exceptions_set = set()
-        for group in yaml_data:
-            for operation in group["operations"]:
-                if not operation.get("exceptions"):
-                    continue
-                for exception in operation["exceptions"]:
-                    if not exception.get("schema"):
-                        continue
-                    exceptions_set.add(id(exception["schema"]))
-        return exceptions_set
-
-    @staticmethod
     def _build_package_dependency() -> Dict[str, str]:
         return {
             "dependency_azure_mgmt_core": "azure-mgmt-core<2.0.0,>=1.3.0",
@@ -179,27 +166,10 @@ class CodeGenerator(Plugin):
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
 
-        code_model = CodeModel(options=options)
+        code_model = CodeModel(yaml_data, options=options)
         self._handle_credential_model(yaml_data, code_model)
-        code_model.module_name = yaml_data["info"]["python_title"]
-        code_model.class_name = yaml_data["info"]["pascal_case_title"]
-        code_model.description = (
-            yaml_data["info"]["description"] if yaml_data["info"].get("description") else ""
-        )
-
-        # Get my namespace
-        namespace = self._autorestapi.get_value("namespace")
-        _LOGGER.debug("Namespace parameter was %s", namespace)
-        if not namespace:
-            namespace = yaml_data["info"]["python_title"]
-        code_model.namespace = namespace
-
-        if yaml_data.get("schemas"):
-            exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_data["operationGroups"])
-
-            for type_list in yaml_data["schemas"].values():
-                for schema in type_list:
-                    build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
+        for type_yaml in yaml_data.get("types", []):
+            build_type(yaml_data=type_yaml, code_model=code_model)
 
         # Global parameters
         code_model.global_parameters = GlobalParameterList(
@@ -207,9 +177,6 @@ class CodeGenerator(Plugin):
             [Parameter.from_yaml(param, code_model=code_model) for param in yaml_data.get("globalParameters", [])],
         )
         code_model.global_parameters.code_model = code_model
-
-        # Custom URL
-        code_model.setup_client_input_parameters(yaml_data)
 
         code_model.rest = Rest.from_yaml(yaml_data, code_model=code_model)
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
@@ -382,12 +349,16 @@ class CodeGenerator(Plugin):
 
     def process(self) -> bool:
         # List the input file, should be only one
-        inputs = self._autorestapi.list_inputs()
-        _LOGGER.debug("Possible Inputs: %s", inputs)
-        if "code-model-v4-no-tags.yaml" not in inputs:
-            raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
+        if self._autorestapi.get_value("input-yaml"):
+            input_yaml = self._autorestapi.get_value("input-yaml")
+            file_content = self._autorestapi.read_file(input_yaml)
+        else:
+            inputs = self._autorestapi.list_inputs()
+            _LOGGER.debug("Possible Inputs: %s", inputs)
+            if "code-model-v4-no-tags.yaml" not in inputs:
+                raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
-        file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
+            file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
 
         # Parse the received YAML
         yaml_data = yaml.safe_load(file_content)

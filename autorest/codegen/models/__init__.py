@@ -10,7 +10,7 @@ from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
 from .object_schema import ObjectSchema, get_object_schema, HiddenModelObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
-from .primitive_schemas import get_primitive_schema, AnySchema, PrimitiveSchema, IOSchema
+from .primitive_schemas import StringSchema, get_primitive_schema, AnySchema, PrimitiveSchema, IOSchema, NumberSchema
 from .enum_schema import EnumSchema, HiddenModelEnumSchema, get_enum_schema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
@@ -76,47 +76,19 @@ def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
     return False
 
 
-def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
-    code_model = kwargs.get("code_model", None)
-    if not code_model:
-        raise ValueError("CodeModel not passed through kwargs")
+def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseSchema:
     yaml_id = id(yaml_data)
-    namespace = code_model.namespace
     try:
         return code_model.lookup_schema(yaml_id)
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
-    schema: BaseSchema
-    schema_type = yaml_data["type"]
-    if schema_type == "constant":
-        schema = ConstantSchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
-        code_model.primitives[yaml_id] = schema
-
-    elif schema_type in ["choice", "sealed-choice"]:
-        schema = get_enum_schema(code_model).from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
-        code_model.enums[yaml_id] = schema
-
-    elif schema_type == "array":
-        schema = ListSchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
-        code_model.primitives[yaml_id] = schema
-
-    elif schema_type == "dictionary":
-        schema = DictionarySchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
-        code_model.primitives[yaml_id] = schema
-
-    elif schema_type in ["object", "and", "group", "any-object"]:
-        if _generate_as_object_schema(yaml_data):
-            # To avoid infinite loop, create the right instance in memory,
-            # put it in the index, and then parse the object.
-            schema = get_object_schema(code_model)(namespace, yaml_data, "_", "")
-            code_model.schemas[yaml_id] = schema
-            schema.fill_instance_from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
-        else:
-            schema = AnySchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
-            code_model.primitives[yaml_id] = schema
-    else:
-        schema = get_primitive_schema(namespace=namespace, yaml_data=yaml_data)
-        code_model.primitives[yaml_id] = schema
-
-    return schema
+    type_to_object = {
+        "integer": NumberSchema,
+        "string": StringSchema,
+        "model": ObjectSchema,
+        "array": ListSchema,
+    }[yaml_data["type"]]
+    response = type_to_object.from_yaml(yaml_data, code_model=code_model)
+    code_model.types_map[yaml_id] = response
+    return response

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar, Optional
+from typing import Any, Dict, List, TypeVar, Optional, TYPE_CHECKING
 
 from .base_builder import BaseBuilder, create_parameters
 from .request_builder_parameter import RequestBuilderParameter
@@ -13,6 +13,8 @@ from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import Parameter
 
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -26,7 +28,6 @@ class RequestBuilder(BaseBuilder):
         url: str,
         method: str,
         multipart: bool,
-        schema_requests: List[SchemaRequest],
         parameters: RequestBuilderParameterList,
         description: str,
         summary: str,
@@ -39,7 +40,6 @@ class RequestBuilder(BaseBuilder):
             description=description,
             parameters=parameters,
             responses=responses,
-            schema_requests=schema_requests,
             summary=summary,
         )
         self.url = url
@@ -95,17 +95,17 @@ class RequestBuilder(BaseBuilder):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "RequestBuilder":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilder":
 
         # when combine embeded builders into one operation file, we need to avoid duplicated build function name.
         # So add operation group name is effective method
         additional_mark = ""
         if code_model.options["combine_operation_files"] and code_model.options["builders_visibility"] == "embedded":
-            additional_mark = yaml_data["language"]["python"]["builderGroupName"]
+            additional_mark = yaml_data["operationGroupName"]
         names = [
             "build",
             additional_mark,
-            yaml_data["language"]["python"]["name"],
+            yaml_data["name"],
             "request"
         ]
         name = "_".join([n for n in names if n])
@@ -122,10 +122,9 @@ class RequestBuilder(BaseBuilder):
             code_model=code_model,
             yaml_data=yaml_data,
             name=name,
-            url=first_request["protocol"]["http"]["path"],
-            method=first_request["protocol"]["http"]["method"].upper(),
+            url=yaml_data["path"],
+            method=yaml_data["verb"].upper(),
             multipart=first_request["protocol"]["http"].get("multipart", False),
-            schema_requests=schema_requests,
             parameters=parameter_list,
             description=yaml_data["language"]["python"]["description"],
             responses=[

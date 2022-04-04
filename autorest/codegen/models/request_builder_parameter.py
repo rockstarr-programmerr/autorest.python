@@ -3,9 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, TYPE_CHECKING
 from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle, get_target_property_name
 from .utils import get_schema
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 def _make_public(name):
     if name[0] == "_":
@@ -71,41 +74,3 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
     @property
     def full_serialized_name(self) -> str:
         return self.serialized_name
-
-    @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], *, code_model, content_types: Optional[List[str]] = None
-    ) -> "RequestBuilderParameter":
-        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
-        name = yaml_data["language"]["python"]["name"]
-        location = ParameterLocation(http_protocol["in"])
-        serialized_name = yaml_data["language"]["python"]["name"]
-        schema = get_schema(
-            code_model, yaml_data.get("schema"), serialized_name
-        )
-        target_property = yaml_data.get("targetProperty")
-        target_property_name = get_target_property_name(code_model, id(target_property)) if target_property else None
-        return cls(
-            code_model=code_model,
-            yaml_data=yaml_data,
-            schema=schema,
-            # See also https://github.com/Azure/autorest.modelerfour/issues/80
-            rest_api_name=yaml_data["language"]["default"].get(
-                "serializedName", yaml_data["language"]["default"]["name"]
-            ),
-            serialized_name=_make_public(name),
-            description=yaml_data["language"]["python"]["description"],
-            implementation=yaml_data["implementation"],
-            required=yaml_data.get("required", False),
-            location=location,
-            skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
-            constraints=[],  # FIXME constraints
-            target_property_name=target_property_name,
-            style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
-            explode=http_protocol.get("explode", False),
-            grouped_by=yaml_data.get("groupedBy", None),
-            original_parameter=yaml_data.get("originalParameter", None),
-            flattened=yaml_data.get("flattened", False),
-            client_default_value=yaml_data.get("clientDefaultValue"),
-            content_types=content_types,
-        )

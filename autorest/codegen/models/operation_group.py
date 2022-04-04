@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Set
+from typing import Dict, List, Any, Set, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .operation import Operation
@@ -12,6 +12,9 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .lro_paging_operation import LROPagingOperation
 from .imports import FileImport, ImportType
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -36,15 +39,14 @@ class OperationGroup(BaseModel):
     """
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model,
         name: str,
         class_name: str,
         operations: List[Operation],
         api_versions: Set[str]
     ) -> None:
-        super().__init__(yaml_data)
-        self.code_model = code_model
+        super().__init__(yaml_data, code_model)
         self.name = name
         self.class_name = class_name
         self.operations = operations
@@ -115,8 +117,8 @@ class OperationGroup(BaseModel):
         return not self.yaml_data["language"]["default"]["name"]
 
     @classmethod
-    def from_yaml(cls, code_model, yaml_data: Dict[str, Any]) -> "OperationGroup":
-        name = yaml_data["language"]["python"]["name"]
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "OperationGroup":
+        name = yaml_data["name"]
         _LOGGER.debug("Parsing %s operation group", name)
 
         operations = []
@@ -127,8 +129,8 @@ class OperationGroup(BaseModel):
             api_versions.update(operation.api_versions)
 
         return cls(
-            code_model=code_model,
             yaml_data=yaml_data,
+            code_model=code_model,
             name=name,
             class_name=yaml_data["language"]["python"]["className"],
             operations=operations,

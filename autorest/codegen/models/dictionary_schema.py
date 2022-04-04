@@ -79,9 +79,9 @@ class DictionarySchema(BaseSchema):
         """
         element_schema = yaml_data["elementType"]
 
-        from . import build_schema  # pylint: disable=import-outside-toplevel
+        from . import build_type  # pylint: disable=import-outside-toplevel
 
-        element_type = build_schema(
+        element_type = build_type(
             yaml_data=element_schema, **kwargs
         )
 

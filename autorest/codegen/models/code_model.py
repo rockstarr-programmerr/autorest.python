@@ -53,20 +53,18 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     def __init__(
         self,
+        yaml_data: Dict[str, Any],
         options: Dict[str, Any],
     ) -> None:
         self.send_request_name = "send_request" if options['show_send_request'] else "_send_request"
         self.rest_layer_name = "rest" if options["builders_visibility"] == "public" else "_rest"
         self.options = options
-        self.module_name: str = ""
-        self.class_name: str = ""
-        self.description: str = ""
-        self.namespace: str = ""
+        self.module_name = yaml_data["client"]["name"].replace(" ", "_").lower()
+        self.class_name = yaml_data["client"]["name"].replace(" ", "")
+        self.description = yaml_data["client"]["description"]
+        self.namespace = yaml_data["client"]["namespace"].lower()
         self.namespace_path: str = ""
-        self.schemas: Dict[int, ObjectSchema] = {}
-        self.sorted_schemas: List[ObjectSchema] = []
-        self.enums: Dict[int, EnumSchema] = {}
-        self.primitives: Dict[int, BaseSchema] = {}
+        self.types_map: Dict[int, BaseSchema] = {} # map yaml id to schema
         self.operation_groups: List[OperationGroup] = []
         params = GlobalParameterList(self)
         params.code_model = self
@@ -102,10 +100,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         :rtype: ~autorest.models.BaseSchema
         :raises: KeyError if schema is not found
         """
-        for attr in [self.schemas, self.enums, self.primitives]:
-            for elt_key, elt_value in attr.items():  # type: ignore
-                if schema_id == elt_key:
-                    return elt_value
+        for id, type in self.types_map.items():
+            if schema_id == id:
+                return type
         raise KeyError("Didn't find it!!!!!")
 
     @staticmethod
@@ -142,25 +139,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
             sorted_schemas.extend(CodeModel._sort_schemas_helper(schema, seen_schema_names, seen_schema_yaml_ids))
         self.sorted_schemas = sorted_schemas
-
-    def setup_client_input_parameters(self, yaml_data: Dict[str, Any]):
-        dollar_host = [
-            parameter for parameter in self.global_parameters
-            if parameter.rest_api_name == "$host"
-        ]
-        if not dollar_host:
-            # We don't want to support multi-api customurl YET (will see if that goes well....)
-            # So far now, let's get the first one in the first operation
-            # UGLY as hell.....
-            if yaml_data.get("operationGroups"):
-                first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
-                self.service_client.parameterized_host_template = (
-                    first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
-                )
-        else:
-            for host in dollar_host:
-                self.global_parameters.remove(host)
-            self.service_client.parameters.add_host(dollar_host[0].yaml_data["clientDefaultValue"])
 
     def format_lro_operations(self) -> None:
         """Adds operations and attributes needed for LROs.
