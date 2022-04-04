@@ -4,14 +4,17 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Set, cast
+from typing import Dict, List, Any, Optional, Set, cast, TYPE_CHECKING
 from .imports import FileImport
 from .operation import Operation
 from .parameter_list import ParameterList
-from .schema_response import SchemaResponse
+from .response import Response
 from .imports import ImportType, TypingSection
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -19,43 +22,24 @@ _LOGGER = logging.getLogger(__name__)
 class LROOperation(Operation):
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
-        description: str,
-        api_versions: Set[str],
-        parameters: ParameterList,
-        multiple_content_type_parameters: ParameterList,
-        schema_requests: List[SchemaRequest],
-        summary: Optional[str] = None,
-        responses: Optional[List[SchemaResponse]] = None,
-        exceptions: Optional[List[SchemaResponse]] = None,
-        want_description_docstring: bool = True,
-        want_tracing: bool = True
+        parameters,
     ) -> None:
-        super(LROOperation, self).__init__(
-            code_model,
+        super().__init__(
             yaml_data,
-            name,
-            description,
-            api_versions,
-            parameters,
-            multiple_content_type_parameters,
-            schema_requests,
-            summary,
-            responses,
-            exceptions,
-            want_description_docstring,
-            want_tracing,
+            code_model,
+            name="begin_" + name,
+            parameters=parameters,
         )
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
-        self.name = "begin_" + self.name
 
     @property
-    def lro_response(self) -> Optional[SchemaResponse]:
+    def lro_response(self) -> Optional[Response]:
         if not self.responses:
             return None
-        responses_with_bodies = [r for r in self.responses if r.has_body]
+        responses_with_bodies = [r for r in self.responses if r.type]
         num_response_schemas = {r.schema for r in responses_with_bodies}
         response = None
         if len(num_response_schemas) > 1:
@@ -83,18 +67,10 @@ class LROOperation(Operation):
     @property
     def initial_operation(self) -> Operation:
         operation = Operation(
-            self.code_model,
-            yaml_data={},
-            name=self.name[5:] + "_initial",
-            description="",
-            api_versions=self.api_versions,
+            yaml_data=self.yaml_data,
+            code_model=self.code_model,
+            name=self.yaml_data["name"],
             parameters=self.parameters,
-            schema_requests=self.schema_requests,
-            multiple_content_type_parameters=self.multiple_content_type_parameters,
-            summary=self.summary,
-            responses=self.responses,
-            want_description_docstring=False,
-            want_tracing=False,
         )
         operation.request_builder = self.request_builder
         return operation

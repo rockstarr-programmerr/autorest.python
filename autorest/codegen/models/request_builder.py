@@ -9,9 +9,9 @@ from .base_builder import BaseBuilder, create_parameters
 from .request_builder_parameter import RequestBuilderParameter
 from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
-from .schema_response import SchemaResponse
+from .response import Response
 from .imports import FileImport, ImportType, TypingSection
-from .parameter import Parameter
+from .parameter import RequestBody, Parameter
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -20,31 +20,6 @@ T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
 class RequestBuilder(BaseBuilder):
-    def __init__(
-        self,
-        code_model,
-        yaml_data: Dict[str, Any],
-        name: str,
-        url: str,
-        method: str,
-        multipart: bool,
-        parameters: RequestBuilderParameterList,
-        description: str,
-        summary: str,
-        responses: Optional[List[SchemaResponse]] = None,
-    ):
-        super().__init__(
-            code_model=code_model,
-            yaml_data=yaml_data,
-            name=name,
-            description=description,
-            parameters=parameters,
-            responses=responses,
-            summary=summary,
-        )
-        self.url = url
-        self.method = method
-        self.multipart = multipart
 
     @property
     def is_stream(self) -> bool:
@@ -57,7 +32,7 @@ class RequestBuilder(BaseBuilder):
 
     @property
     def operation_group_name(self) -> str:
-        return self.yaml_data["language"]["python"]["operationGroupName"]
+        return self.yaml_data["operationGroupName"]
 
     @property
     def builder_group_name(self) -> str:
@@ -87,7 +62,7 @@ class RequestBuilder(BaseBuilder):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
-        if self.parameters.has_body and (
+        if self.parameters.request_body and (
             self.code_model.options["builders_visibility"] != "embedded" or
             self.code_model.options["add_python3_operation_files"]
         ):
@@ -109,29 +84,19 @@ class RequestBuilder(BaseBuilder):
             "request"
         ]
         name = "_".join([n for n in names if n])
-
-        first_request = yaml_data["requests"][0]
-        schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
-        parameters, multiple_content_type_parameters = (
-            create_parameters(yaml_data, code_model, RequestBuilderParameter.from_yaml)
-        )
+        parameters = [RequestBuilderParameter.from_yaml(param, code_model) for param in yaml_data["parameters"]]
+        if yaml_data.get("requestBody"):
+            request_body = RequestBody.from_yaml(yaml_data["requestBody"], code_model)
+        else:
+            request_body = None
         parameter_list = RequestBuilderParameterList(
-            code_model, parameters + multiple_content_type_parameters, schema_requests
+            code_model, parameters, request_body=request_body
         )
         request_builder_class = cls(
             code_model=code_model,
             yaml_data=yaml_data,
             name=name,
-            url=yaml_data["path"],
-            method=yaml_data["verb"].upper(),
-            multipart=first_request["protocol"]["http"].get("multipart", False),
             parameters=parameter_list,
-            description=yaml_data["language"]["python"]["description"],
-            responses=[
-                SchemaResponse.from_yaml(yaml, code_model=code_model) for yaml in yaml_data.get("responses", [])
-            ],
-            summary=yaml_data["language"]["python"].get("summary"),
         )
         code_model.request_builder_ids[id(yaml_data)] = request_builder_class
-        parameter_list.add_body_kwargs()
         return request_builder_class

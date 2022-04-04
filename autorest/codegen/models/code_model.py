@@ -73,6 +73,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self.request_builder_ids: Dict[int, RequestBuilder] = {}
         self.package_dependency: Dict[str, str] = {}
         self._credential_model: Optional[CredentialModel] = None
+        self.object_types = [t for t in self.types_map.values() if isinstance(t, ObjectSchema)]
+        self.enums = [t for t in self.types_map.values() if isinstance(t, EnumSchema)]
+        self.sorted_schemas = self.object_types
 
     @property
     def global_parameters(self) -> GlobalParameterList:
@@ -136,7 +139,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         seen_schema_names: Set[str] = set()
         seen_schema_yaml_ids: Set[int] = set()
         sorted_schemas: List[ObjectSchema] = []
-        for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
+        for schema in sorted(self.object_types.values(), key=lambda x: x.name.lower()):
             sorted_schemas.extend(CodeModel._sort_schemas_helper(schema, seen_schema_names, seen_schema_yaml_ids))
         self.sorted_schemas = sorted_schemas
 
@@ -182,7 +185,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     @property
     def has_schemas(self):
-        return self.schemas or self.enums
+        return self.object_types or self.enums
 
     @property
     def credential_model(self) -> CredentialModel:
@@ -230,7 +233,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         :return: None
         :rtype: None
         """
-        for schema in self.schemas.values():
+        for schema in self.object_types.values():
             schema.properties = CodeModel._add_properties_from_inheritance_helper(schema, schema.properties)
 
     @staticmethod
@@ -249,7 +252,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         :return: None
         :rtype: None
         """
-        for schema in self.schemas.values():
+        for schema in self.object_types.values():
             schema.is_exception = CodeModel._add_exceptions_from_inheritance_helper(schema)
 
     def add_inheritance_to_models(self) -> None:
@@ -258,26 +261,20 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         :return: None
         :rtype: None
         """
-        for schema in self.schemas.values():
+        for schema in self.object_types.values():
             if schema.base_models:
                 # right now, the base model property just holds the name of the parent class
-                schema.base_models = [b for b in self.schemas.values() if b.id in schema.base_models]
+                schema.base_models = [b for b in self.object_types.values() if b.id in schema.base_models]
         self._add_properties_from_inheritance()
         self._add_exceptions_from_inheritance()
 
     def _populate_target_property(self, parameter: Parameter) -> None:
-        for obj in self.schemas.values():
+        for obj in self.object_types.values():
             for prop in obj.properties:
                 if prop.id == parameter.target_property_name:
                     parameter.target_property_name = prop.name
                     return
         raise KeyError("Didn't find the target property")
-
-    def generate_single_parameter_from_multiple_content_types_operation(self) -> None:
-        for operation_group in self.operation_groups:
-            for operation in operation_group.operations:
-                if operation.multiple_content_type_parameters:
-                    operation.convert_multiple_content_type_parameters()
 
     def need_vendored_code(self, async_mode: bool) -> bool:
         if async_mode:
@@ -328,7 +325,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 if isinstance(operation, LROOperation):
                     request_builder.name = request_builder.name + "_initial"
                 operation.request_builder = request_builder
-                operation.link_body_kwargs_to_body_params()
 
     def get_models_filename(self, is_python3_file: bool) -> str:
         if (

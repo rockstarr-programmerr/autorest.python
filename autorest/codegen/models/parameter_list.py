@@ -8,7 +8,7 @@ from copy import copy
 import logging
 from typing import cast, List, Callable, Optional, TypeVar, Dict, TYPE_CHECKING
 
-from .parameter import Parameter, ParameterLocation, BodyParameter
+from .parameter import Parameter, ParameterLocation, RequestBody
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .primitive_schemas import AnySchema, StringSchema
@@ -33,11 +33,11 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         code_model,
         parameters: Optional[List[Parameter]] = None,
         *,
-        body_parameter: Optional[BodyParameter] = None,
+        request_body: Optional[RequestBody] = None,
     ) -> None:
         self.code_model = code_model
         self.parameters = parameters or []
-        self.body_parameter = body_parameter
+        self.request_body = request_body
 
     # MutableSequence
 
@@ -219,7 +219,7 @@ def _create_files_or_data_param(
     params[0].need_import = False
     param = copy(params[0])
     param.serialized_name = serialized_name
-    param.schema = DictionarySchema(
+    param.type = DictionarySchema(
         namespace="",
         yaml_data={},
         element_type=AnySchema(namespace="", yaml_data={}),
@@ -315,30 +315,29 @@ class GlobalParameterList(ParameterList):
 
     def add_host(self, host_value: Optional[str]) -> None:
         # only adds if we don't have a parameterized host
+        # TODO: figure out how to move this to cadl
         host_param = Parameter(
             yaml_data={
-                "location"
+                "location": "path",
+                "optional": False,
+                "restApiName": "endpoint",
+                "serializedName": "endpoint",
             },
             code_model=self.code_model,
-            type=StringSchema(namespace="", yaml_data={"type": "str"}),
-            client_default_value=host_value,
-            keyword_only=self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"],
+            type=StringSchema({}, self.code_model)
         )
         self.parameters.append(host_param)
 
     def add_credential_global_parameter(self) -> None:
         credential_parameter = Parameter(
-            self.code_model,
-            yaml_data={},
-            schema=self.code_model.credential_model.credential_schema_policy.credential,
-            serialized_name="credential",
-            rest_api_name="credential",
-            implementation="Client",
-            description="Credential needed for the client to connect to Azure.",
-            required=True,
-            location=ParameterLocation.Other,
-            skip_url_encoding=True,
-            constraints=[],
+            yaml_data={
+                "location": "path",
+                "optional": False,
+                "restApiName": "credential",
+                "serializedName": "credential",
+            },
+            code_model=self.code_model,
+            type=self.code_model.credential_model.credential_schema_policy.credential,
         )
         if self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"]:
             self.parameters.append(credential_parameter)

@@ -159,7 +159,7 @@ class ClientSerializer:
             request_builder_name = request_builder.name
         retval.append(f">>> from {self.code_model.namespace}.{self.code_model.rest_layer_name} import {rest_imported}")
         retval.append(f">>> request = {request_builder_name}({request_builder_signature})")
-        retval.append(f"<HttpRequest [{request_builder.method}], url: '{request_builder.url}'>")
+        retval.append(f"<HttpRequest [{request_builder.verb}], url: '{request_builder.path}'>")
         retval.extend(self._example_make_call(async_mode))
         return retval
 

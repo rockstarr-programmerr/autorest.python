@@ -17,11 +17,11 @@ from .constant_schema import ConstantSchema
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter, ParameterStyle, ParameterLocation
+from .parameter import Parameter, ParameterStyle, ParameterLocation, RequestBody
 from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
-from .schema_response import SchemaResponse
+from .response import Response
 from .parameter_list import ParameterList, GlobalParameterList
 from .request_builder import RequestBuilder
 from .base_builder import BaseBuilder
@@ -54,7 +54,7 @@ __all__ = [
     "OperationGroup",
     "Property",
     "RequestBuilder",
-    "SchemaResponse",
+    "Response",
     "TokenCredentialSchema",
     "LROPagingOperation",
     "BaseBuilder",
@@ -64,6 +64,7 @@ __all__ = [
     "ParameterStyle",
     "IOSchema",
     "GlobalParameterList",
+    "RequestBody",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:

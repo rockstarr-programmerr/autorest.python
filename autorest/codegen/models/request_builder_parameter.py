@@ -25,25 +25,26 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm a flattened property of a body, don't want me, want the body param
-            or self.target_property_name
+            # or self.target_property_name
             or not self.in_method_code
         )
 
     @property
     def name_in_high_level_operation(self) -> str:
-        template = "{}" if self.code_model.options["version_tolerant"] else "_{}"
-        if self.is_multipart:
-            return template.format("files")
-        if self.is_data_input:
-            return template.format("data")
-        if self.is_body and not self.constant:
-            return f"_{self.serialized_name}"
-        name = self.yaml_data["language"]["python"]["name"]
-        if self.implementation == "Client" and self.in_method_code:
-            # for these, we're passing the client params to the request builder.
-            # Need the self._config prefix
-            name = f"self._config.{name}"
-        return name
+        # template = "{}" if self.code_model.options["version_tolerant"] else "_{}"
+        # if self.is_multipart:
+        #     return template.format("files")
+        # if self.is_data_input:
+        #     return template.format("data")
+        # if self.is_body and not self.constant:
+        #     return f"_{self.serialized_name}"
+        # name = self.yaml_data["language"]["python"]["name"]
+        # if self.implementation == "Client" and self.in_method_code:
+        #     # for these, we're passing the client params to the request builder.
+        #     # Need the self._config prefix
+        #     name = f"self._config.{name}"
+        # return name
+        return self.serialized_name
 
     @property
     def in_method_code(self) -> bool:

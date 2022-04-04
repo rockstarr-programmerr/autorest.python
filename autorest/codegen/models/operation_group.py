@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
+from this import d
 from typing import Dict, List, Any, Set, TYPE_CHECKING
 
 from .base_model import BaseModel
@@ -33,6 +34,7 @@ def _get_operation(code_model, yaml_data: Dict[str, Any]) -> Operation:
     return operation
 
 
+
 class OperationGroup(BaseModel):
     """Represent an operation group.
 
@@ -40,17 +42,22 @@ class OperationGroup(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model,
+        code_model: "CodeModel",
         name: str,
-        class_name: str,
         operations: List[Operation],
-        api_versions: Set[str]
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.name = name
-        self.class_name = class_name
+        self.class_name = self._get_class_name()
         self.operations = operations
-        self.api_versions = api_versions
+
+    def _get_class_name(self) -> str:
+        if not self.name:
+            return self.code_model.class_name + "OperationsMixin"
+        elif self.name == 'Operations':
+            return "Operations"
+        else:
+            return self.name + "Operations"
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
@@ -114,25 +121,21 @@ class OperationGroup(BaseModel):
     def is_empty_operation_group(self) -> bool:
         """The operation group with no name is the direct client methods.
         """
-        return not self.yaml_data["language"]["default"]["name"]
+        return not self.name
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "OperationGroup":
-        name = yaml_data["name"]
-        _LOGGER.debug("Parsing %s operation group", name)
 
         operations = []
         api_versions: Set[str] = set()
-        for operation_yaml in yaml_data["operations"]:
-            operation = _get_operation(code_model, operation_yaml)
-            operations.append(operation)
-            api_versions.update(operation.api_versions)
+        for operation_yamls in yaml_data.values():
+            for operation_yaml in operation_yamls:
+                operation = _get_operation(code_model, operation_yaml)
+                operations.append(operation)
 
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            name=name,
-            class_name=yaml_data["language"]["python"]["className"],
+            name=list(yaml_data.keys())[0],
             operations=operations,
-            api_versions=api_versions
         )

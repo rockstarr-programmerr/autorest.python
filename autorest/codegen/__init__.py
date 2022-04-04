@@ -28,19 +28,18 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
     # Create operations
     if code_model.options["show_operations"] and yaml_data.get("operationGroups"):
         code_model.operation_groups = [
-            OperationGroup.from_yaml(op_group, code_model) for op_group in yaml_data["operationGroups"]
+            OperationGroup.from_yaml(yaml_data={name: op_group}, code_model=code_model) for name, op_group in yaml_data["operationGroups"].items()
         ]
     if yaml_data.get("schemas"):
         code_model.add_inheritance_to_models()
-        if code_model.options["models_mode"]:
-            code_model.sort_schemas()
+        # if code_model.options["models_mode"]:
+        #     code_model.sort_schemas()
 
     if code_model.options["show_operations"]:
-        code_model.generate_single_parameter_from_multiple_content_types_operation()
         code_model.link_operation_to_request_builder()
         # LRO operation
-        code_model.format_lro_operations()
-        code_model.remove_next_operation()
+        # code_model.format_lro_operations()
+        # code_model.remove_next_operation()
 
 def _validate_code_model_options(options: Dict[str, Any]) -> None:
 
@@ -177,6 +176,9 @@ class CodeGenerator(Plugin):
             [Parameter.from_yaml(param, code_model=code_model) for param in yaml_data.get("globalParameters", [])],
         )
         code_model.global_parameters.code_model = code_model
+        # TODO: fix me
+        for p in code_model.global_parameters.parameters:
+            p.implementation = "Client"
 
         code_model.rest = Rest.from_yaml(yaml_data, code_model=code_model)
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)

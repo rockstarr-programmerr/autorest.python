@@ -3,10 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Set, Union, TYPE_CHECKING
 from .base_model import BaseModel
-from .schema_response import SchemaResponse
+from .response import Response
 from .schema_request import SchemaRequest
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
@@ -63,35 +66,38 @@ class BaseBuilder(BaseModel):
 
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
-        description: str,
         parameters,
-        schema_requests: List[SchemaRequest],
-        responses: Optional[List[SchemaResponse]] = None,
-        summary: Optional[str] = None,
     ) -> None:
-        super().__init__(yaml_data=yaml_data)
-        self.code_model = code_model
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = name
-        self.description = description
         self.parameters = parameters
-        self.responses = responses or []
-        self.summary = summary
-        self.schema_requests = schema_requests
+        self.summary = yaml_data.get("summary", "")
+        self.path = yaml_data["path"]
+        self.verb = yaml_data["verb"]
+        self.description = yaml_data.get("description", "")
+        self.status_code_to_responses = {
+            sc: [Response.from_yaml(r, code_model) for r in responses]
+            for sc, responses in yaml_data["responses"].items()
+        }
 
     @property
-    def default_content_type_declaration(self) -> str:
-        return f'"{self.parameters.default_content_type}"'
-
-    def get_response_from_status(self, status_code: Optional[Union[str, int]]) -> SchemaResponse:
-        for response in self.responses:
-            if status_code in response.status_codes:
-                return response
-        raise ValueError(f"Incorrect status code {status_code}, operation {self.name}")
+    def has_response_body(self) -> bool:
+        return any(r.type for r in self.responses)
 
     @property
-    def success_status_code(self) -> List[Union[str, int]]:
-        """The list of all successfull status code."""
-        return [code for response in self.responses for code in response.status_codes if code != "default"]
+    def successful_status_codes(self) -> List[str]:
+        return [sc for sc in self.status_code_to_responses if sc != "*"]
+
+    @property
+    def responses(self) -> List[Response]:
+        retval: List[Response] = []
+        seen_responses: Set[int] = set()
+        for responses in self.status_code_to_responses.values():
+            for response in responses:
+                if id(response.yaml_data) not in seen_responses:
+                    retval.append(response)
+                seen_responses.add(id(response.yaml_data))
+        return retval

@@ -6,7 +6,7 @@
 import logging
 from enum import Enum
 
-from typing import Dict, Optional, List, Any, Union, Tuple, cast, TYPE_CHECKING
+from typing import Dict, Optional, List, Any, Set, Union, Tuple, cast, TYPE_CHECKING
 
 from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
@@ -52,7 +52,7 @@ class ParameterStyle(Enum):
 
 
 def get_target_property_name(code_model: "CodeModel", target_property_id: int) -> str:
-    for obj in code_model.schemas.values():
+    for obj in code_model.object_types.values():
         for prop in obj.properties:
             if prop.id == target_property_id:
                 return prop.name
@@ -67,20 +67,49 @@ class BaseParameter(BaseModel):
         super().__init__(yaml_data, code_model)
         self.optional = yaml_data["optional"]
         self.description = yaml_data.get("description", "")
+        self._implementation = "Method"
+        self.required = not self.optional
 
-class BodyParameter(BaseParameter):
+    @property
+    def constant(self) -> bool:
+        # TODO: how to constant?
+        return False
+
+class RequestBody(BaseParameter):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         content_type_to_type: Dict[str, BaseSchema],
     ):
-        # TODO: We want separate BodyParameter classes for formdata
+        # TODO: We want separate RequestBody classes for formdata
         super().__init__(
             yaml_data=yaml_data,
             code_model=code_model,
         )
         self.content_type_to_type = content_type_to_type
+        self.types: List[BaseSchema] = self._set_types()
+        self.is_keyword_only = False
+        self.is_positional = True
+        self.is_kwarg = False
+        self.serialized_name = "json"
+
+    @property
+    def serialization_type(self) -> str:
+        return self.types[0].serialization_type
+
+    def _set_types(self) -> List[BaseSchema]:
+        retval: List[BaseSchema] = []
+        seen_ids: Set[int] = set()
+        for type in self.content_type_to_type.values():
+            if id(type.yaml_data) not in seen_ids:
+                retval.append(type)
+            seen_ids.add(id(type.yaml_data))
+        return retval
+
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+        # TODO: do unions for multiple content types
+        return self.types[0].type_annotation(is_operation_file=True)
 
     def get_content_types_from_type(self, yaml_id: int) -> List[str]:
         return [
@@ -88,11 +117,14 @@ class BodyParameter(BaseParameter):
             if id(v.yaml_data) == yaml_id
         ]
 
+    def method_signature(self, is_python3_file: bool) -> str:
+        return f"body: {self.type_annotation()},"
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
         content_type_to_type = {
             k: code_model.lookup_schema(id(v))
-            for k, v in yaml_data["content"]
+            for k, v in yaml_data["content"].items()
         }
         return cls(
             yaml_data=yaml_data,

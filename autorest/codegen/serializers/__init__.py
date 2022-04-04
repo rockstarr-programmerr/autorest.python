@@ -73,7 +73,7 @@ class JinjaSerializer:
         if self.has_aio_folder:
             self._keep_patch_file(namespace_path / Path("aio") / Path("_patch.py"), env)
 
-        if self.code_model.options["models_mode"] and (self.code_model.schemas or self.code_model.enums):
+        if self.code_model.options["models_mode"] and (self.code_model.object_types or self.code_model.enums):
             self._keep_patch_file(namespace_path / Path("models") / Path("_patch.py"), env)
         if self.code_model.options["show_operations"] and self.code_model.operation_groups:
             self._keep_patch_file(
@@ -101,7 +101,7 @@ class JinjaSerializer:
                     env=env, namespace_path=namespace_path
                 )
 
-        if self.code_model.options["models_mode"] and (self.code_model.schemas or self.code_model.enums):
+        if self.code_model.options["models_mode"] and (self.code_model.object_types or self.code_model.enums):
             self._serialize_and_write_models_folder(env=env, namespace_path=namespace_path)
         if not self.code_model.options["models_mode"]:
             # keep models file if users ended up just writing a models file
@@ -178,7 +178,7 @@ class JinjaSerializer:
     def _serialize_and_write_models_folder(self, env: Environment, namespace_path: Path) -> None:
         # Write the models folder
         models_path = namespace_path / Path("models")
-        if self.code_model.schemas:
+        if self.code_model.object_types:
             if not self.code_model.options['python3_only']:
                 self._autorestapi.write_file(
                     models_path / Path(f"{self.code_model.get_models_filename(is_python3_file=False)}.py"),

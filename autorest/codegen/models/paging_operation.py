@@ -4,15 +4,18 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import cast, Dict, List, Any, Optional, Set
+from typing import cast, Dict, List, Any, Optional, TYPE_CHECKING
 
 from .operation import Operation
-from .schema_response import SchemaResponse
+from .response import Response
 from .request_builder import RequestBuilder
 from .imports import ImportType, FileImport, TypingSection
 from .object_schema import ObjectSchema
 from .schema_request import SchemaRequest
 from .parameter_list import ParameterList
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -20,46 +23,26 @@ _LOGGER = logging.getLogger(__name__)
 class PagingOperation(Operation):
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
-        description: str,
-        api_versions: Set[str],
-        parameters: ParameterList,
-        multiple_content_type_parameters: ParameterList,
-        schema_requests: List[SchemaRequest],
-        summary: Optional[str] = None,
-        responses: Optional[List[SchemaResponse]] = None,
-        exceptions: Optional[List[SchemaResponse]] = None,
-        want_description_docstring: bool = True,
-        want_tracing: bool = True,
-        *,
-        override_success_response_to_200: bool = False
+        parameters,
     ) -> None:
-        super(PagingOperation, self).__init__(
-            code_model,
-            yaml_data,
-            name,
-            description,
-            api_versions,
-            parameters,
-            multiple_content_type_parameters,
-            schema_requests,
-            summary,
-            responses,
-            exceptions,
-            want_description_docstring,
-            want_tracing
+        super().__init__(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            name=name,
+            parameters=parameters,
         )
         self._item_name: str = yaml_data["extensions"]["x-ms-pageable"].get("itemName")
         self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
         self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
         self.next_operation: Optional[Operation] = None
-        self.override_success_response_to_200 = override_success_response_to_200
+        self.override_success_response_to_200 = False
 
-    def _get_response(self) -> SchemaResponse:
+    def _get_response(self) -> Response:
         response = self.responses[0]
-        if not isinstance(response.schema, ObjectSchema):
+        if not isinstance(response.type, ObjectSchema):
             raise ValueError(
                 "The response of a paging operation must be of type " + f"ObjectSchema but {response.schema} is not"
             )
@@ -67,7 +50,7 @@ class PagingOperation(Operation):
 
     def _find_python_name(self, rest_api_name: str, log_name: str) -> str:
         response = self.responses[0]
-        response_schema = cast(ObjectSchema, response.schema)
+        response_schema = cast(ObjectSchema, response.type)
         if response_schema:
             for prop in response_schema.properties:
                 if prop.original_swagger_name == rest_api_name:
@@ -91,7 +74,7 @@ class PagingOperation(Operation):
             response = self._get_response()
             raise ValueError(
                 f"While scanning x-ms-pageable, itemName was not defined and object"
-                + f" {cast(ObjectSchema, response.schema).name} has no array called 'value'"
+                + f" {cast(ObjectSchema, response.type).name} has no array called 'value'"
             )
 
     @property
