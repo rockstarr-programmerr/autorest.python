@@ -13,7 +13,8 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         response = super().get_model(mode, **kwargs)
         return Product(**response)
 
-    def post_model(self, mode: str, input: Union[Input, JSON], **kwargs: Any) -> Product:
+    def post_model(self, mode: str, input: JSON, **kwargs: Any) -> Product:
+        # input: can be type of ..models.Input or any others Json serializable such as dict
         response = super().post_model(mode, input, **kwargs)
         return Product(**response)
 
