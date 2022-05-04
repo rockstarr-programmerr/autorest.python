@@ -79,6 +79,7 @@ class _ParameterBase(
         self.flattened: bool = self.yaml_data.get("flattened", False)
         self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
         self.grouper: bool = self.yaml_data.get("grouper", False)
+        self.added_api_version = self.yaml_data.get("addedApiVersion")
 
     @property
     def constant(self) -> bool:
