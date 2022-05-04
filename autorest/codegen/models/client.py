@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union
+from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union, List
 
 from .base_model import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
@@ -30,6 +30,7 @@ class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
         super().__init__(yaml_data, code_model)
         self.parameters = parameters
         self.url: str = self.yaml_data["url"]
+        self.api_versions: List[str] = self.yaml_data.get("apiVersions", [])
 
     @property
     def description(self) -> str:
