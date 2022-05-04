@@ -14,7 +14,6 @@ from .. import YamlUpdatePlugin
 
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
-
 OAUTH_TYPE = "OAuth2"
 KEY_TYPE = "Key"
 
@@ -53,12 +52,18 @@ def get_type(yaml_data: Dict[str, Any]):
     except KeyError:
         return KNOWN_TYPES[yaml_data["type"]]
 
+def _get_api_versions(api_versions: List[Dict[str, str]]) -> List[str]:
+    return list({
+        api_version["version"]: None
+        for api_version in api_versions
+    }.keys())
 
 def _update_type_base(updated_type: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "type": updated_type,
         "clientDefaultValue": yaml_data.get("defaultValue"),
         "xmlMetadata": yaml_data.get("serialization", {}).get("xml", {}),
+        "apiVersions": _get_api_versions(yaml_data.get("apiVersions", []))
     }
 
 
@@ -486,6 +491,7 @@ class M4Reformatter(YamlUpdatePlugin):
             "groupName": group_name,
             "discriminator": "operation",
             "isOverload": is_overload,
+            "apiVersions": _get_api_versions(yaml_data.get("apiVersions", [])),
         }
 
     def get_operation_creator(
@@ -996,7 +1002,7 @@ class M4Reformatter(YamlUpdatePlugin):
             or yaml_data["language"]["default"]["name"],
         }
 
-    def update_yaml(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""
         # First we update the types, so we can access for when we're creating parameters etc.
         for type_group, types in yaml_data["schemas"].items():
@@ -1008,11 +1014,15 @@ class M4Reformatter(YamlUpdatePlugin):
                     # we don't generate cloud error
                     continue
                 update_type(t)
-        return {
-            "client": self.update_client(yaml_data),
-            "operationGroups": [
-                self.update_operation_group(og) for og in yaml_data["operationGroups"]
-            ],
-            "types": list(ORIGINAL_ID_TO_UPDATED_TYPE.values())
-            + list(KNOWN_TYPES.values()),
-        }
+        yaml_data["client"] = self.update_client(yaml_data)
+        yaml_data["operationGroups"] = [
+            self.update_operation_group(og) for og in yaml_data["operationGroups"]
+        ]
+        yaml_data["types"] = list(ORIGINAL_ID_TO_UPDATED_TYPE.values()) + list(KNOWN_TYPES.values())
+        del yaml_data["globalParameters"]
+        del yaml_data["info"]
+        del yaml_data["language"]
+        del yaml_data["protocol"]
+        del yaml_data["schemas"]
+        del yaml_data["security"]
+        ORIGINAL_ID_TO_UPDATED_TYPE.clear()
