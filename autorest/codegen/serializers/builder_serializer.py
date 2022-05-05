@@ -32,7 +32,6 @@ from ..models import (
     BaseType,
     MultipartBodyParameter,
     RequestBuilderType,
-    OverloadedOperation,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils
@@ -48,13 +47,12 @@ BuilderType = TypeVar(
         PagingOperation,
         LROOperation,
         LROPagingOperation,
-        OverloadedOperation,
         OverloadedRequestBuilder,
     ],
 )
 OperationType = TypeVar(
     "OperationType",
-    bound=Union[Operation, OverloadedOperation, PagingOperation, LROOperation],
+    bound=Union[Operation, PagingOperation, LROOperation],
 )
 
 
@@ -1007,7 +1005,7 @@ class _OperationSerializer(
         return "await " if self.async_mode else ""
 
 
-class OperationSerializer(_OperationSerializer[Union[Operation, OverloadedOperation]]):
+class OperationSerializer(_OperationSerializer[Operation]):
     ...
 
 

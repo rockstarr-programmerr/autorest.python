@@ -8,11 +8,12 @@ from typing import Dict, List, Any, TYPE_CHECKING
 from autorest.codegen.models.utils import OrderedSet
 
 from .base_model import BaseModel
-from .operation import OperationBase, get_operation
+from .operation import Operation, get_operation
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+
 
 class OperationGroup(BaseModel):
     """Represent an operation group."""
@@ -21,7 +22,7 @@ class OperationGroup(BaseModel):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        operations: List[OperationBase],
+        operations: List[Operation],
         api_versions: List[str],
     ) -> None:
         super().__init__(yaml_data, code_model)
@@ -60,7 +61,7 @@ class OperationGroup(BaseModel):
             file_import.merge(operation.imports(async_mode, is_python3_file))
         local_path = "..." if async_mode else ".."
         if (
-            self.code_model.object_types or self.code_model.enums
+            self.code_model.model_types or self.code_model.enums
         ) and self.code_model.options["models_mode"]:
             file_import.add_submodule_import(
                 local_path, "models", ImportType.LOCAL, alias="_models"

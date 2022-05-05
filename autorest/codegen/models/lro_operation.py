@@ -3,10 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from abc import abstractmethod
-from typing import Any, Callable, Dict, Optional, Type, List, TYPE_CHECKING, Union
+from typing import Any, Dict, Optional, List, TYPE_CHECKING
 from .imports import FileImport
-from .operation import Operation, OperationBase, OverloadedOperation
+from .operation import Operation
 from .response import Response
 from .imports import ImportType, TypingSection
 from .request_builder import RequestBuilder
@@ -16,7 +15,7 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
+class LROOperation(Operation):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -89,9 +88,11 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
         )
 
     def get_poller(self, async_mode: bool) -> str:
+        """Get the name of the poller. Default is LROPoller / AsyncLROPoller"""
         return self.get_poller_path(async_mode).split(".")[-1]
 
     def get_polling_method_path(self, async_mode: bool) -> str:
+        """Get the full name of the poller path. Default are the azure core pollers"""
         return (
             self.yaml_data["pollingMethodAsync"]
             if async_mode
@@ -99,20 +100,25 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
         )
 
     def get_polling_method(self, async_mode: bool) -> str:
+        """Get the default pollint method"""
         return self.get_polling_method_path(async_mode).split(".")[-1]
 
     @staticmethod
     def get_no_polling_method_path(async_mode: bool) -> str:
+        """Get the path of the default of no polling method"""
         return f"azure.core.polling.{'Async' if async_mode else ''}NoPolling"
 
     def get_no_polling_method(self, async_mode: bool) -> str:
+        """Get the default no polling method"""
         return self.get_no_polling_method_path(async_mode).split(".")[-1]
 
     @staticmethod
     def get_base_polling_method_path(async_mode: bool) -> str:
+        """Get the base polling method path. Used in docstrings and type annotations."""
         return f"azure.core.polling.{'Async' if async_mode else ''}PollingMethod"
 
     def get_base_polling_method(self, async_mode: bool) -> str:
+        """Get the base polling method."""
         return self.get_base_polling_method_path(async_mode).split(".")[-1]
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
@@ -131,6 +137,7 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
         return f"~{self.get_poller_path(kwargs.pop('async_mode'))}[{super().response_docstring_type(**kwargs)}]"
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:
+        """We don't want the poller to show up in ClsType, so we call super() on resposne type annotation"""
         return f"ClsType[{super().response_type_annotation(async_mode=async_mode)}]"
 
     def response_docstring_text(self, **kwargs) -> str:
@@ -143,8 +150,9 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
         return base_description + super_text
 
     @property
-    def initial_operation(self) -> Union[Operation, OverloadedOperation]:
-        return self.initial_operation_type()(
+    def initial_operation(self) -> Operation:
+        """Initial operation that creates the first call for LRO polling"""
+        return Operation(
             yaml_data=self.yaml_data,
             code_model=self.code_model,
             request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
@@ -156,11 +164,6 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
             public=False,
             want_tracing=False,
         )
-
-    @staticmethod
-    @abstractmethod
-    def initial_operation_type() -> Union[Type[Operation], Type[OverloadedOperation]]:
-        ...
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_base(async_mode, is_python3_file)
@@ -213,21 +216,3 @@ class _LROOperationBase(OperationBase):  # pylint: disable=abstract-method
                 ImportType.AZURECORE,
             )
         return file_import
-
-
-class LROOperation(Operation, _LROOperationBase):
-    @staticmethod
-    def initial_operation_type() -> Union[Type[Operation], Type[OverloadedOperation]]:
-        return Operation
-
-
-class OverloadedLROOperation(OverloadedOperation, _LROOperationBase):
-    @staticmethod
-    def overload_operation_class() -> Callable[
-        [Dict[str, Any], "CodeModel"], "Operation"
-    ]:
-        return LROOperation.from_yaml
-
-    @staticmethod
-    def initial_operation_type() -> Union[Type[Operation], Type[OverloadedOperation]]:
-        return OverloadedOperation
