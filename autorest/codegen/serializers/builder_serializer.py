@@ -533,7 +533,7 @@ class _OperationSerializer(
         ):
             retval.append(f'    version_method_added="{builder.added_api_version}",')
         args_mapping = {
-            p.added_api_version: p.client_name
+            p.client_name: p.added_api_version
             for p in builder.parameters.parameters if p.need_multiapi_check
         }
         if args_mapping:
