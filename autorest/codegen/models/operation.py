@@ -357,6 +357,11 @@ class OperationBase(
             file_import.merge(
                 self.get_request_builder_import(self.request_builder, async_mode)
             )
+        if self.need_multiapi_check:
+            relative_path = "..." if async_mode else ".."
+            file_import.add_submodule_import(
+                f"{relative_path}_vendor", "validate_version", ImportType.LOCAL
+            )
         return file_import
 
     def get_response_from_status(

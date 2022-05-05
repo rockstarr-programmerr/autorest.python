@@ -34,3 +34,40 @@ class MixinABC(ABC):
     _serialize: "Serializer"
     _deserialize: "Deserializer"
 {% endif %}
+{% if code_model.need_multiapi_check %}
+
+class validate_version:
+    def __init__(self, *, version_method_added = None, args_mapping = None):
+        self.version_method_added = version_method_added
+        self.args_mapping = args_mapping or {}
+
+    def __call__(self, func):
+        version_method_added = self.version_method_added
+        args_mapping = self.args_mapping
+
+        def wrapper(self, *args, **kwargs):
+            api_version = self._config.api_version
+            if version_method_added and api_version < version_method_added:
+                raise ValueError(f'"{func.__name__}" is only available for API version {version_method_added} and up.')
+            unallowed_parameters = [
+                param for param in kwargs.keys()
+                if api_version < args_mapping.get(param, api_version)
+            ]
+            if unallowed_parameters:
+                param_to_api_version_error_strings = [
+                    "'{}' was added in api version '{}'".format(
+                        param,
+                        args_mapping[param]
+                    )
+                    for param in unallowed_parameters
+                ]
+                raise ValueError(
+                    "Passed in parameter(s) '{}' not valid with api version '{}': {}".format(
+                        "', '".join(unallowed_parameters),
+                        api_version,
+                        ", ".join(param_to_api_version_error_strings)
+                    )
+                )
+            return func(self, *args, **kwargs)
+        return wrapper
+{% endif %}

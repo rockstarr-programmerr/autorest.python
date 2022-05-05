@@ -85,7 +85,6 @@ def _json_dumps_template(template_representation: Any) -> Any:
         json.dumps(template_representation, sort_keys=True, indent=4)
     )
 
-
 def _serialize_grouped_body(builder: BuilderType) -> List[str]:
     retval: List[str] = []
     for grouped_parameter in builder.parameters.grouped:
@@ -525,11 +524,30 @@ class _OperationSerializer(
     def serializer_name(self) -> str:
         return "self._serialize"
 
+    def _get_version_validation(self, builder: OperationType) -> str:
+        retval: List[str] = ["@validate_version("]
+        if (
+            bool(builder.added_api_version) and
+            bool(self.code_model.client.api_versions) and
+            builder.added_api_version != self.code_model.client.api_versions[0]
+        ):
+            retval.append(f'    version_method_added="{builder.added_api_version}",')
+        args_mapping = {
+            p.added_api_version: p.client_name
+            for p in builder.parameters.parameters if p.need_multiapi_check
+        }
+        if args_mapping:
+            retval.append(f'    args_mapping={args_mapping},')
+        retval.append(")")
+        return "\n".join(retval)
+
     def decorators(self, builder: OperationType) -> List[str]:
         """Decorators for the method"""
         super_decorators = super().decorators(builder)
         if builder.abstract:
             super_decorators.append("@abc.abstractmethod")
+        if builder.need_multiapi_check:
+            super_decorators.append(self._get_version_validation(builder))
         return super_decorators
 
     def param_description(

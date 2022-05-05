@@ -196,7 +196,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         if async_mode:
             return self.need_mixin_abc
         return (
-            self.need_request_converter or self.need_format_url or self.need_mixin_abc
+            self.need_request_converter or self.need_format_url or self.need_mixin_abc or self.need_multiapi_check
         )
 
     @property
@@ -217,6 +217,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             o
             for o in self.operation_groups
             if o.is_mixin and self.options["python3_only"]
+        )
+
+    @property
+    def need_multiapi_check(self) -> bool:
+        return any(
+            o.need_multiapi_check
+            for og in self.operation_groups
+            for o in og.operations
         )
 
     @property

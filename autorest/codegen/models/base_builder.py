@@ -58,7 +58,20 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
         self.want_tracing = want_tracing
         self.group_name: str = yaml_data["groupName"]
         self.is_overload: bool = yaml_data["isOverload"]
-        self.api_versions: List[str] = yaml_data["apiVersions"]
+        self.api_versions: List[str] = yaml_data.get("apiVersions", [])
+        self.added_api_version: Optional[str] = self.yaml_data.get("addedApiVersion")
+
+    @property
+    def need_multiapi_check(self) -> bool:
+        """If I need multiapi verification"""
+        if any(p for p in self.parameters if p.need_multiapi_check):
+            return True
+        return (
+            bool(self.added_api_version) and
+            bool(self.code_model.client.api_versions) and
+            self.added_api_version != self.code_model.client.api_versions[0]
+        )
+
 
     @property
     def summary(self) -> Optional[str]:

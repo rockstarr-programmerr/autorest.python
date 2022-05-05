@@ -79,7 +79,7 @@ class _ParameterBase(
         self.flattened: bool = self.yaml_data.get("flattened", False)
         self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
         self.grouper: bool = self.yaml_data.get("grouper", False)
-        self.added_api_version: Optional[str] = self.yaml_data["addedApiVersion"] if isinstance(self.yaml_data.get("addedApiVersion"), str) else None
+        self.added_api_version: Optional[str] = self.yaml_data.get("addedApiVersion")
 
     @property
     def constant(self) -> bool:
@@ -88,6 +88,14 @@ class _ParameterBase(
         a constant because it can have a value of None.
         """
         return not self.optional and isinstance(self.type, ConstantType)
+
+    @property
+    def need_multiapi_check(self) -> bool:
+        """Whether this parameter was added at a later API version, needs check or not"""
+        if not (self.added_api_version and self.code_model.client.api_versions):
+            # this case there's not really any multiapi stuff going on, return False
+            return False
+        return self.added_api_version != self.code_model.client.api_versions[0]
 
     @property
     def description(self) -> str:
@@ -341,6 +349,8 @@ class ClientParameter(Parameter):
             or self.code_model.options["low_level_client"]
         ):
             # this means i am the base url
+            return ParameterMethodLocation.KEYWORD_ONLY
+        if self.location in (ParameterLocation.QUERY, ParameterLocation.HEADER):
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
 
