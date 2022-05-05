@@ -1,0 +1,78 @@
+{
+    "chosen_version": "v1",
+    "total_api_version_list": ["v1"],
+    "client": {
+        "name": "WidgetServiceClient",
+        "filename": "_widget_service_client",
+        "description": "Service that demos multiple versions in a single CADL description.",
+        "host_value": "\"\"",
+        "parameterized_host_template": null,
+        "azure_arm": false,
+        "has_lro_operations": false,
+        "client_side_validation": false,
+        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"azure.core\": [\"PipelineClient\"]}, \"local\": {\"._configuration\": [\"WidgetServiceClientConfiguration\"]}, \"thirdparty\": {\"msrest\": [\"Deserializer\", \"Serializer\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}}",
+        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"azure.core\": [\"AsyncPipelineClient\"]}, \"local\": {\"._configuration\": [\"WidgetServiceClientConfiguration\"]}, \"thirdparty\": {\"msrest\": [\"Deserializer\", \"Serializer\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}}"
+    },
+    "global_parameters": {
+        "sync": {
+        },
+        "async": {
+        },
+        "constant": {
+        },
+        "call": "",
+        "service_client_specific": {
+            "sync": {
+                "api_version": {
+                    "signature": "api_version=None, # type: Optional[str]",
+                    "description": "API version to use if no profile is provided, or if missing in profile.",
+                    "docstring_type": "str",
+                    "required": false
+                },
+                "base_url": {
+                    "signature": "base_url=\"\",  # type: str",
+                    "description": "Service URL",
+                    "docstring_type": "str",
+                    "required": false
+                },
+                "profile": {
+                    "signature": "profile=KnownProfiles.default, # type: KnownProfiles",
+                    "description": "A profile definition, from KnownProfiles to dict.",
+                    "docstring_type": "azure.profiles.KnownProfiles",
+                    "required": false
+                }
+            },
+            "async": {
+                "api_version": {
+                    "signature": "api_version: Optional[str] = None,",
+                    "description": "API version to use if no profile is provided, or if missing in profile.",
+                    "docstring_type": "str",
+                    "required": false
+                },
+                "base_url": {
+                    "signature": "base_url: str = \"\",",
+                    "description": "Service URL",
+                    "docstring_type": "str",
+                    "required": false
+                },
+                "profile": {
+                    "signature": "profile: KnownProfiles = KnownProfiles.default,",
+                    "description": "A profile definition, from KnownProfiles to dict.",
+                    "docstring_type": "azure.profiles.KnownProfiles",
+                    "required": false
+                }
+            }
+        }
+    },
+    "config": {
+        "credential": false,
+        "credential_scopes": null,
+        "credential_call_sync": null,
+        "credential_call_async": null,
+        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}}",
+        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}}"
+    },
+    "operation_groups": {
+        "widget_service": "WidgetServiceOperations"
+    }
+}
