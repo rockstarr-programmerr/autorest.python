@@ -372,7 +372,7 @@ class NameConverter:
             schema_python_name.upper() if all_upper else schema_python_name.lower()
         )
 
-        schema_description = schema["language"]["default"]["description"].strip()
+        schema_description = schema["language"]["default"].get("description", "").strip()
         if (
             pad_string == PadType.Method
             and not schema_description
@@ -396,7 +396,7 @@ class NameConverter:
             return
         schema["language"]["python"] = dict(schema["language"]["default"])
 
-        schema_description = schema["language"]["default"]["description"].strip()
+        schema_description = schema["language"]["default"].get("description", "").strip()
 
         schema["language"]["python"]["description"] = schema_description
 
